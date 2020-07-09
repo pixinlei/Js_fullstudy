@@ -1,0 +1,16 @@
+# js中的数据类型
+基本数据类型：string,number,boolean,undefined,null,,symbol(ES6)
+
+引用数据类型:object,function,array,Regexp（正则）,Date
+
+使用typeof来判断数据类型，null不能被正确判断而且只能判断基础数据类型，使用instanceof只能判断复杂数据类型
+# 条件语句 if else
+
+# 条件语句 switch
+
+# 循环语句 for循环
+
+# 循环语句 while循环
+
+# 跳转语句  
+

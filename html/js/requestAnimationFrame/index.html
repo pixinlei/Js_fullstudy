@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            font-family: sans-serif;
+            background-color: #13091B;
+            height: 100%;
+        }
+        body{
+            background: url(https://p1.music.126.net/gAmIGjlWnYXE_0O8LFp5-w==/109951164382001054.jpg) no-repeat;
+            background-size: cover;
+        }
+        audio{
+            visibility: hidden;
+        }
+        /* a{
+            position: absolute;
+            display: block;
+            color: aqua;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            width: 150px;
+            height: 100px;
+            border:1px solid #CCC;
+            background-color: aqua;
+        } */
+        /* a {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%);
+            font: bold 50px Arial;
+            text-decoration: none;
+            background-color:aqua;
+            color: #13091B;
+            padding: 2px 6px 2px 6px;
+} */
+        a{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%);
+            width: 150px;
+            height: 45px;
+            line-height: 45px;
+            background-color: aqua;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #13091B; 
+        }
+</style>
+    </style>
+</head>
+<body>
+    <div id="content">
+        <audio id="audio" controls src="http://m8.music.126.net/21180815163607/04976f67866d4b4d11575ab418904467/ymusic/515a/5508/520b/f0cf47930abbbb0562c9ea61707c4c0b.mp3?infoId=92001" crossorigin="anonymous"></audio>
+        <a href="javascript:;" id="play-btn">PLAY</a>
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        var btn = document.getElementById('play-btn')
+        var audio = document.getElementById('audio')
+        // btn.addEventListener('click',function(){
+
+        // })
+        //点击按钮播放音乐，按钮消失
+        btn.onclick = function(){
+            audio.play()
+            btn.style.display = 'none'
+            // 出现音浪，调用函数
+            onLoadAudio()
+        }
+            // 音浪函数
+        function onLoadAudio(){
+            var context = new(window.AudioContext || window.webkitAudioContext) //拿到audio的参数
+            // console.log(context)
+            var analyser = context.createAnalyser()  //创建一个分析器，可以获取音频的时间和频率的数据，可视化这份数据
+            // console.log(analyser);
+            analyser.fftSize = 512
+            // 输入 流式播放
+            var sourse = context.createMediaElementSource(audio)
+            sourse.connect(analyser)
+            analyser.connect(context.destination)
+
+            
+            var bufferLength = analyser.frequencyBinCount
+            console.log(bufferLength)
+
+            var dataArray = new Uint8Array(bufferLength)
+            console.log(dataArray)
+
+            // 画出来,先创建，设置宽和高
+            var canvas = document.getElementById('canvas')
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+            
+            var ctx = canvas.getContext('2d')
+            var WIDTH = canvas.width
+            var HEIGHT = canvas.height
+
+            var barWidth = (WIDTH / bufferLength) * 1.5
+            var barHeight;
+
+            // console.log(barWidth);
+
+            function renderFrame(){
+                requestAnimationFrame(renderFrame)
+
+                analyser.getByteFrequencyData(dataArray)
+                ctx.clearRect(0,0,WIDTH,HEIGHT)
+
+                for(var i=0,x=0;i<bufferLength;i++){
+                    barHeight = dataArray[i]
+                    var r = barHeight + 25 * (i/bufferLength)
+                    var g = 250 * (i/bufferLength)
+                    var b = 50
+
+                    ctx.fillStyle = "rgb("+ r + "," + g +"," + b +")"
+                    ctx.fillRect(x,HEIGHT-barHeight,barWidth,barHeight)
+                    x+= barWidth + 2 
+                }
+            }
+            renderFrame()           
+
+        }
+    </script>
+</body>
+</html>
