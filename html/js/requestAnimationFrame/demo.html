@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="mycanvas" width="800" height="600"></canvas>
+    <script>
+        var mycanvas = document.getElementById('mycanvas')
+        var context = mycanvas.getContext('2d')
+
+        // Create gradient  创建渐变色
+        var grd = context.createLinearGradient(0, 0, 200, 0);
+        grd.addColorStop(0, "#1E90FF");
+        grd.addColorStop(0.1, "#FF8F59");
+        grd.addColorStop(0.2, "#9932CC");
+        grd.addColorStop(0.3, "#1E90FF");
+        grd.addColorStop(0.4, "#00FFFF");
+        grd.addColorStop(0.6, "#00FA9A");
+        grd.addColorStop(0.8, "#977C00");
+        grd.addColorStop(1, "#FFC1E0");
+
+        // Fill with gradient 填充颜色
+        context.fillStyle = grd;
+
+        context.font = 'bold 35px Arial';
+        context.textAlign = 'center';
+        context.textBaseline = 'bottom';
+        // context.strokeText("Hello word", 150, 100);
+        context.fillText("Hello word", 180, 140);
+
+    </script>
+</body>
+
+</html>
