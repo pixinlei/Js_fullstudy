@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
-        img{
+
+        #container {
+            -moz-column-count: 3;
+            /* Firefox */
+            -webkit-column-count: 3;
+            /* Safari 和 Chrome */
+            column-count: 3;
+            -moz-column-gap: 20px;
+            -webkit-column-gap: 20px;
+            column-gap: 20px;
+            column-width: 344px;
+        }
+
+        .box {
+            -moz-page-break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+            break-inside: avoid;
+            float: left;
+            margin-bottom: 30px;
+        }
+
+        /* img {
             width: 33%;
             float: left;
-        }
+            vertical-align: bottom;
+        } */
     </style>
 </head>
+
 <body>
     <div id="container">
         <div class="box">
@@ -69,4 +93,5 @@
         </div>
     </div>
 </body>
+
 </html>

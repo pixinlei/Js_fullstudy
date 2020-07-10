@@ -22,6 +22,7 @@ var jiajun = {
 
 var xyl = {
     name:'元隆',
+    duckSing:'嘎嘎嘎'
 }
 
 const xgg = [jiajun,xyl]
@@ -43,7 +44,7 @@ for(var i=0;i<999;i++){
 
 // cherrio.push()
 for(var i=0;i<xgg.length;i++){
-    if(!xgg[i].duckSing){
+    if(typeof xgg[i].duckSing == 'function'){
         cherrio.push(xgg[i])
     }
 }
@@ -54,4 +55,7 @@ if(cherrio.length === 1000){
 }
 duck.duckSing();
 
+for(let singer of cherrio){ //  es6
+    singer.duckSing();
+}
 

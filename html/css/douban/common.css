@@ -1,0 +1,40 @@
+/* css reset */
+body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, blockquote{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+a{
+    cursor: pointer;
+}
+a:link{
+    color: #3377aa;
+}
+a:visited{
+    color: #666699;
+    text-decoration: none;
+}
+/* css继承能力 */
+html{
+    color: #111;
+    background: #fff;
+}
+body, td, th{
+ font: 12px Helvetica,Arial,sans-serif;
+ line-height: 1.62;
+}
+body{
+    padding: 30px;
+}
+/* 导航栏样式 */
+#anony-nav{
+    width: 1080px;/*网页的布局宽度*/
+    margin: 0 auto 25px;
+    background-color: green;
+}
+#anony-nav .anony-nav-links{
+    float: right;
+    margin-top: 6px;
+}
