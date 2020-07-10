@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var arr = ['c','a','z','a','x','a','x','a','x','c','b']
+    // var newarr = [] 
+    // for(var i=0;i<arr.length;i++){
+    //   if(newarr.indexOf(arr[i]) === -1){
+    //     newarr.push(arr[i])
+    //   }
+    // }
+    // console.log(newarr);
+    // var arr = [1,2,3]
+    // console.log(arr.toString());
+    // console.log(arr.join('&'));
+
+    // var arr = ['red','blue','red','green','pink','red']
+    // var newarr = []
+    // var weizhi = []
+    // for(var i=0;i<arr.length;i++){
+    //   if(newarr.indexOf(red) != -1){
+    //     weizhi.push(newarr.indexOf(red,i))
+    //   }
+    // }
+    // var str = 'andy'
+    // console.log(str.charAt(3));
+    var str = 'abcdajqnfuqbvankbzuixcjnakszcvbjjanc'
+    var o = {}
+    for(var i=0;i<str.length;i++){
+      var chars = str.charAt(i)
+      if(o[chars]){
+        o[chars]++
+      }else{
+        o[chars] = 1
+      }
+    }
+    console.log(o);
+
+    var max =0
+    for (var key in o) {
+      if(o[key]>max){
+        max = o[key]
+      }
+    }
+    console.log(max);
+  </script>
+</body>
+</html>
