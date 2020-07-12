@@ -6,30 +6,20 @@
   <title>Document</title>
 </head>
 <body>
+  <button>按钮</button>
   <script>
-    class Father{
-      constructor(x,y){
-        this.x = x
-        this.y = y
+    class Star{
+      constructor(uname,age){
+        this.uname = uname
+        this.age = age
+        this.btn = document.querySelector("button")
+        this.btn.onclick = this.sing
       }
-      sum(){
-        console.log(this.x+this.y);
-      }
-    }
-
-    class son extends Father{
-      constructor(x,y){
-        super(x,y)
-        this.x = x
-        this.y = y
-      }
-      jianfa(){
-        console.log(this.x-this.y)
+      sing(){
+        console.log(this.uname);
       }
     }
-    var mson = new son(4,2)
-    mson.sum()
-    mson.jianfa()
+    var ldh = new Star("刘德华")
   </script>
 </body>
 </html>
