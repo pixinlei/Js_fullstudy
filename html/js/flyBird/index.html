@@ -19,6 +19,8 @@
   </div>
 </body>
 <script src="./js/bird.js"></script>
+<script src="./js/baseObj.js"></script>
+<script src="./js/block.js"></script>
 <script>
   var jsWrapBg = document.getElementById('wrapBg')
   var jsHeadTitle = document.getElementById('headTitle')  //获取标题
@@ -59,6 +61,16 @@
     jsSatrtBtn.style.display = 'none'
     //插入小鸟到界面当中
     bird.showBird(jsWrapBg)
+    bird.flyBird()  //小鸟下落
+    bird.wingWave() //控制小鸟翅膀扇动
+    jsWrapBg.onclick = function(){
+      bird.fallSpeed = -8
+    }
+  //出现管道
+  var b = new Block()
+  b.createBlock()
   }
+
+
 </script>
 </html>
