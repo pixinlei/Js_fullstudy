@@ -71,6 +71,19 @@
   b.createBlock()
   }
 
+  document.onkeydown = function (event) {
+var e = event || window.event || arguments.callee.caller.arguments[0];
+// alert(e.keyCode);//打印对应键盘的键值
+if (e && e.keyCode == 32)//监听键盘Enter建
+{
+  bird.fallSpeed = -8
+}
+// if (e && e.keyCode == 8)//监听键盘Backspace建
+// {
+
+// }
+
+}
 
 </script>
 </html>
