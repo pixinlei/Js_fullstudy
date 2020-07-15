@@ -8,6 +8,16 @@
   background-image: url(../img/bg.jpg);
   overflow: hidden;
 }
+/* 计分部分 */
+#score{
+  width: 236px;
+  height: 77px;
+  background: pink;
+  position: absolute;
+  top: 0;
+  left: 53px;
+}
+
 /* 开始标题 */
 #headTitle{
   width: 236px;

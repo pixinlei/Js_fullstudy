@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //遍历数组
+    // var arr = [1,2,3]
+    // var sum = 0
+    // arr.forEach(function(value,index,array){
+    //   // console.log('每个元素' + value);
+    //   // console.log('索引号' + index);
+    //   // console.log('数组本身' + array);
+    //   sum+=value
+    // })
+    // console.log(sum);
+      //筛选数组
+    // var arr = [1,2,4,5,6,6,78,9]
+    // var newArr = arr.filter(function(value,index){
+    //   return value>=5
+    // })
+    // console.log(newArr);
+
+      //  some查找数组中是否有满足条件的元素
+      var arr = [1,2,3]
+      var flag = arr.some(function(value,index,array){
+        return index>=4
+      })
+      console.log(flag);
+  </script>
+</body>
+</html>

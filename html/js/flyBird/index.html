@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
   <div id="wrapBg">
+
+    <!-- 计分版块 -->
+    <!-- <div id="score">
+      <img src="" alt="分数">
+    </div> -->
+
     <!-- 开始标题 -->
-    <div id="headTitle">  
+    <div id="headTitle">
       <img id="headBird" src="./img/bird0.png" alt="小鸟">
     </div>
     <!-- 开始按钮 -->
@@ -22,40 +30,88 @@
 <script src="./js/baseObj.js"></script>
 <script src="./js/block.js"></script>
 <script>
+  var jsscore = document.getElementById('score')  //分数
+  var myscore = 0
   var jsWrapBg = document.getElementById('wrapBg')
   var jsHeadTitle = document.getElementById('headTitle')  //获取标题
   var jsHeadBird = document.getElementById('headBird')  //获取标题中的小鸟
+  var blockArr = [] //装管道的
+  var blockDistance = baseObj.randomNum(120, 350)  //管道之间的间隔
 
-  var Y =3  //标题摆动幅度
+  var Y = 3  //标题摆动幅度
   var index = 0
-  var imgArr = ['img/bird0.png','img/bird1.png']
+  var imgArr = ['img/bird0.png', 'img/bird1.png']
   //利用帧动画的原理作出小鸟翅膀摆动的样子
-  var headWaveTimer = setInterval(headWave,200)  //设置标题上下摆动的定时器
-  function headWave(){
-    Y*= -1
+  var headWaveTimer = setInterval(headWave, 200)  //设置标题上下摆动的定时器
+  function headWave() {
+    Y *= -1
     jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y + 'px'
     jsHeadBird.src = imgArr[index++]
-    if(index == 2){
+    if (index == 2) {
       index = 0
     }
   }
 
   var jsGrassLand1 = document.getElementById('grassLand1')
   var jsGrassLand2 = document.getElementById('grassLand2')
-  var landTime = setInterval(landRun,30)  //让草地动起来
-  function landRun(){
-    if(jsGrassLand1.offsetLeft <= -343){
-      jsGrassLand1.style.left = 343 +'px'
+  var landTime = setInterval(landRun, 30)  //让草地动起来
+  function landRun() {
+    if (jsGrassLand1.offsetLeft <= -343) {
+      jsGrassLand1.style.left = 343 + 'px'
     }
-    if(jsGrassLand2.offsetLeft < -343){
+    if (jsGrassLand2.offsetLeft < -343) {
       jsGrassLand2.style.left = 343 + 'px'
     }
     jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 + 'px'
     jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 + 'px'
+
+    //管道的移动
+    if (blockArr.length) {
+      for (var i = 0; i < blockArr.length; i++) {
+        // console.log(111);
+        blockArr[i].moveBlock()
+        var x = baseObj.rectangleCrashExamine(blockArr[i].downDiveWrap, bird.div)
+        var y = baseObj.rectangleCrashExamine(blockArr[i].upDivWrap, bird.div)
+        var z = bird.div.offsetTop >= 390
+
+        //计分
+        // var a = blockArr[i].downDiveWrap.offsetLeft + blockArr[i].downDiveWrap.offsetWidth
+        // var b = bird.div.offsetLeft
+        // if(a>b){
+        //   jsscore.innerHTML = myscore
+        //   myscore++
+        // }
+        
+
+
+
+        if (x || y || z) {
+          window.clearInterval(landTime)  //清除草地移动的定时器
+          jsWrapBg.onclick = null
+          bird.fallSpeed = 0
+          //阻止键盘事件
+          function KeyDown() {
+            if (event.keyCode == 32) {  
+              event.keyCode = 0;
+              event.returnValue = false;
+            }
+          }
+          document.onkeydown = KeyDown
+
+        }
+      }
+      if (blockArr[blockArr.length - 1].downDiveWrap.offsetLeft < [450 - blockDistance]) {
+        // console.log(111);
+        var newBlock = new Block()
+        newBlock.createBlock()
+        blockArr.push(newBlock)
+      }
+
+    }
   }
 
   var jsSatrtBtn = document.getElementById('startBtn')
-  jsSatrtBtn.onclick = function(){  //为start按钮添加一个点击事件的处理程序
+  jsSatrtBtn.onclick = function () {  //为start按钮添加一个点击事件的处理程序
     jsHeadTitle.style.display = 'none'  //隐藏标题
     clearInterval(headWaveTimer)  //关闭标题摆动的定时器
     jsSatrtBtn.style.display = 'none'
@@ -63,27 +119,30 @@
     bird.showBird(jsWrapBg)
     bird.flyBird()  //小鸟下落
     bird.wingWave() //控制小鸟翅膀扇动
-    jsWrapBg.onclick = function(){
+    jsWrapBg.onclick = function () {
       bird.fallSpeed = -8
     }
-  //出现管道
-  var b = new Block()
-  b.createBlock()
+    //出现管道
+    var b = new Block()
+    b.createBlock()
+    blockArr.push(b)
+
   }
 
   document.onkeydown = function (event) {
-var e = event || window.event || arguments.callee.caller.arguments[0];
-// alert(e.keyCode);//打印对应键盘的键值
-if (e && e.keyCode == 32)//监听键盘Enter建
-{
-  bird.fallSpeed = -8
-}
-// if (e && e.keyCode == 8)//监听键盘Backspace建
-// {
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    // alert(e.keyCode);//打印对应键盘的键值
+    if (e && e.keyCode == 32)//监听键盘Enter建
+    {
+      bird.fallSpeed = -8
+    }
+    // if (e && e.keyCode == 8)//监听键盘Backspace建
+    // {
 
-// }
+    // }
 
-}
+  }
 
 </script>
+
 </html>

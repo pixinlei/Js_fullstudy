@@ -14,9 +14,8 @@ function Block(){
     newDiv.style.left = left
     newDiv.style.top = top
     newDiv.style.backgroundImage = url
-    console.log(newDiv.style.top);
-    return newDiv
-    
+    // console.log(newDiv.style.top);
+    return newDiv 
   } 
 
   this.createBlock = function(){
@@ -28,6 +27,20 @@ function Block(){
     this.upDivWrap.appendChild(upDiv1)
     this.upDivWrap.appendChild(upDiv2)  //生成上方管道
 
+    var downDiv1 = this.createDiv('url(img/down_pipe.png)','60px')
+    var downDiv2 = this.createDiv('url(img/down_mod.png)',this.downHeight + 'px')
+    this.downDiveWrap = this.createDiv(null,null,'absolute','450px',363-this.downHeight + 'px')
+    this.downDiveWrap.appendChild(downDiv1)
+    this.downDiveWrap.appendChild(downDiv2)
+
     jsWrapBg.appendChild(this.upDivWrap)
+    jsWrapBg.appendChild(this.downDiveWrap)
+
+    // jsWrapBg.appendChild(this.upDivWrap)
+  }
+
+  this.moveBlock = function(){  //控制管道移动的方法
+    this.upDivWrap.style.left = this.upDivWrap.offsetLeft - 3 + 'px'
+    this.downDiveWrap.style.left = this.downDiveWrap.offsetLeft - 3 + 'px'
   }
 }
