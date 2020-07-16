@@ -12,9 +12,17 @@
   <div id="wrapBg">
 
     <!-- 计分版块 -->
-    <!-- <div id="score">
-      <img src="" alt="分数">
-    </div> -->
+    <div id="score">
+      <div id="score1"></div>
+      <div id="score2"></div>
+      <div id="score3"></div>
+    </div>
+<!-- 结束版块 -->
+    <div id="over">
+      <div id="game_over"></div>
+      <div id="message"></div>
+      <div id="ok"></div>
+    </div>
 
     <!-- 开始标题 -->
     <div id="headTitle">
@@ -31,6 +39,11 @@
 <script src="./js/block.js"></script>
 <script>
   var jsscore = document.getElementById('score')  //分数
+  var jsscore1 = document.getElementById('score1')
+  var jsscore2 = document.getElementById('score2')
+  var jsscore3 = document.getElementById('score3')
+  var jsover = document.getElementById('over')
+  var jsok = document.getElementById('ok')
   var myscore = 0
   var jsWrapBg = document.getElementById('wrapBg')
   var jsHeadTitle = document.getElementById('headTitle')  //获取标题
@@ -77,10 +90,27 @@
         //计分
         // var a = blockArr[i].downDiveWrap.offsetLeft + blockArr[i].downDiveWrap.offsetWidth
         // var b = bird.div.offsetLeft
-        // if(a>b){
-        //   jsscore.innerHTML = myscore
-        //   myscore++
-        // }
+        jsscore.style.display = 'block'
+        if(blockArr[i].downDiveWrap.offsetLeft<-12){
+          var t = i+1
+          if(i<10){
+            jsscore2.style.backgroundImage = 'URL(./img/'+ t +'.jpg)' //个位数
+          }else if(10<=i<=99){
+            jsscore3.style.backgroundImage = 'URL(./img/'+ t%10 +'.jpg)'//个位数
+            jsscore2.style.backgroundImage = 'URL(./img/'+ parseInt(i/10) +'.jpg)'//十位数
+          }else if(100<i<=999){
+            var S1 = (i%100)%10 //个位数
+            var S2 = (i%100)/10 //十位数
+            var S3 = t/100  //百位数
+            jsscore1.style.backgroundImage = 'URL(./img/'+ S1 +'.jpg)'//百位数
+            jsscore2.style.backgroundImage = 'URL(./img/'+ S2 +'.jpg)'//十位数
+            jsscore3.style.backgroundImage = 'URL(./img/'+ S3 +'.jpg)'//个位数
+          }else{
+            jsscore1.style.backgroundImage = 'URL(./img/'+ 9 +'.jpg)'
+            jsscore2.style.backgroundImage = 'URL(./img/'+ 9 +'.jpg)'
+            jsscore3.style.backgroundImage = 'URL(./img/'+ 9 +'.jpg)'
+          }
+        }
         
 
 
@@ -89,6 +119,13 @@
           window.clearInterval(landTime)  //清除草地移动的定时器
           jsWrapBg.onclick = null
           bird.fallSpeed = 0
+          jsover.style.display = 'block'
+          jsok.onclick = function(){
+            // alert('nmsl')
+            // document.execCommand('Refresh')
+            window.location.reload();
+          }
+
           //阻止键盘事件
           function KeyDown() {
             if (event.keyCode == 32) {  
