@@ -1,137 +1,99 @@
-body
-  margin: 0
-  color: #191919
-  font-size 12px
-  font-family "Helvetica Neue",Helvetical,Roboto,Arial,sans-serif
-  position: relative
+body 
+  margin: 0;
+  color: #191919;
+  font-size: 12px;
+  font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+  position: relative;
 *
-  margin: 0
-  padding 0
-*
-  -webkit-tap-highlight-color: rgba(255,0,0,0)
+  -webkit-tap-highlight-color gba(255,0,0,0)
 div, p, span, a
   margin 0
   padding 0
-header 
-  display: block
 .TalionNav
   width 100%
   position relative
   z-index: 999
   background: #fff
+.TalionNav-primary, .TalionNav-primary .search-box
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  box-sizing: border-box
 .TalionNav-primary
   height 50px
   position fixed
   top 0
   left 0
   width 100%
-  z-index: 100
+  z-index 100
   padding 0 15px
   background-color #fff
-  box-shadow 0 1px 4px rgba(0,0,0,0.05) 
-.TalionNav-primary, .TalionNav-primary .search-box
-  display: flex
-  justify-content: flex-start
-  align-items: center
-  box-sizing: border-box
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05)
 a
   color: #42bd56
 a, input
   outline: 0
-.TalionNav a
-  text-decoration: none
 .TalionNav .logo
   margin-right 15px
-.TalionNav .logo
-  display: inline-block
-  font-size: 0
+  display inline-block
+  font-size 0
   height 26px
   width 54px
-  flex: 54px 0 0
-  background: url() 50% no-repeat
-  background-size: contain 
-form 
-  margin-top: 0em
+  flex 54px 0 0
+  // background: url(./img/下载.png) 50% no-repeat
+  background: url(./img/0.png) 50% no-repeat
+h1, h2, h3
+  font-weight normal
+h1
+  margin 30px 0 5px
+  line-height 32px
+  word-break: break-all
+.TalionNav .logo h1
+  opacity: 0
 .TalionNav-primary, .TalionNav-primary .search-box
   display: flex
   justify-content: flex-start
   align-items: center
   box-sizing: border-box
-h1 
-  display: block
-  margin-block-start: 0.67em
-  margin-block-end: 0.67em
-  margin-inline-start: 0
-  margin-inline-end: 0
-h1, h2, h3
-  font-weight normal
-h1
-  margin: 30px 0 5px
-  line-height: 32px
-  word-break: break-all
-.TalionNav .logo h1
-  opacity 0
 .TalionNav-primary .search-box
   width 100px
-  flex: 100px 0 0 
+  flex 100px 0 0
   height 30px
   border-radius: 15px
-  border: 1px solid #dfdfdf
+  border 1px solid #dfdfdf
   color: rgba(0,0,0,0.25)
-input[type="search" i] 
-  padding: 1px
-input, textarea, button, select, a
-  -webkit-tap-highlight-color: transparent
+  background-color: #f7f7f7
+  font-size 15px
+  line-height 21px
+  padding-left 8px
 .TalionNav-primary .search-box input[type=search]
   box-sizing: border-box
   -webkit-appearance: none
-  border 0
+  border: 0
   padding-left 20px
-  background: url() no-repeat 0
-  .TalionNav-primary .nav-btns
-    flex: 1
-    font-style 15px
-    line-height 21px
-    color: #3ba94d
-    text-align: right 
-    display: flex
-    justify-content: flex-end
-    align-items: center
-.TalionNav-primary .nav-btns .nav-btn-item
-    padding 0 15px
+  background: url(./img/1.png) no-repeat 0
+.TalionNav-primary .nav-btns
+  flex: 1
+  font-size 15px
+  line-height 21px
+  color: #3ba94d
+  text-align: right 
+  display: flex
+  justify-content: flex-end
+  align-items: center
+.TalionNav-primary .nav-btns .nav-btn-item:last-child
+  padding-right 0
+  border-right 0
+.TalionNav-primary .nav-btns .nav-btn-item:first-child
+  padding-right 0
 .TalionNav-primary .nav-btns .to_pc
   display: inline-block
   width 20px
   height 19px
-  background: url() 100% no-repeat
+  // background: url() 100% no-repeat
+  background: url(./img/2.png) 100% no-repeat
   background-size: contain
-.TalionNav-primary .nav-btns .nav-btn-item:first-child
-  padding-left 0
-.TalionNav-primary .nav-btns .nav-btn-item:last-child
-padding-right 0
-border-right: 0
-.TalionNav-static:after
-  content: ""
-  position absolute
-  top 0
-  left 0
-  border:1px solid #dfdfdf
-  border-left: none 
-  border-right: none 
-  box-sizing: border-box
-  width:200%
-  height:200%
-  transform: scale(0.5) translateX(-0.5px) translateY(-0.5px)
-  transform-origin: left top 
-  pointer-events: none 
-.TalionNav-static
-  left 0
-  width:100%
-  background-color:   #f7f7f7
-  align-items: center
-  margin-top 50px
-  padding 0 18px
-  height 60px
-  box-sizing: border-box
-  display: flex
-  justify-content: space-between 
+.TalionNav-primary .nav-btns .nav-btn-item
+  padding 0 15px
+.TalionNav a
+  text-decoration none
