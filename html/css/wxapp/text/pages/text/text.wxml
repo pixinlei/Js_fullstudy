@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="hander">
+    <image src="" bind:tap="addTodoHandle"/>
+    <input type="text" placeholder="anything here" value="{{input}}" bind:change="inputChangeHandle"/>
+  </view>
+  <view class="todos">
+    <view class="{{item.completed ? 'item.completed':'item'}}" wx:for="{{todos}}" wx:key="id" bind:tap="toggleTodoHandle"
+    data-index="{{index}}">
+      <icon type="{{item.completed?'success':'circle'}}" size="16"/>
+      <text>{{item.name}}</text>
+      <icon type="clear" size="16" catch:tap="removeTodoHandle" data-index="{{index}}"/>
+    </view>
+  </view>
+  <view class="footer">
+    <text bind:tap="ToggleAllHandle">toggle all</text>
+    <text wx:if="{{leftCount}}">{{leftCount}} {{leftCount>1?'items':'item'}} left</text>
+    <text bind:tap="ClearHandle">clear completed</text>
+  </view>
+</view>
+

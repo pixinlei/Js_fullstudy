@@ -1,0 +1,1 @@
+<button type="primary" bind:tap="tapHandle"></button>

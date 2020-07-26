@@ -1,0 +1,93 @@
+.cart-box{
+  padding-bottom: 100rpx;
+}
+.cart-list{
+  padding: 20rpx 20rpx 20rpx 285rpx;
+  height: 185rpx;
+  border-bottom: 1px solid #191919;
+  position: relative;
+}
+.cart-pro-select{
+  position: absolute;
+  left: 20rpx;
+  top: 90rpx;
+  width: 45rpx;
+  height: 45rpx;
+}
+.cart-pro-goods{
+  position: absolute;
+  left: 85rpx;
+}
+.cart-thumb{
+  width: 185rpx;
+  height: 185rpx;
+}
+.cart-pro-name{
+  display: inline-block;
+  width: 300rpx;
+  height: 105rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+}
+.cart-pro-price{
+  float: right;
+  height: 105rpx;
+  line-height: 50rpx;
+}
+.cart-count-box{
+  position: absolute;
+  left: 285rpx;
+  bottom: 20rpx;
+  width: 250rpx;
+  height: 80rpx;
+  border: 1px solid pink;
+}
+.cart-count-box text{
+  display: inline-block;
+  line-height: 80rpx;
+  text-align: center;
+}
+.cart-count-down,
+.cart-count-add{
+  font-size: 44rpx;
+  width: 46rpx;
+  height: 100%;
+  border-right: 1px solid pink;
+  border-left: 1px solid pink;
+}
+.cart-count-num{
+  width: 150rpx;
+}
+.cart-del{
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 44rpx;
+}
+.cart-footer{
+  position: absolute;
+  bottom: 0;
+  height: 90rpx;
+  background: #ab956d;
+  color: #ffffff;
+  width: 100%;
+  line-height: 90rpx;
+
+}
+.total-select{
+  float: left;
+  margin-top: 25rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+}
+.cart-footer text{
+  display: inline-block;
+}
+.cart-total-price{
+  display: inline-block;
+}

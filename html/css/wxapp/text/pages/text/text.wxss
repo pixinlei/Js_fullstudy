@@ -1,0 +1,53 @@
+.container{
+  border-top: 1rpx solid #e0e0e0;
+}
+.hander{
+  border: 1rpx solid #e0e0e0;
+  margin: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5rpx #e0e0e0;
+  display: flex;
+  padding: 10rpx;
+  align-items: center;
+}
+.hander image{
+  width: 40rpx;
+  height: 40rpx;
+  background: pink;
+  margin-right: 20rpx;
+}
+.todos{
+  border: 1rpx solid #e0e0e0;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5rpx #e0e0e0;
+  margin: 20rpx;
+}
+.todos .item{
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+.todos .item:last-child{
+  border-bottom: 0 solid #000;
+}
+.todos .item text{
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #444;
+}
+.todos .item.completed text{
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #888;
+  text-decoration: line-through;
+}
+.footer{
+  font-size: 30rpx;
+  margin: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  width: 750rpx;
+}

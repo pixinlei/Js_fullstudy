@@ -1,0 +1,29 @@
+<view class="main">
+  <view>
+    <view class="cart-box">
+      <view class="cart-list" wx:for="{{carts}}" wx:key="index">
+        <icon type="success" wx:if="{{item.selected}}" color="red" size="23" class="cart-pro-select" bind:tap="selectList" data-index="{{index}}" data-index="{{index}}"></icon>
+        <icon type="success" wx:else color="gray" size="23" class="cart-pro-select" bind:tap="selectList" data-index="{{index}}" data-index="{{index}}"></icon>
+        <navigator class="cart-pro-goods" url="">
+          <image class="cart-thumb" src="{{item.image}}" />
+        </navigator>
+
+        <text class="cart-pro-name">{{item.title}}</text>
+        <text class="cart-pro-price">{{item.price}}</text>
+
+        <view class="cart-count-box">
+          <text class="cart-count-down" bind:tap="myreduce" data-index="{{index}}">-</text>
+          <text class="cart-count-num">{{item.num}}</text>
+          <text class="cart-count-add" bind:tap="myadd" data-index="{{index}}">+</text>
+        </view>
+        <text class="cart-del" bind:tap="mydelect" data-index="{{index}}">X</text>
+      </view>
+    </view>
+    <view class="cart-footer">
+      <icon wx:if="{{selectAllStatus}}" type="success" color="red" size="23" class="total-select" bind:tap="selectAll"></icon>
+      <icon wx:else type="success" color="white" size="23" class="total-select" bind:tap="selectAll"></icon>
+      <text>全选</text>
+      <text class="cart-total-price">￥{{totalPrice}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // var obj = { username: 'zhangsan', age: 18 }
+  // var obj1 = {}
+  // obj1 = Object.create(obj)
+  // console.log(obj1,{
+  //   sex:{
+  //     value:'man',
+  //     writable:true,
+  //     configurable:true,
+  //     enumerable:true
+  //   }
+  // });
+  // // console.log(obj1.sex);
+  // obj1.sex ='woman'
+  //   // console.log(obj1.sex);
+
+  // // delete obj1.sex
+  // // console.log(obj1);
+  // for (const key in obj1) {
+  //   console.log(key);
+  // }
+
+  var obj2 = {firstname:'aaaa',lastname:'bbbbbbbbbb'}
+  Object.defineProperties(obj2,{
+    fullname:{
+      get:function(){
+        return this.firstname + " " + this.lastname
+      }
+    }
+  })
+</script>
+
+</html>

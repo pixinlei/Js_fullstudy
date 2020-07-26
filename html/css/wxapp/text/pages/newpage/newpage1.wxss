@@ -1,0 +1,35 @@
+.container{
+  width: 750rpx;
+  height: 750rpx;
+  background: #aaaaaa;
+}
+.myinput{
+  border: 1px solid black;
+}
+.username{
+  border: 1px solid #aaaaaa;
+  /* text-align: center; */
+  width: 700rpx;
+  display: block;
+  margin: 0 auto;
+}
+.password{
+  border: 1px solid #aaaaaa;
+  /* text-align: center; */
+  width: 700rpx;
+  display: block;
+  margin: 0 auto;
+}
+.input{
+  margin: 10rpx;
+}
+.buttons{
+  margin: 25rpx;
+  width: 700rpx;
+}
+.mybutton{
+  display: block;
+  width: 700rpx;
+  margin-left: 25rpx;
+  margin-right: auto;
+}

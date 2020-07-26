@@ -1,0 +1,44 @@
+<!-- index.wxml -->
+<!-- 1.明确数据在哪
+  2.绑定到哪里去
+  3. -->
+<!-- <view class="container">
+  <text class="" selectable="false" space="false" decode="false">{{ message }}</text>
+  <text class="" selectable="false" space="false" decode="false">{{person.name}}</text>
+  <view class="{{viewClassName}}" hover-class="none" hover-stop-propagation="false">
+    {{1111111}}
+  </view>
+  <checkbox class="" value="" disabled="false" checked="{{false}}" color=""></checkbox> -->
+  <!-- 列表数据渲染 -->
+  <!-- <view class="" hover-class="none" hover-stop-propagation="false"> -->
+    <!-- <view>
+      <checkbox></checkbox>
+      <text>JavaScript</text>
+    </view>
+    <view>
+      <checkbox checked="{{true}}"></checkbox>
+      <text>HTML</text>
+    </view>
+    <view>
+      <checkbox></checkbox>
+      <text>CSS</text>
+    </view> -->
+    <!-- 
+      1.明确结构中的循环体
+      2.删除德育的重复内容，只保留一个
+      3.在剩下的这个上加wx:for属性，属性值等于要遍历的数据源，数据源是一个数组
+      4.在这个标签内部使用item代表当前遍历的元素
+      给被遍历的对象定义名称wx:for-item
+      给索引定义名称wx:for-index
+     -->
+    <!-- <view wx:for="{{todos}}">
+    <text>0{{index}}</text>
+      <checkbox checked="{{item.completed}}"></checkbox>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+</view> -->
+
+<view class="container">
+  <button bindtap = "buttonTapHandle">{{'点我'}}</button>
+</view>

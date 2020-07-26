@@ -1,0 +1,48 @@
+<!-- map.wxml -->
+<map id="map" longitude="113.324520" latitude="23.099994" scale="14" markers="{{markers}}" bindcontroltap="controltap" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 100vh;">
+  
+  <!-- 头部部分 -->
+  <cover-view class="search-box" scroll-top="0">
+    <!-- 左边 -->
+    <cover-image class="search-box_img" src="./resources/topIcon.png"></cover-image>
+<!-- 中间 -->
+    <cover-view class="search-box_text">
+      <cover-view class="search-box_text1">骑出运营区域</cover-view>
+      <cover-view class="search-box_text2">助力自动关闭</cover-view>
+    </cover-view>
+  <!-- 图标 -->
+  <cover-image class="search-box_right" src="./resources/向右.png"></cover-image> 
+  </cover-view>
+
+<!-- 右边图标区 -->
+  <cover-view class="icon_rading"><cover-image class="icon_rading_img" src="./resources/自行车.png"></cover-image></cover-view>
+  <cover-view class="icon-box">
+    <cover-image class="icon_light" src="./resources/闪电.png"></cover-image>
+    <cover-view style="height:2rpx;width:80%;background:gray;position:relative;top:50rpx;left:10%"></cover-view>
+    <cover-image class="icon_p" src="./resources/P.png"></cover-image>
+  </cover-view>
+  <cover-view class="icon_location"><cover-image class="icon_location__img" src="./resources/dingwei.png"></cover-image></cover-view>
+  <cover-view class="icon_wrench"><cover-image class="icon_wrench__img" src="./resources/扳手.png"></cover-image></cover-view>
+
+<!-- 中部区域 -->
+  <cover-view class="stop-car">
+    <cover-image class="stop-car__img" src="./resources/搜索.png"></cover-image>
+    <cover-view class="stop-car__word">搜索目的地停车点</cover-view>
+  </cover-view>
+
+<!-- 底部部分 -->
+<cover-view class="nav-bottom">
+  <!-- 上面一块 -->
+  <cover-view class="nav-bottom_tip">
+    <cover-image class="nav-bottom_bell" src="./resources/铃铛.png"></cover-image>
+    <cover-view class="nav-bottom_word">规范骑行，安全常在!</cover-view>
+    <cover-image class="nav-bottom_icon" src="./resources/向右2.png"></cover-image>
+  </cover-view>
+  <!-- 下面一块 -->
+  <cover-view class="nav-bottom__code">
+    <cover-image class="nav-bottom__code__img" src="./resources/扫码.png"></cover-image>
+    <cover-view class="nav-bottom__code__word">扫码用车</cover-view>
+  </cover-view>
+</cover-view>
+  
+</map>

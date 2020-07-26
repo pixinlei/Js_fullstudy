@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/text/text",
+    "pages/newpage/newpage1",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#219bf3",
+    "navigationBarTitleText": "微信小程序",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#f0f"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "selectedColor": "219bf3",
+    "color": "#444",
+    "backgroundColor": "#e0e0e0",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "text": "home",
+        "pagePath": "pages/index/index"
+      },
+      {
+        "text": "logs",
+        "pagePath": "pages/logs/logs"
+      }
+    ]
+  }
+}
