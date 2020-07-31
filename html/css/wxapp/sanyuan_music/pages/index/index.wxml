@@ -1,0 +1,14 @@
+<scroll-view>
+  <swiper autoplay indicator-dots="true" indicator-active-color="red">
+    <swiper-item wx:for="{{bannersList}}">
+      <image src="{{item.imageUrl}}" />
+    </swiper-item>
+  </swiper>
+  <view class="content">
+    <view class="content-title">推荐歌单</view>
+    <view wx:for="{{recommendList}}" class="content-wrapper">
+      <image src="{{item.picUrl}}" />
+      <view><text>{{item.name}}</text></view>
+    </view>
+  </view>
+</scroll-view>

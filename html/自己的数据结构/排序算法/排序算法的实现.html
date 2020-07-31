@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  //创建列表类
+  function ArrayList() {
+    //属性
+    this.array = []
+    //方法
+    //将数据可以插入到数组中的方法
+    ArrayList.prototype.insert = function (item) {
+      this.array.push(item)
+    }
+    //tostring方法
+    ArrayList.prototype.tostring = function () {
+      return this.array.join('-')
+    }
+
+    //交换两个位置的数据
+    ArrayList.prototype.swap = function (m, n) {
+      //交换两个数据
+      var temp = this.array[m]
+      this.array[m] = this.array[n]
+      this.array[n] = temp
+    }
+
+    //实现排序算法
+    //冒泡排序
+    ArrayList.prototype.bubblesort = function () {
+      //1.获取数组的长度
+      var length = this.array.length
+
+      //第一次,j=length-1,比较到倒数第一个位置
+      //第二次，j=length-2,比较到倒数第二个位置
+      for (var j = length - 1; j >= 0; j--) {
+        //第一次进来：i=0;比较0和1位置的两个数据，如果0位置数据大于1位置数据
+        //最后一次进来：i =length -1 ,比较length-2和length-1的两个位置的数据
+        for (var i = 0; i < j; i++) {
+          if (this.array[i] > this.array[i + 1]) {
+            this.swap(i, i + 1)
+          }
+        }
+      }
+    }
+
+    //选择排序
+    ArrayList.prototype.selectionSort = function () {
+      //1.获取数组长度
+      var length = this.array.length
+
+      //2.外层循环，从0位置开始取数据
+      for (var j = 0; j < length - 1; j++) {
+        var min = j
+        //内层循环，从i+1位置开始，和后面的数据开始比较
+        for (var i = min + 1; i < length; i++) {
+          if (this.array[min] > this.array[i]) {
+            min = i
+          }
+        }
+        this.swap(min, j)
+      }
+    }
+
+  }
+
+  //测试类
+  var list = new ArrayList()
+
+  //插入元素
+  list.insert(66)
+  list.insert(88)
+  list.insert(12)
+  list.insert(87)
+  list.insert(100)
+  list.insert(5)
+  list.insert(566)
+  list.insert(23)
+  // console.log(list);
+  // 验证冒泡排序
+  // list.bubblesort()
+  // console.log(list);
+
+  //验证选择排序
+  list.selectionSort()
+  console.log(list);
+</script>
+
+</html>
