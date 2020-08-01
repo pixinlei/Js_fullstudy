@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  /**
+   * @param {number[]} piles
+   * @param {number} H
+   * @return {number}
+   */
+  var minEatingSpeed = function (piles, H) {
+    let min = 0//最慢吃香蕉的速度
+    let max = 0 //最快吃香蕉的速度
+    if (H < piles.length) return -1
+    for (const i of piles) {
+      max += Math.ceil(i / Math.min(...piles))
+      min += Math.ceil(i / Math.max(...piles))
+    }
+    while (min < max) {
+      let mid = Math.floor((min + max) / 2)
+      let result = 0
+      for (const i of piles) {
+        result += Math.ceil(i / mid)
+      }
+      if (result == H) {
+        max = result 
+      } else if (result < H) {
+        min = result + 1
+      } else {
+        max = result
+      }
+    }
+    return console.log(min-1);
+  };
+  minEatingSpeed([3, 6, 7, 11], 8)
+// minEatingSpeed([30,11,23,4,20],5)
+// minEatingSpeed([30,11,23,4,20],6)
+</script>
+
+</html>
