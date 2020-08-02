@@ -24,18 +24,20 @@
       max += Math.ceil(i / Math.min(...piles))
       min += Math.ceil(i / Math.max(...piles))
     }
-    while (min < max) {
+    while (min < max) {                                   
       let mid = Math.floor((min + max) / 2)
       let result = 0
       for (const i of piles) {
         result += Math.ceil(i / mid)
       }
       if (result == H) {
-        max = result 
-      } else if (result < H) {
         min = result + 1
-      } else {
+      } else if (result < H) {
         max = result
+      } else {
+        min = result + 17
+
+        
       }
     }
     return console.log(min-1);
