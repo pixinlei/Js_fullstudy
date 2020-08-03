@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  /**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+  var search = function (nums, target) {
+    let min = nums[0]
+    let max = nums[nums.length - 1]
+    while (min <= max) {
+      let mid = (max + min) >> 1
+      if (target === mid) {
+        return nums.indexOf(mid)
+      } else if (target > mid) {
+        min = mid + 1
+      } else {
+        max = mid + 1
+      }
+    }
+    return -1
+  };
+  search([-1,0,3,5,9,12],9)
+</script>
+
+</html>
