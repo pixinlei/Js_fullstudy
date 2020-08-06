@@ -41,7 +41,9 @@ class CanvasBarrage {
       data: []
     }
     // 合并对象，再挂载到this上
+    // console.log(this)
     Object.assign(this, defOpts, opts)
+    // console.log(this)
     // 添加属性，用来判断播放暂停，默认是true为暂停
     this.isPaused = true
     // 得到所有的弹幕消息

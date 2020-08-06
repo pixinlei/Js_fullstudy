@@ -70,6 +70,24 @@
       }
     }
 
+    //插入排序
+    ArrayList.prototype.insertionSort = function() {
+      // 1.  获取数组的长度
+      var length = this.array.length
+
+      // 2.外层循环：从第一个位置开始获取数据，向前面局部有序进行插入
+      for(var i = 1; i<length;i++){
+        // 3. 内层循环:获取i位置的元素，和前面的数据依次进行比较
+        var temp = this.array[i]
+        var j = i
+        while(this.array[j-1] > temp && j > 0){
+          this.array[j] = this.array[j-1]
+          j--
+        }
+        //4. 将当前j位置的数据放置temp
+        this.array[j] = temp
+      }
+    }
   }
 
   //测试类
@@ -90,8 +108,8 @@
   // console.log(list);
 
   //验证选择排序
-  list.selectionSort()
-  console.log(list);
+  // list.selectionSort()
+  // console.log(list);
 </script>
 
 </html>
