@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  /**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+  s = s.split('')
+  t = t.split('')
+  s.sort()
+  t.sort()
+  s = s.toString()
+  t = t.toString()
+  if(s === t){
+      return true
+  }
+  return false
+};
+
+isAnagram("abc",'acb')
+</script>
+</html>

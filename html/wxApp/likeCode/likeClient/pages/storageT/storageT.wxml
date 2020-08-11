@@ -1,0 +1,1 @@
+<image bind:tap="_handlerChoose" src="{{imageSrc}}" />

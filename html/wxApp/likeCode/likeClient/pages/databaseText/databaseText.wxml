@@ -1,0 +1,6 @@
+<form bindsubmit="_handlerSubmit">
+  <input placeholder="请输入账号" name="account" />
+  <input placeholder="请输入密码" name="password" />
+  <button form-type="submit" id="regist">注册</button>
+  <button form-type="submit" id="login">登陆</button>
+</form>
