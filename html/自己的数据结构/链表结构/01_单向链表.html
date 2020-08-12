@@ -57,6 +57,36 @@
 
         return listString
       }
+
+      // 3.insert方法
+      LinkedList.prototype.insert = function(position,data) {
+        // 1. 对position进行越界判断
+        if(position < 0 || position > this.length) return false
+
+        // 2.根据data创建newNode
+        var newNode = new Node(data)
+
+        // 3.判断插入的位置是否是第一个
+        if(position == 0){
+          this.head = newNode
+          newNode.next = this.head
+          this.head = newNode
+        }else{
+          var index = 0
+          var current = this.head
+          var previous = null
+          while(index++ < position) {
+            previous = current
+            current = current.next
+          }
+          previous.next = current
+          previous.next = newNode
+        }
+        // 4.length+1
+        this.length +=1
+
+        return true
+      }
     }
 
 

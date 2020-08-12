@@ -1,0 +1,14 @@
+.comment{
+  width: 100%;
+  border: 2rpx  solid tomato;
+}
+.top image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+}
+.top{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid red;
+}

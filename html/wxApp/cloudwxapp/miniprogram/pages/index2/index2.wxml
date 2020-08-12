@@ -1,0 +1,4 @@
+<button bind:tap="add" type="primary">云函数获取加法</button>
+<button bind:tap="getopenid" type="primary">获取用户openID</button>
+<button bind:tap="shujuku">数据库API获取数据</button>
+<button bind:tap="yunhanshu">云函数获取数据</button>

@@ -38,13 +38,13 @@ body{
   margin: 1em auto;
 }
 .red{
-  animation: red duration 10s linear infinite;
+  animation: red  10s linear infinite;
 }
 .yellow{
-  animation: yellow duration 10s linear infinite;
+  animation: yellow  10s linear infinite;
 }
 .green{
-  animation: green duration 10s linear infinite;
+  animation: green  10s linear infinite;
 }
 @keyframes red{
   0%{

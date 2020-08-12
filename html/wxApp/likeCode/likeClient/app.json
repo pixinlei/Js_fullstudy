@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/databaseText/databaseText",
-    "pages/storageT/storageT"
+    "pages/storageT/storageT",
+    "pages/funCloud/funCloud"
   ],
   "window": {
     "backgroundTextStyle": "light",
