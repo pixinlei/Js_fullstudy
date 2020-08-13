@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@vant/weapp": "^1.4.3",
+    "@vant/weapp": "^1.4.4",
     "mocker-api": "^2.1.0",
     "vant-weapp": "^0.5.28"
   }

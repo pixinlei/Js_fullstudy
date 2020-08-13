@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  /**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function(nums) {
+  let left = 0,
+      right = nums.length - 1,
+      arr0 = [],
+      arr1 = [],
+      arr2 = []
+  
+  while(left <= right) {
+    if(nums[left] === 0) {
+      arr0.push(nums[left++])
+    }else if(nums[left] === 1) {
+      arr1.push(nums[left++])
+    }else{
+      arr2.push(nums[left++])
+    }
+  }
+  let newarr = (arr0.concat(arr1)).concat(arr2)
+  // console.log(arr0);
+  // console.log(arr1);
+  // console.log(arr2);
+  console.log(newarr);
+  nums = newarr
+  console.log(nums);
+  return nums
+};
+sortColors([2,0,2,1,1,0])
+</script>
+</html>
