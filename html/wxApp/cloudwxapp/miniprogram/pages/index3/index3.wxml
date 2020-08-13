@@ -1,0 +1,4 @@
+<button bind:tap="uploadExcel" type="primary">上传Excel文件</button>
+<button bind:tap="uploadFile" type="primary">上传文件</button>
+<image src="{{imgUrl}}" />
+<button bind:tap="uploadVideo" type="primary">上传视频</button>

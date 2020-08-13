@@ -1,2 +1,8 @@
-<!--miniprogram/pages/group/group.wxml-->
-<text>miniprogram/pages/group/group.wxml</text>
+<view class="container">
+  <van-cell title="我的群组" icon="friends" />
+  <block wx:for="{{groupData}}" wx:key="index">
+    <van-cell is-link title="{{item.name}}">
+      <image style="width:50rpx;height:50rpx;border-radius:50%;" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1515275997,2971682386&fm=26&gp=0.jpg" />
+    </van-cell>
+  </block>
+</view>

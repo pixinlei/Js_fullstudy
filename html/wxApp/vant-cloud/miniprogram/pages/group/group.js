@@ -1,13 +1,24 @@
 // miniprogram/pages/group/group.js
+const db = wx.cloud.database().collection("group")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    groupData:[]
   },
-
+  // getData() {
+  //   wx.cloud.callFunction({
+  //     name:'getGroup',
+  //     success (res) {
+  //       console.log("成功",res);
+  //     },
+  //     fail (err){
+  //       console.log("失败",err);
+  //     }
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +37,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    wx.cloud.callFunction({
+      name:'getGroup',
+      success (res) {
+        console.log("成功",res);
+        that.setData({
+          groupData:res.result
+        })
+        // console.log(that.data.groupData);
+      },
+      fail (err){
+        console.log("失败",err);
+      }
+    })
   },
 
   /**

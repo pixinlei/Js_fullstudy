@@ -66,6 +66,20 @@
 					"id": -1,
 					"name": "pages/index2/index2",
 					"pathName": "pages/index2/index2",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index3/index3",
+					"pathName": "pages/index3/index3",
 					"scene": null
 				}
 			]

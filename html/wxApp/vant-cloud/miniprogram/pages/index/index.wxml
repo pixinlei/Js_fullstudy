@@ -12,10 +12,17 @@
   </view>
 </view>
 <!-- 弹出层 -->
-<van-dialog id="new-group-modal" title="创建一个群组" show="{{newGroupModal}}" showCancelButton="{{true}}" asyncClose="{{false}}" use-slot>
+<van-dialog
+bind:cancel="closeDialog"
+bind:confirm="createGroup"
+id="new-group-modal" title="创建一个群组" show="{{newGroupModal}}" showCancelButton asyncClose="{{false}}" use-slot>
   <view class="group-dialog-body">
     <van-cell-group>
       <van-field value="{{ groupname }}" placeholder="取个群组名" bind:change="onGroupNameChange" label="群组名"/>
     </van-cell-group>
   </view>
 </van-dialog>
+
+<!-- 提示 -->
+<van-notify id="van-notify" />
+
