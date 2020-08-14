@@ -1,36 +1,31 @@
 // miniprogram/pages/index/index.js
-const app = getApp()
-const github = require('../../api/github.js')
+const db = wx.cloud.database().collection("userList")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    data:{
-      trends:[]
-    }
+
   },
-  onSearch: function (value) {
-    console.log(value,"++++++++++++");
+  // 获取云数据库数据
+  getData () {
+    db.get({
+      success (res) {
+        console.log("请求成功",res);
+      },
+      fail (err) {
+        console.log("请求失败",err);
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    wx.startPullDownRefresh({})
+  onLoad: function (options) {
+
   },
-  onPullDownRefresh: function () {
-    this.reloadData()
-  },
-  reloadData: function () {
-    // 数据 wx.request  collection.get
-    // 到api模块去做
-    github.trendings().then(data => {
-      
-      console.log(data);
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
