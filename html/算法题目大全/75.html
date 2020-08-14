@@ -16,26 +16,22 @@
 var sortColors = function(nums) {
   let left = 0,
       right = nums.length - 1,
-      arr0 = [],
-      arr1 = [],
-      arr2 = []
+      pre = 0
   
-  while(left <= right) {
-    if(nums[left] === 0) {
-      arr0.push(nums[left++])
-    }else if(nums[left] === 1) {
-      arr1.push(nums[left++])
-    }else{
-      arr2.push(nums[left++])
+  while(left<right){
+    if(nums[pre] === 0) {
+      [nums[pre],nums[left]] = [nums[left],nums[pre]]
+      pre++
+      left++
+    }else if(nums[pre] === 1){
+      pre++
+    }else {
+      [nums[pre],nums[right]] = [nums[right],nums[pre]]
+      right--
+      pre--
     }
   }
-  let newarr = (arr0.concat(arr1)).concat(arr2)
-  // console.log(arr0);
-  // console.log(arr1);
-  // console.log(arr2);
-  console.log(newarr);
-  nums = newarr
-  console.log(nums);
+  
   return nums
 };
 sortColors([2,0,2,1,1,0])

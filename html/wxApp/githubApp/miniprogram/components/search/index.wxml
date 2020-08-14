@@ -1,0 +1,8 @@
+
+<van-field
+      clearable
+      type="search"
+      left-icon="search"
+      placeholder="{{ placeholder }}"
+      bind:change="onChange"
+    /> 
