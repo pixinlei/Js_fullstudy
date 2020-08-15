@@ -9,31 +9,56 @@
   
 </body>
 <script>
-  /**
+  // 三指针
+//   /**
+//  * @param {number[]} nums
+//  * @return {void} Do not return anything, modify nums in-place instead.
+//  */
+// var sortColors = function(nums) {
+//   let left = 0,
+//       right = nums.length - 1,
+//       pre = 0
+  
+//   while(pre<=right){
+//     if(nums[pre] === 0) {
+//       [nums[pre],nums[left]] = [nums[left],nums[pre]]
+//       pre++
+//       left++
+//       continue
+//     }
+//     if(nums[pre] === 1){
+//       pre++
+//       continue
+//     }
+//     if(nums[pre] === 2) {
+//       [nums[pre],nums[right]] = [nums[right],nums[pre]]
+//       right--
+//       continue
+//     }
+//   } 
+//   return nums
+// };
+
+
+
+// 冒泡排序
+/**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var sortColors = function(nums) {
-  let left = 0,
-      right = nums.length - 1,
-      pre = 0
-  
-  while(left<right){
-    if(nums[pre] === 0) {
-      [nums[pre],nums[left]] = [nums[left],nums[pre]]
-      pre++
-      left++
-    }else if(nums[pre] === 1){
-      pre++
-    }else {
-      [nums[pre],nums[right]] = [nums[right],nums[pre]]
-      right--
-      pre--
+ var sortColors = function(nums) {
+  for(let i=0;i<nums.length;i++){
+    for(let j=0;j<nums.length-1;j++){
+      if(nums[i] < nums[j]){
+      [nums[i],nums[j]] = [nums[j],nums[i]]
+      }
     }
   }
-  
   return nums
 };
+
+
+// 测试用例
 sortColors([2,0,2,1,1,0])
 </script>
 </html>
