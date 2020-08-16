@@ -1,1 +1,3 @@
-<view>这是首页</view>
+<view wx:for="{{demoList}}" wx:key="index">
+  <view>{{item.title}}</view>
+</view>

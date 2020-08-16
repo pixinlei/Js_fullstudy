@@ -1,0 +1,5 @@
+view {
+  width: 750rpx;
+  height: 21vh;
+  border: 1px solid red;
+}
