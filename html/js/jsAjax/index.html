@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<!-- <script>
+  // let app = document.getElementById('app')
+  // let app = $('#app')
+  // console.log(app);
+  $.ajax({
+    url:'http://neteasecloudmusicapi.zhaoboy.com/top/list',
+    data:{
+      idx:1
+    },
+    dataType:'JSON',
+    method:'Get',
+    success: (res) => {
+      console.log(res);
+    }
+  })
+</script> -->
+
+<!-- <script>
+  // 原生js做接口请求 XMLHttpRequest()
+  var myAjax = new  XMLHttpRequest()  //创建异步对象
+
+
+</script> -->
+
+<script>
+  var xhr = new XMLHttpRequest()
+  xhr.setRequestHeader("Context-type","application/x-www-form-urlencoded")  //post请求一定要设置请求头
+  xhr.open('post','http://......')
+  xhr.send('idx=1&')
+</script>
+</html>
