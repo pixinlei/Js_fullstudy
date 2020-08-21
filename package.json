@@ -1,6 +1,11 @@
 {
   "dependencies": {
     "@vant/weapp": "^1.4.4",
+    "formidable": "^1.2.2",
+    "koa-body": "^4.2.0",
+    "koa-compose": "^4.1.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0",
     "mocker-api": "^2.1.0",
     "vant-weapp": "^0.5.28"
   }

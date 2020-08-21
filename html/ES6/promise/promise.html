@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let promise = new Promise((resolve,reject) =>{
+    // 初始化promise pending  初始化
+    console.log(111111);   
+    // 执行异步操作，通常是发送ajax请求，开启定时器
+    setTimeout(()=>{
+      console.log(333);
+      // 根据异步任务的返回结果来修改promise状态
+      // 执行成功
+      // resolve("哈哈，成功了") //修改promise的状态为fullfilled：成功的状态
+
+      reject("555")  //修改promise的状态为 reject  失败的状态
+
+    },2000)
+  })
+  console.log(222222222);
+
+  promise.then((data)=>{
+    // 成功的回调
+    // console.log(444);
+    console.log(data,"成功了");
+  },(err)=>{
+    // 失败的回调
+    console.log(err,"失败了");
+  })
+</script>
+</html>

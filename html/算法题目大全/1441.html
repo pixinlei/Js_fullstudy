@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  /**
+ * @param {number[]} target
+ * @param {number} n
+ * @return {string[]}
+ */
+var buildArray = function(target, n) {
+    let arr1 = [],
+        arr2 = []
+    
+    for(let i=1;i<=n;i++) {
+      if(arr2.length == target.length){break}
+      if(!target.inclouds(i)){
+        arr1.push('Push')
+        arr1.push('Pop')
+      }else{
+        arr1.push('Push')
+        arr2.push(i)
+      }
+    }
+    return arr1
+};
+buildArray([1,3],3)
+</script>
+</html>
