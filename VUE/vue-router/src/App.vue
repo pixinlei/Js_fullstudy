@@ -3,8 +3,10 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- 路由入口 -->
+    <transition name="fade">
     <router-view/>
-  </div>
+    </transition>
+      </div>
 </template>
 
 <script>
@@ -26,5 +28,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: opacity 0.5s;
+}
+.fade-leave-active {
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 </style>

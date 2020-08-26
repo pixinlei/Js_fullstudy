@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.0/vue.common.dev.js"></script>
+</head>
+<body>
+  <!-- extend 构造器的延伸 -->
+  <!-- <div id="app">
+    <div id="demo" v-yuan="color">{{num}}</div>
+  </div> -->
+  <student></student>
+</body>
+<script>
+  let studentExtend = Vue.extend({
+    template: `<p><a :href="studentUrl">{{studentName}}</a></p>`,
+    data: function () {
+      return {
+        studentName:'祥祥',
+        studentUrl:'https://www.baidu.com'
+      }
+    }
+  })
+
+  new studentExtend().$mount('student')
+
+  let app = new Vue({
+    el:'#app',
+    data : {
+
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.common.dev.js"></script>
+  <style>
+    .red {
+      color:red
+    }
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- <div v-show="isSure">登陆</div>
+    <div>铜锣湾扛把子</div> -->
+    <!-- <div class="item" v-for="item in list" :key = "index">
+      <p>{{item}}</p>
+    </div> -->
+    <!-- <div v-for="item in people" :key="index">
+      <p>{{item.name}}-{{item.age}}</p> -->
+      <!-- <p>-</p>
+      <p>{{item.age}}</p> -->
+    <!-- </div> -->
+        <!-- <div class="msg">
+          <span>{{newMessage}}</span><br>
+          <span v-text="newMessage"></span><br>
+          <span v-html="newMessage"></span>
+        </div> -->
+        <!-- <div class="count">
+          <p>{{count}}</p>
+          <button v-on:click="add">+</button>
+          <button @click="reduce">-</button>
+        </div> -->
+        <!-- <div class="model">
+          <p>{{message}}</p>
+          <p>
+            v-model:
+            <input type="text" v-model="message">
+          </p>
+        </div> -->
+<!-- 
+        <div class="pic">
+          <img v-bind:src="imgsrc" alt="">
+        </div> -->
+
+        <!-- <div @click="changeColor" v-bind:class="{red:isRed}" :class="[className1,className2]">明国很腼腆</div> -->
+
+        <!-- <div v-pre>{{message}}</div> -->
+
+        <!-- <div v-cloak>{{message}}</div> -->
+
+        <div v-once>{{message}}</div>
+        <input type="text" v-model="message">
+
+  </div>
+</body>
+  <script>
+    var app = new Vue({
+      el:'#app',
+      data: {
+        className1: 'active',
+        className2: 'wrapper',
+        isRed:false,
+        imgsrc:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2747364614,2411895227&fm=26&gp=0.jpg',
+        count:0,
+        message:'hello world',
+        newMessage:'<h2>hello vue</h2>',
+        isSure:false,
+        list: ['a','b','c','d'],
+        people:[
+          {name:'祥祥',age:18},
+          {name:'浩南',age:19},
+          {name:'元隆',age:20},
+        ]
+      },
+
+      methods: {
+        changeColor () {
+          this.isRed = !this.isRed
+          // console.log(11111111);
+        },
+
+        add () {
+          // console.log('66666666');
+          this.count++
+        },
+        reduce () {
+          // console.log('66666666');
+          this.count--
+        },
+      },
+
+      beforeCreate () {
+        console.log('beforeCreate');
+      },
+      created () {
+        console.log('created');
+      },
+      beforeMount () {
+        console.log('beforeMount');
+      },
+      beforeUpdate () {
+        console.log('beforeUpdate');
+      },
+      updated () {
+        console.log('updated');
+      },
+      mounted () {
+        console.log('mounted');
+      },
+      beforeDestroy () {
+        console.log('beforeDestroy');
+      },
+      destroyed () {
+        console.log('destroyed');
+      } 
+    })
+  </script>
+</html>
