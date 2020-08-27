@@ -1,0 +1,28 @@
+<template>
+  <div class="user">
+    <p>{{userName}}</p>
+    <button @click="handle">按钮</button>
+  </div>
+</template>
+
+<script>
+export default {
+  props:['userName',],
+  data () {
+    return {
+      name:'皮皮',
+      title:'我是子组件的title'
+    }
+  },
+  methods:{
+    handle () {
+      // console.log(111111111);
+      this.$emit('titleChange',this.title)
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>
