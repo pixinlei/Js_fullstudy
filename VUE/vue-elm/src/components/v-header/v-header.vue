@@ -1,11 +1,11 @@
 <template>
-  <div class="header">
+  <div class="header" @click="showDetail">
     <div class="content-wrapper">
       <div class="avatar">
         <img
           width="64"
           height="64"
-          :src="seller.avatar"
+          :src="seller.avatar" 
           alt
         />
       </div>
@@ -16,32 +16,61 @@
         </div>
         <div class="description">{{seller.description}}/{{seller.deliveryTime}}分钟送达</div>
         <div class="support" v-if="seller.supports">
-            <SupportIco :size=1 :type="seller.supports[0].type"></SupportIco>
-          <span class="text">{{seller.supports[0].description}}</span>
+          <support-ico :size=1 :type="seller.supports[0].type"></support-ico>
+          <span class="text" >{{seller.supports[0].description}}</span>
         </div>
       </div>
+      <div class="support-count" v-if="seller.supports">
+        <span class="count">{{seller.supports.length}}个</span>
+        <i class="icon-keyboard_arrow_right"></i>
+      </div>
     </div>
+    <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span>
+      <span class="bulletin-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
+    <div class="background">
+      <img :src="seller.avatar" alt="" width="100%" height="100%">
+    </div>
+    <!-- detail -->
+    <header-detail :seller="seller" v-show="detailVisible" @hide="hideDetail"></header-detail>
   </div>
 </template>
 
 <script>
 import SupportIco from '@/components/support-ico/support-ico'
+import HeaderDetail from '@/components/header-detail/header-detail'
 export default {
   props: {
     seller: {
       type: Object,
-      dafault() {
+      default() {
         return {};
       },
     },
   },
-  created () {
+  created() {
     setTimeout(() => {
       console.log(this.seller);
-    },1000)
+    }, 1000)
   },
   components: {
-    SupportIco
+    SupportIco: SupportIco,
+    HeaderDetail: HeaderDetail
+  },
+  data() {
+    return {
+      detailVisible: false
+    }
+  },
+  methods: {
+    showDetail() {
+      this.detailVisible = true
+    },
+    hideDetail(e) {
+      this.detailVisible = e
+    }
   }
 };
 </script>
@@ -50,71 +79,118 @@ export default {
 @import '../../common/stylus/variable.styl';
 @import '../../common/stylus/mixin.styl';
 
-.header {
+.header 
   position: relative;
   overflow: hidden;
   color: $color-white;
   background: $color-background-ss;
 
-  .content-wrapper {
+  .content-wrapper 
     position: relative;
     display: flex;
     align-items: center;
     padding: 24px 12px 18px 24px;
 
-    .avatar {
+    .avatar 
       flex: 0 0 64px;
       width: 64px;
       margin-right: 16px;
 
-      img {
+      img 
         border-radius: 2px;
-      }
-    }
+      
+    
 
-    .content {
+    .content 
       flex: 1;
 
-      .title {
+      .title 
         display: flex;
         align-items: center;
         margin-bottom: 8px;
 
-        .brand {
+        .brand 
           width: 30px;
           height: 18px;
           bg-image('brand');
           background-size: 30px 18px;
           background-repeat: no-repeat;
-        }
+        
 
-        .name {
+        .name 
           margin-left: 6px;
           font-size: $fontsize-large;
           font-weight: bold;
-        }
-      }
+        
+      
 
-      .description {
+      .description 
         margin-bottom: 8px;
         line-height: 12px;
         font-size: $fontsize-small;
-      }
+      
 
-      .support {
+      .support 
         display: flex;
         align-items: center;
 
-        &-ico {
+        &-ico 
           margin-right: 4px;
-        }
+        
 
-        .text {
+        .text 
           line-height: 12px;
           font-size: $fontsize-small-s;
-        }
-      }
-    }
-  }
-}
+    .support-count
+      position absolute
+      right 12px
+      bottom 14px
+      display flex
+      align-items center
+      padding 0 8px
+      height 24px
+      line-height 24px
+      text-align center
+      border-radius 14px
+      background $color-background-sss
+      .count
+        font-size $fontsize-small-s 
+      .icon-keyboard_arrow_right
+        margin-left 2px
+        line-height 24px
+        font-size $fontsize-small-s     
+  .bulletin-wrapper
+    position relative
+    display flex
+    align-items center
+    height 28px
+    line-height 28px
+    padding 0 8px
+    background $color-background-ss
+    .bulletin-title
+      flex 0 0 22px
+      width 22px
+      height 12px
+      margin-right 4px
+      bg-image('bulletin')
+      background-size 22px 12px
+      background-repeat no-repeat
+    .bulletin-text
+      flex 1
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+      font-size $fontsize-small-s
+    .icon-keyboard_arrow_right
+      flex  0 0 10px
+      width 10px
+      font-size $fontsize-small-s
+  .background
+    position absolute
+    top 0
+    width 100%
+    height 100%
+    z-index -1
+    filter blur(10px)
+
 </style>

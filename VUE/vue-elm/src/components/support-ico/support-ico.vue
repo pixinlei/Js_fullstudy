@@ -1,5 +1,5 @@
 <template>
-  <span class="support-ico" :class="iconCls"></span>
+  <span class="support-ico" :class="icoCls"></span>
 </template>
 
 <script>
@@ -14,8 +14,8 @@ export default {
     }
   },
   computed: {
-    iconCls() {
-      const classMap = ['decrease', 'discount','special','invoice','guarantee']
+    icoCls() {
+      const classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
       return `icon-${this.size} ${classMap[this.type]}`
     }
   }
@@ -23,8 +23,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../common/stylus/mixin.styl';
-  .support-ico
+@import '../../common/stylus/mixin'
+.support-ico
     display inline-block
     background-repeat no-repeat
   .icon-1
@@ -41,7 +41,7 @@ export default {
       bg-image('invoice_1')
     &.guarantee
       bg-image('guarantee_1')
-
+  
   .icon-2
     width 16px
     height 16px
@@ -56,7 +56,7 @@ export default {
       bg-image('invoice_2')
     &.guarantee
       bg-image('guarantee_2')
-
+  
   .icon-3
     width 12px
     height 12px
@@ -86,5 +86,5 @@ export default {
       bg-image('invoice_4')
     &.guarantee
       bg-image('guarantee_4')
-
+  
 </style>

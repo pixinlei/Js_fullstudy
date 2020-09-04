@@ -1,9 +1,9 @@
-import { get } from './helpers'
+import { get } from './helpers';
 
-const getSeller = get('api/seller')
-const getGoods = get('api/goods')
+const getSeller = get('api/seller');
+const getGoods = get('api/goods');
 
 export {
   getSeller,
-  getGoods
-}
+  getGoods,
+};

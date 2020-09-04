@@ -1,15 +1,17 @@
-import axios from 'axios'
+import axios from 'axios';//  ???
 
-const baseUrl = ''
-
+const baseUrl = '';
+// ???
 export function get(url) {
   return function (params = {}) {
     return axios.get(baseUrl + url, {
       params
     }).then((res) => {
-      // 解构
-      const {errno,data} = res.data
-      if(errno === 0) {
+      const {errno, data} = res.data
+      //上面这一句就等于下面这两行，，，es6解构的内容，对象的解构
+      //const errno = res.data.errno
+      //const data = res.data.data
+      if (errno === 0) {
         return data
       }
     }).catch((err) => {
