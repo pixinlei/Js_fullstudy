@@ -6,7 +6,7 @@
         <div class="user-control">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
-              {{ this.$route.params.user}}
+              {{name}}
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
@@ -68,6 +68,9 @@ export default {
       }
     },
   },
+  created () {
+    this.name = localStorage.getItem('name')
+  }
 };
 </script>
 

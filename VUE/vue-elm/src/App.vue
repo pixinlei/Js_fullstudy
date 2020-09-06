@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @touchmove.prevent>
     <!-- header 组件 -->
     <v-header :seller="seller"></v-header>
     <div class="tab">
@@ -21,39 +21,38 @@
 
 <script>
 import VHeader from '@/components/v-header/v-header.vue';
-import {getSeller} from '@/api';
-import qs from 'query-string';
+import { getSeller } from '@/api';
+import qs from 'query-string'
 
 export default {
   data() {
     return {
       seller: {
         id: qs.parse(location.search).id
-      }
-    }
+      },
+    };
   },
   created() {
-    this._getSeller()
+    this._getSeller();
   },
   methods: {
     _getSeller() {
       getSeller({
-        id: this.seller.id
+        id: this.seller.id,
       }).then((seller) => {
-        // console.log(seller);
-        this.seller = Object.assign({}, seller, this.seller)
-        // console.log(seller);
-      })
-    }
+        this.seller = Object.assign({}, this.seller, seller)
+        console.log(this.seller);
+      });
+    },
   },
   components: {
     VHeader,
   },
 };
-</script>
+</script>>
 
 <style lang="stylus" scoped>
-@import './common/stylus/variable.styl';
+  @import './common/stylus/variable.styl';
   .page
     position fixed
     top 174px

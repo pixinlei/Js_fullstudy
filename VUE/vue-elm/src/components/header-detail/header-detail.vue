@@ -5,8 +5,7 @@
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
           <div class="star-wrapper">
-            <!-- ⭐ -->
-
+            <!-- 星星 -->
           </div>
           <div class="title">
             <div class="line"></div>
@@ -44,13 +43,9 @@ export default {
     seller: {
       type: Object,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
-  },
-  components: {
-    SupportIco,
-
   },
   data() {
     return {
@@ -61,12 +56,16 @@ export default {
     hide() {
       this.$emit('hide', false)
     }
+  },
+  components: {
+    SupportIco
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-@import '../../common/stylus/variable.styl';
+  @import "../../common/stylus/variable.styl";
+
   .header-detail
     position fixed
     top 0
@@ -92,13 +91,13 @@ export default {
         margin-top 64px
         padding-bottom 64px
         .name
-          left 16px
+          line-height 16px
           text-align center
           font-size $fontsize-large
           font-weight 700
         .star-wrapper
           margin-top 18px
-          padding 20px 0
+          padding 2px 0
           text-align center
         .title
           display flex

@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="scroll-nav-wrapper">
       <!-- 左右联动的菜单 -->
-      <cube-scroll-nav :side="true" :data="goods" :options="scrollOptions">
+      <cube-scroll-nav :side="true" :data="goods" :options="scrollOptions" v-if="goods.length">
         <!-- 左侧菜单 -->
         <template slot="bar" slot-scope="props">
           <cube-scroll-nav-bar
@@ -11,11 +11,10 @@
             :labels="props.labels"
             :txts="barTxts"
           >
-
             <!-- 菜单里面的内容 -->
             <template slot-scope="props">
               <div class="text">
-                <support-ico v-if="props.txt.type>-1" :size=3 :type="props.txt.type"></support-ico>
+                <support-ico v-if="props.txt.type>-1" :size="3" :type="props.txt.type"></support-ico>
                 <span>{{props.txt.name}}</span>
               </div>
             </template>
@@ -28,8 +27,7 @@
           :title="good.name"
         >
           <ul>
-            <li class="food-item
-                " v-for="(food,index) in good.foods" :key="index">
+            <li class="food-item" v-for="food in good.foods" :key="food.name">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon" alt="">
               </div>
@@ -41,17 +39,25 @@
                   <span>好评率{{food.rating}}%</span>
                 </div>
                 <div class="price">
-                  <span class="now">￥{{food.price}}</span>
-                  <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+                  <span class="now">¥{{food.price}}</span>
+                  <span class="old" v-if="food.oldPrice">¥{{food.oldPrice}}</span>
                 </div>
                 <div class="cart-control-wrapper">
-                  <CartControl :food="food"></CartControl>
+                  <cart-control :food="food" @add="onAdd"></cart-control>
                 </div>
               </div>
             </li>
           </ul>
         </cube-scroll-nav-panel>
       </cube-scroll-nav>
+    </div>
+    <div class="shop-cart-wrapper">
+      <shop-cart
+        ref="shopCart"
+        :select-foods="selectFoods"
+        :delivery-price="data.deliveryPrice"
+        :min-price="data.minPrice">
+      </shop-cart>
     </div>
   </div>
 </template>
@@ -60,6 +66,7 @@
 import SupportIco from '@/components/support-ico/support-ico';
 import { getGoods } from '@/api'
 import CartControl from '@/components/cart-control/cart-control'
+import ShopCart from '@/components/shop-cart/shop-cart'
 
 export default {
   props: {
@@ -74,7 +81,7 @@ export default {
     return {
       goods: [],
       scrollOptions: {
-        click: false,
+        click: true,
         directionLockThreshold: 0
       }
     }
@@ -95,9 +102,24 @@ export default {
         })
       })
       return ret
+    },
+    selectFoods() {
+      let foods = []
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   methods: {
+    onAdd(target) {
+      // 小球下落
+      this.$refs.shopCart.drop(target)
+    },
     _getGoods() {
       getGoods({
         id: this.data.id
@@ -105,19 +127,25 @@ export default {
         console.log(goods)
         this.goods = goods
       })
+    },
+    changeHandler(label) {
+      console.log('changed to:', label)
+    },
+    stickyChangeHandler(current) {
+      console.log('sticky-change', current)
     }
   },
   components: {
     SupportIco,
-    CartControl
+    CartControl,
+    ShopCart
   }
 };
 </script>
 
-
 <style lang="stylus" scoped>
-@import '../../common/stylus/variable';
-.goods
+  @import '../../common/stylus/variable.styl';
+  .goods
     position: relative
     text-align: left
     height: 100%
@@ -214,5 +242,4 @@ export default {
       z-index: 50
       width: 100%
       height: 48px
-
 </style>

@@ -45,6 +45,7 @@ export default {
       if(!this.user || !this.passWord) {
         this.$message.error('账号或密码不能为空');
       }else {
+        localStorage.setItem('name',this.user)
         this.$router.push({
           name:'Home',
           params : {

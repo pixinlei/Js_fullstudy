@@ -10,9 +10,7 @@ export default {
   props:{
     aaa: {
       type:String,
-      default: function () {
-        return '小白'
-      }
+      default: '小白'
     }
   },
   data () {
