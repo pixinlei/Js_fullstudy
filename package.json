@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@better-scroll/core": "^2.0.3",
     "@vant/weapp": "^1.4.4",
+    "element-ui": "^2.13.2",
     "formidable": "^1.2.2",
     "koa-body": "^4.2.0",
     "koa-compose": "^4.1.0",
@@ -13,6 +15,7 @@
     "vant-weapp": "^0.5.28"
   },
   "devDependencies": {
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "vue-cli-plugin-cube-ui": "~0.2.5"
   }
 }

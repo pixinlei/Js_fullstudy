@@ -2342,6 +2342,15 @@ babel-plugin-syntax-object-rest-spread@^6.8.0:
   resolved "https://registry.npm.taobao.org/babel-plugin-syntax-object-rest-spread/download/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
   integrity sha1-/WU28rzhODb/o6VFjEkDpZe7O/U=
 
+babel-plugin-transform-modules@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npm.taobao.org/babel-plugin-transform-modules/download/babel-plugin-transform-modules-0.1.1.tgz#2a72ced69d85613d953196ae9a86d39f19fd7933"
+  integrity sha1-KnLO1p2FYT2VMZaumobTnxn9eTM=
+  dependencies:
+    lodash.camelcase "^4.3.0"
+    lodash.kebabcase "^4.1.1"
+    lodash.snakecase "^4.1.1"
+
 babel-plugin-transform-object-rest-spread@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npm.taobao.org/babel-plugin-transform-object-rest-spread/download/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
@@ -6572,6 +6581,13 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
+load-pkg-config@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/load-pkg-config/download/load-pkg-config-1.0.1.tgz#1a7d78c21bf257e67935e8faa603f4fe519c49a8"
+  integrity sha1-Gn14whvyV+Z5Nej6pgP0/lGcSag=
+  dependencies:
+    resolve-pkg "^1.0.0"
+
 loader-fs-cache@^1.0.2:
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/loader-fs-cache/download/loader-fs-cache-1.0.3.tgz#f08657646d607078be2f0a032f8bd69dd6f277d9"
@@ -6636,10 +6652,25 @@ lodash._reinterpolate@^3.0.0:
   resolved "https://registry.npm.taobao.org/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
 
+lodash.camelcase@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.npm.taobao.org/lodash.camelcase/download/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
+  integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+
+lodash.kebabcase@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npm.taobao.org/lodash.kebabcase/download/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
+  integrity sha1-hImxyw0p/4gZXM7KRI/21swpXDY=
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npm.taobao.org/lodash.memoize/download/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
+lodash.snakecase@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npm.taobao.org/lodash.snakecase/download/lodash.snakecase-4.1.1.tgz#39d714a35357147837aefd64b5dcbb16becd8f8d"
+  integrity sha1-OdcUo1NXFHg3rv1ktdy7Fr7Nj40=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
@@ -9084,6 +9115,11 @@ resolve-cwd@^2.0.0:
   dependencies:
     resolve-from "^3.0.0"
 
+resolve-from@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/resolve-from/download/resolve-from-2.0.0.tgz#9480ab20e94ffa1d9e80a804c7ea147611966b57"
+  integrity sha1-lICrIOlP+h2egKgEx+oUdhGWa1c=
+
 resolve-from@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/resolve-from/download/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
@@ -9106,6 +9142,13 @@ resolve-path@^1.4.0:
   dependencies:
     http-errors "~1.6.2"
     path-is-absolute "1.0.1"
+
+resolve-pkg@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/resolve-pkg/download/resolve-pkg-1.0.0.tgz#e19a15e78aca2e124461dc92b2e3943ef93494d9"
+  integrity sha1-4ZoV54rKLhJEYdySsuOUPvk0lNk=
+  dependencies:
+    resolve-from "^2.0.0"
 
 resolve-url-loader@3.1.1:
   version "3.1.1"
@@ -10493,6 +10536,14 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
 
+vue-cli-plugin-cube-ui@~0.2.5:
+  version "0.2.5"
+  resolved "https://registry.npm.taobao.org/vue-cli-plugin-cube-ui/download/vue-cli-plugin-cube-ui-0.2.5.tgz#d2fc6a3073142bc10e352c7a73309a334c269aa6"
+  integrity sha1-0vxqMHMUK8EONSx6czCaM0wmmqY=
+  dependencies:
+    webpack-post-compile-plugin "^1.0.0"
+    webpack-transform-modules-plugin "^0.4.0"
+
 w3c-hr-time@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/w3c-hr-time/download/w3c-hr-time-1.0.2.tgz#0a89cdf5cc15822df9c360543676963e0cc308cd"
@@ -10614,6 +10665,13 @@ webpack-manifest-plugin@2.2.0:
     object.entries "^1.1.0"
     tapable "^1.0.0"
 
+webpack-post-compile-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/webpack-post-compile-plugin/download/webpack-post-compile-plugin-1.0.0.tgz#a1bae348d4bb6ebcf2bd173cbc695ae8cc825278"
+  integrity sha1-obrjSNS7brzyvRc8vGla6MyCUng=
+  dependencies:
+    micromatch "^3.1.10"
+
 webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-sources@^1.4.3:
   version "1.4.3"
   resolved "https://registry.npm.taobao.org/webpack-sources/download/webpack-sources-1.4.3.tgz?cache=0&sync_timestamp=1597907748548&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack-sources%2Fdownload%2Fwebpack-sources-1.4.3.tgz#eedd8ec0b928fbf1cbfe994e22d2d890f330a933"
@@ -10621,6 +10679,14 @@ webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
+
+webpack-transform-modules-plugin@^0.4.0:
+  version "0.4.4"
+  resolved "https://registry.npm.taobao.org/webpack-transform-modules-plugin/download/webpack-transform-modules-plugin-0.4.4.tgz#61a3e71b35eac49a5102423a3f66946b66374443"
+  integrity sha1-YaPnGzXqxJpRAkI6P2aUa2Y3REM=
+  dependencies:
+    babel-plugin-transform-modules "^0.1.1"
+    load-pkg-config "^1.0.1"
 
 webpack@4.42.0:
   version "4.42.0"
