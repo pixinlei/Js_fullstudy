@@ -18,7 +18,10 @@ const mutations = {
   },
   [type.COM_CLEAR_SEARCH_HISTORY](state) {
     state.searchHistory = []
-  }
+  },
+  [type.COM_SAVE_SEARCH_HISTORY](state,payload) {
+    state.searchHistory = payload
+  },
 }
 
 const actions = {
@@ -31,12 +34,9 @@ const actions = {
   clearSearchHistory ({ commit }) {
     commit(type.COM_CLEAR_SEARCH_HISTORY)
   },
-  [type.COM_SAVE_SEARCH_HISTORY](state,song) {
-    state.searchHistory = payload
-  },
   saveSearchHistory( {commit, state}, query) {
     // state.searchHistory = new Set(state.searchHistory.unshift(query))
-    let searchHistory = [query,...state.searchHistory.slice()]
+    let searchHistory = [query, ...state.searchHistory.slice()]
     searchHistory = [...new Set(searchHistory)]
     commit(type.COM_SAVE_SEARCH_HISTORY, searchHistory)
   }

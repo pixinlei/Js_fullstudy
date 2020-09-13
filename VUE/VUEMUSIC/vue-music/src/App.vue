@@ -11,6 +11,7 @@
       <router-view/>
     </keep-alive>
     
+    <play></play>
 
     <!-- menu -->
     <sidebar></sidebar>
@@ -20,13 +21,15 @@
 import Header from '@/components/header'
 import sidebar from '@/components/sidebar'
 import tab from '@/components/tab'
+import play from '@/components/play'
 
 
 export default {
   components: {
     Header,
     sidebar,
-    tab
+    tab,
+    play
   },
 }
 </script>>

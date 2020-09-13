@@ -65,9 +65,11 @@ export default {
   },
   mixins:[searchMixin],
   methods: {
-    saveSearch () {
+    saveSearch (song) {
       // 保存历史记录
-      this.searchHistory(this.query)
+      this.saveSearchHistory(this.query)
+      // 播放音乐
+      this.selectPlaySong(song)
     },
     _getHotKey () { // 获取热门搜索
       api.HotSearchKey().then((res) => {
@@ -75,7 +77,7 @@ export default {
         this.hotKey =  res.result.hots.slice(0, 10)
       })
     },
-    ...mapActions(['deleteSearchHistory','clearSearchHistory','searchHistory'])
+    ...mapActions(['deleteSearchHistory','clearSearchHistory','saveSearchHistory','selectPlaySong'])
   },
   created () {
     this._getHotKey()

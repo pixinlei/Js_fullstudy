@@ -40,7 +40,7 @@ export default {
     scroll
   },
   methods: {
-    selectItem () {
+    selectItem (item) {
       // console.log(1);
       this.$emit('select',item)
     },

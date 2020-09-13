@@ -6,7 +6,7 @@ let c = create(a)
 
 function create (arg) {
   let obj = {
-    __proto__ : arg
+    __proto__ : arg1
   }
   return obj 
 }
