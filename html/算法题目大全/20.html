@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  var isValid = function (s) {
+    let map = {
+      '(': -1,
+      ')': 1,
+      '[': -2,
+      ']': 2,
+      '{': -3,
+      '}': 3
+    }
+    let stack = []
+    for (let i=0;i<s.length;i++) {
+      if(map[s[i]] < 0) {
+        stack.push(s[i]) //1. 先把所有左半边括号存入数组中
+      } else {  //2.当循环中出现了右半边括号时，我们将数组中的元素取出与之进行比较
+        let last = stack.pop()
+        if (map[last] + map[s[i]] !=0) {
+          return false
+        }
+      }
+    }
+    if (stack.length) return false
+    return true
+  }
+</script>
+</html>

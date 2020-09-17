@@ -12,7 +12,7 @@
         <input type="password" id="userpwd" v-model="userpwd" />
       </div>
       <p class="forgot-pwd">忘记密码</p>
-      <div class="sign">登录</div>
+      <div class="sign" @click="login">登录</div>
     </div>
     <p class="register" @click="register">新用户？点击这里注册</p>
   </div>
@@ -33,6 +33,7 @@ export default {
       this.$router.push({ path: '/StarRegister'})
     },
     login () {
+      // console.log(111);
       if (this.username.trim() == '' || this.username.trim() == null) {
         this.$toast('请输入账号')
         return
@@ -49,11 +50,20 @@ export default {
           userpwd: this.userpwd.trim(),         
         }
       }).then((res) => {
+        // console.log(typeof res.config.data, res.config.data.username, '++++++++++++s')
+        // let information = JSON.parse(res.config.data)
+        // console.log(password.username)
         if(res.data.code === '80000') {
           // 拿到后端返回的用户信息 (用户名和昵称) 存到本地
+          // let username = information.username
+          // let userpwd = information.userpwd
+          // localStorage.username = username
+          // localStorage.userpwd = userpwd
+          sessionStorage.setItem('userInfo',JSON.stringify(res.data.data))
           // 跳转首页
+          this.$router.push('/NoteClass')
         } else {
-          this.$toast(res.data.mess)
+          this.$toast(res.data.msg)
         }
       }).catch((err) => {
         console.log(err);

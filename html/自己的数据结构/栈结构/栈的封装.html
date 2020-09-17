@@ -9,6 +9,7 @@
   
 </body>
 <script>
+  // 栈，线性结构， 特点： 在某一端添加或者删除数据，遵循先进后出的原则
   // 封装栈类
   function Stack() {
     // 栈中的属性
@@ -50,5 +51,28 @@
   s.push(100)
   s.push(77)
   console.log(s);
+</script>
+<script>
+class Stack {
+  constructor () {
+    this.Stack = []
+  }
+  push (item) {
+    this.stack.push(item)
+  }
+  pop () {
+    this.stack.pop()
+  }
+  peek () {
+    return this.stack([this.getCount() - 1])
+  }
+  getCount () {
+    return this.stack.length
+  }
+  isEmpty () {
+    return this.getCount === 0
+  }
+}
+
 </script>
 </html>

@@ -77,32 +77,6 @@ router.post('/userRegister', async(ctx, next) => {
 })
 
 
-// 登陆
-// router.post('/userLogin', async(ctx, next) => {
-//   var _username = ctx.request.body.username
-//   var _userpwd = ctx.request.body.userpwd
-//   // var _nickname = ctx.request.body.nickname 
-//   if(!_username || !_userpwd) {
-//     ctx.body = {
-//       code: '80001',
-//       mess: '用户名或密码或昵称不能为空'
-//     }
-//     return
-//   }
-//   await userService.userLogin(_username, _userpwd).then(async(res) => {
-//     console.log(res);
-//     let r = ''
-//     if (res.affectedRows !== 0) {
-//       r = 'ok'
-//       ctx.body = {
-//         code: '80000',
-//         data: r,
-//         mess: '登录成功'
-//       } 
-//     }
-//   }) 
-// })
-
 router.post("/userLogin", async (ctx, next) => {
   const _username = ctx.request.body.username;
   const _userpwd = ctx.request.body.userpwd;
