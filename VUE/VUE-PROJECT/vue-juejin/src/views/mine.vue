@@ -1,6 +1,6 @@
 <template>
   <div class="mine">
-  <div class="head">
+  <div class="head" @click="toLogin">
     <van-cell value="" is-link>
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
@@ -43,6 +43,11 @@ export default {
         {class:'icon-shezhi', title:'设置'},
 
       ]
+    }
+  },
+  methods: {
+    toLogin () {
+      this.$router.push({path: '/login'})
     }
   }
 }

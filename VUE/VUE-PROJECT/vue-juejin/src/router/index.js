@@ -73,6 +73,12 @@ const routes = [
     name: 'mine',
     meta:{title: '我的页面'},
     component: () => import('@/views/mine.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta:{title: '登录界面'},
+    component: () => import('@/views/login.vue')
   }
 ]
 

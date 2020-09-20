@@ -9,38 +9,39 @@
 
 </body>
 <script>
+    // 链表时一个线性结构
     //封装链表类1 
-    function LinkedList(){
-    //内部的类：节点类
-    function Node(data){
-      this.data = data
-      this.next = null
-    }
+  //   function LinkedList(){
+  //   //内部的类：节点类
+  //   function Node(data){
+  //     this.data = data
+  //     this.next = null
+  //   }
 
-    //属性
-    this.head = null
-    this.length =    0
+  //   //属性
+  //   this.head = null
+  //   this.length =    0
 
-    //1.追加方法
-    LinkedList.prototype.append = function (data){
-      //1.创建新节点
-      var newNode = new Node(data)
+  //   //1.追加方法
+  //   LinkedList.prototype.append = function (data){
+  //     //1.创建新节点
+  //     var newNode = new Node(data)
 
-      //2.判断是否添加的是第一个节点
-      if(this.length == 0){//是第一个节点
+  //     //2.判断是否添加的是第一个节点
+  //     if(this.length == 0){//是第一个节点
 
-        this.head = newNode
-      }else{
-        var current = this.head
-        while(current){
-          current = current.next
-        }
-        //最后节点的next指向新的节点
-        current.next = newNode
-      }
-      this.length += 1
-    }
+  //       this.head = newNode
+  //     }else{
+  //       var current = this.head
+  //       while(current){
+  //         current = current.next
+  //       }
+  //       //最后节点的next指向新的节点
+  //       current.next = newNode
+  //     }
+  //     this.length += 1
+  //   }
     
-  }
+  // }
 </script>
 </html>
