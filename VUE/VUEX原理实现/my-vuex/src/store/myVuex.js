@@ -14,11 +14,32 @@ class Store {
       }
     })
     // this.state = options.state || {}
+    let getters = options.getters || {}
+    this.getters = {}
+    Object.keys(getters).forEach(getterName => {
+      Object.defineProperty(this.getters, getterName, {
+        get: () => {
+          return getters[getterName](this.state)
+        }
+      })
+    })
+
+    // mutation
+    let mutations = options.mutations || {}
+    this.mutations = {}
+    Object.keys(mutations).forEach(mutationName => {
+      this.mutations[mutationName] = (arg) => {
+        mutations[mutationName](this.state, arg)
+      }
+    })
   }
-  get state () { //属性自动触发
+  get state() { // 属性自动触发
     return this.vm.state
   }
+
+  
 }
+
 
 
 let install = function(Vue) {

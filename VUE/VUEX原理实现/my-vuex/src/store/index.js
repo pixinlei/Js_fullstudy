@@ -7,7 +7,13 @@ export default new Vuex.Store({
   state: {
     count: 1
   },
+  getters: {
+    getCount: state => state.count * 100
+  },
   mutations: {
+    addCount(state, num) {
+      status.count += num
+    }
   },
   actions: {
   },
