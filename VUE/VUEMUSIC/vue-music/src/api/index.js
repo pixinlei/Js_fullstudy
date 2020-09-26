@@ -11,13 +11,11 @@ axios.defaults.baseURL = 'http://localhost:3000'
 axios.interceptors.response.use(
   (res) => {
   if (res.data.code !== 200) {
-    vue.$toast('网络异常')
     return Promise.reject(res)
-  }
+  }4
   return res.data
 },
 (error) => {
-  vue.$toast('服务器异常')
   return Promise.reject(error)
 })
 
@@ -41,22 +39,22 @@ export function fetchGet(url,param) {
 
 
 export default {
-  // 用户登录
-  Login (params) {
-    return fetchGet('/login',params)
-  },
-  // 热门搜索
-  HotSearchKey () {
-    return fetchGet('/search/hot')
-  },
-  // music搜索
-  MusicSearch (params) {
-    return fetchGet('/search',params)
-  },
-  // 歌曲url
-  MusicUrl (id) {
-    return fetchGet('/song/url',{
-      id
-    })
-  }
+  // // 用户登录
+  // Login (params) {
+  //   return fetchGet('/login',params)
+  // },
+  // // 热门搜索
+  // HotSearchKey () {
+  //   return fetchGet('/search/hot')
+  // },
+  // // music搜索
+  // MusicSearch (params) {
+  //   return fetchGet('/search',params)
+  // },
+  // // 歌曲url
+  // MusicUrl (id) {
+  //   return fetchGet('/song/url',{
+  //     id
+  //   })
+  // }
 }
