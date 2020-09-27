@@ -46,7 +46,12 @@ export default {
     },
     showToast () {
       this.$toast('该功能暂未开放...')
-    }
+    },
+    // Changeavatar () {
+    //   api.Changeavatar().then((res) => {
+        
+    //   })
+    // }
   }
 }
 </script>

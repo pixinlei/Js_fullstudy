@@ -19,6 +19,27 @@ axios.interceptors.response.use(
     return Promise.reject(error)
   })
 
+
+
+
+  // const debug = process.env.NODE_ENV !== 'production'
+  // const axInstance = axios.create({
+  //     baseURL: debug ? 'api' : 'http://1.3.4.5.6:89',
+  //     timeout: 10000,
+  //     responseType: 'json',
+  //     withCredentials: false, // 表示跨域请求时是否需要使用凭证
+  //     headers: {
+  //         token: store.state.axios.token,
+  //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+  //     }
+  // })
+
+
+
+
+
+
+
 function fetchGet(url, param) {
   return new Promise((resolve, reject) => {
     axios.get(url, {
@@ -101,6 +122,7 @@ const translate = (word) => {
 
 export {
   translate,
+  // axInstance  
 }
 
 

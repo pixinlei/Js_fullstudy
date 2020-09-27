@@ -9,6 +9,11 @@ Vue.use(VueRouter)
       path:'/search',
       name:'search',
       component: search
+    },
+    {
+      path: '/recommend',
+      name: 'recommend',
+      component: () => import('@/views/recommend.vue')
     }
   ]
 

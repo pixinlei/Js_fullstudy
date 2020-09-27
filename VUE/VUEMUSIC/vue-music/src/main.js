@@ -4,6 +4,17 @@ import router from './router'
 import store from './store'
 import '../static/css/reset.styl'
 import '../static/css/plugin.styl'
+import Vant from 'vant';
+import 'vant/lib/index.css';
+import { Lazyload } from 'vant';
+
+Vue.use(Lazyload);
+
+Vue.use(Vant);
+
+Vue.use(Lazyload, {
+  lazyComponent: true,
+});
 
 
 Vue.config.productionTip = false
