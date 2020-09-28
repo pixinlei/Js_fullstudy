@@ -61,6 +61,6 @@ export default {
     return fetchGet('/banner?type=0')
   },
   Related_song_list_recommendation(params) {
-    return fetchGet('/related/playlist',params)
+    return fetchGet('/top/playlist',params)
   }
 }
