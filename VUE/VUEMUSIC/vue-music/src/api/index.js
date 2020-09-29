@@ -60,7 +60,12 @@ export default {
   Banner () {
     return fetchGet('/banner?type=0')
   },
+  // 热门歌单推荐
   Related_song_list_recommendation(params) {
     return fetchGet('/top/playlist',params)
+  },
+  // 获取歌单详情
+  MusicDetail (params) {
+    return fetchGet('/playlist/detail',params)
   }
 }

@@ -4,32 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    div {
-      transform: scale(0.5,0.5);
-      border-bottom: 1px solid #000;
-    }
-  </style>
+
 </head>
 <body>
-  <div></div>
+
 </body>
 <script>
-  function quickSort (left, right, nums) {
-    let tmp = nums[right];
-    while(left < right) {
-        if(left < right && nums[left] <= tmp) {
-            left++;
-        }
-        nums[right] = nums[left]
-        if(left < right && nums[right] > tmp) {
-            right--;
-        }
-        nums[left] = nums[right]
-    }
-    nums[left] = tmp;
-    return left;
-}
-quickSort(0,4,[1,5,2,3,4])
+
 </script>
 </html>

@@ -14,6 +14,11 @@ Vue.use(VueRouter)
       path: '/recommend',
       name: 'recommend',
       component: () => import('@/views/recommend.vue')
+    },
+    {
+      path: '/musicDetail',
+      name: 'musicDetail',
+      component: () => import('@/views/musicDetail.vue')
     }
   ]
 
