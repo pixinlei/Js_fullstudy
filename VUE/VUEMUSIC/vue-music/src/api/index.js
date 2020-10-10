@@ -67,5 +67,17 @@ export default {
   // 获取歌单详情
   MusicDetail (params) {
     return fetchGet('/playlist/detail',params)
+  },
+  // 热门歌手
+  hotSinger (params) {
+    return fetchGet('/top/artists', params)
+  },
+  // 歌手全部歌曲
+  singerDetail (params) {
+    return fetchGet('/artist/songs',params)
+  },
+  // 获取音乐 url
+  musicUrl(params) {
+    return fetchGet('/song/url',params)
   }
 }

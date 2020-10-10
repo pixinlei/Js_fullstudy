@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+ var findContentChildren = function(g, s) {
+    g = g.sort((a,b) =>  b - a )
+    // console.log(g);
+    s = s.sort((a,b) => b - a)
+    let num = 0
+    for(let i=0;i<s.length;i++) {
+        for (let j=0;j<g.length;j++) {
+            if(s[i]>=g[j]) {
+                num++
+                g.splice(j,1)
+                break
+            }
+        }
+    }
+    return num
+};
+findContentChildren([1,2,3],[3])
+</script>
+</html>

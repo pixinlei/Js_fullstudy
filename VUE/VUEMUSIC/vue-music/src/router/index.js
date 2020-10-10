@@ -19,7 +19,22 @@ Vue.use(VueRouter)
       path: '/musicDetail',
       name: 'musicDetail',
       component: () => import('@/views/musicDetail.vue')
-    }
+    },
+    {
+      path: '/singer',
+      name: 'singer',
+      component: () => import('@/views/singer.vue')
+    },
+    {
+      path: '/singerDetail',
+      name: 'singerDetail',
+      component: () => import('@/views/singerDetail.vue')
+    },
+    {
+      path: '/play',
+      name: 'play',
+      component: () => import('@/views/play.vue')
+    },
   ]
 
 const router = new VueRouter({

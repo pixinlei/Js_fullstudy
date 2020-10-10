@@ -8,43 +8,55 @@
 </head>
 
 <body>
+  <div id="container">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>
+        <ul>
+          <li>4.1</li>
+          <li>4.2</li>
+          <ul>
+            <li>4.3.1</li>
+          </ul>
+        </ul>
+      </li>
+    </ul>
 
+    <ul>
+      <li>1</li>
+      <li>
+        <li>2</li>
+        <li>3</li>
+      </li>
+    </ul>
+  </div>
+  <script>
+    //假如以下有 1000 个节点，请将以下数据解析生成对应的 dom 结构
+    var treeData = [
+      { "name": "A-1" },
+      { "name": "A-2" },
+      { "name": "A-3" },
+      {
+        "name": "A-4",
+        "sub": [
+          { "name": "A-4-1" },
+          { "name": "A-4-2" },
+          {
+            "name": "A-4-3",
+            "sub": [
+              { "name": "A-4-3-1" },
+              { "name": "A-4-3-2" }
+            ]
+          }]
+      }
+    ];
+  //在下面空白处写下通用方法
+  while(treeData === Array) {
+    // 
+  }
+  </script>
 </body>
-<script>
-  /**
-   * @param {number[]} piles
-   * @param {number} H
-   * @return {number}
-   */
-  var minEatingSpeed = function (piles, H) {
-    let min = 0//最慢吃香蕉的速度
-    let max = 0 //最快吃香蕉的速度
-    if (H < piles.length) return -1
-    for (const i of piles) {
-      max += Math.ceil(i / Math.min(...piles))
-      min += Math.ceil(i / Math.max(...piles))
-    }
-    while (min < max) {                                   
-      let mid = Math.floor((min + max) / 2)
-      let result = 0
-      for (const i of piles) {
-        result += Math.ceil(i / mid)
-      }
-      if (result == H) {
-        min = result + 1
-      } else if (result < H) {
-        max = result
-      } else {
-        min = result + 17
-
-        
-      }
-    }
-    return console.log(min-1);
-  };
-  minEatingSpeed([3, 6, 7, 11], 8)
-// minEatingSpeed([30,11,23,4,20],5)
-// minEatingSpeed([30,11,23,4,20],6)
-</script>
 
 </html>

@@ -1,12 +1,12 @@
 <template>
   <div class="page">
     <div class="bgckground">
-    {{list.name}}
+    <div class="mytitle"><van-icon click="back" name="arrow-left" />      {{list.name}}</div>
     <img :src="list.coverImgUrl" alt="">
     </div>
-    <div class="item" v-for="item in list2" :key="item.id">
+    <div class="item" v-for="item in list2" :key="item.id" @click="play(item.id)">
       <div class="name">{{item.name}}</div>
-      <div class="desc"><span>{{item.ar[0].name}}</span><span>{{item.ar[1].name}}</span></div>
+      <div class="desc"><span>{{item.ar[0].name}}</span></div>
     </div>
   </div>
 </template>
@@ -21,6 +21,14 @@ export default {
     }
   },
   methods: {
+    play(id) {
+      this.$router.push({ path:`/play/`,query:{
+        id
+      }})
+    },
+    back() {
+      this.$router.go(-1);
+    },
     MusicDetail () {
       let that = this
       Promise.resolve().then(() => {
@@ -29,8 +37,6 @@ export default {
         }
         api.MusicDetail(params).then((res) => {
           that.list = res.playlist 
-          // console.log(res.playlist);    
-          // console.log(that.list.tracks[0].id); 
           console.log(res.playlist.tracks);  
           that.list2 = res.playlist.tracks
         })
@@ -46,16 +52,20 @@ export default {
 <style scoped lang="stylus">
   .bgckground
     width 100%
-    height 200px
+    height 250px
     position relative
-    img 
+    .mytitle
       position absolute
-
+      z-index 3
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+    img 
+      position relative
       width 100%
+      height  100%
+      opacity: 0.7
 
-  img 
-    width 100%
-    height 30px
   .item
     width 100%
     height 65px
