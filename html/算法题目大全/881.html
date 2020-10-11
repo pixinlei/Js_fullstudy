@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/**
+ * @param {number[]} people
+ * @param {number} limit
+ * @return {number}
+ */
+ var numRescueBoats = function(people, limit) {
+  people.sort((a,b) => b - a)
+  let i = 0
+  let j = people.length - 1
+  let sum = 0
+  while(i<=j) {
+    if(limit >= (people[i] + people[j])) {
+      i++
+      j--
+    } else if ( limit >= people[i]) {
+      i++
+    } 
+    sum++
+  }
+  return sum
+};
+numRescueBoats([3,2,2,1],3)
+</script>
+</html>
