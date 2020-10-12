@@ -6,7 +6,12 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div class="list" v-for="(item, index) in list" :key="index" @click="toDetailSinger(item.id, item.name,item.img1v1Url)">
+      <div
+        class="list"
+        v-for="(item, index) in list"
+        :key="index"
+        @click="toDetailSinger(item.id, item.name, item.img1v1Url)"
+      >
         <img
           width="50"
           height="50"
@@ -31,23 +36,25 @@ export default {
       list: [],
       loading: false,
       finished: false,
+      params: {
+        limit: 10,
+      },
     };
   },
   methods: {
-    toDetailSinger(id,name,img) {
-      this.$router.push({ path:`/singerDetail/`,query:{
-        id,
-        name,
-        img
-      }})
+    toDetailSinger(id, name, img) {
+      this.$router.push({
+        path: `/singerDetail/`,
+        query: {
+          id,
+          name,
+          img,
+        },
+      });
     },
-    hotSinger() {
-      let that = this;
+    hotSinger(params) {
+      console.log(params);
       return new Promise((resolve, reject) => {
-        let params = {
-          limit: that.limit,
-          offset: that.offset,
-        };
         api
           .hotSinger(params)
           .then((res) => {
@@ -65,7 +72,7 @@ export default {
       }
       // 异步更新数据
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      this.hotSinger().then((res) => {
+      this.hotSinger(this.params).then((res) => {
         // console.log(res.artists);
         this.list.push(...res.artists);
         console.log(this.list);
@@ -86,7 +93,7 @@ export default {
     },
   },
   created() {
-    this.onLoad();
+    // this.onLoad();
   },
 };
 </script>
@@ -100,6 +107,6 @@ export default {
   align-items: center;
   width: 100vw;
   height: 80px;
-  background: rgba(10,7,60);
+  background: rgba(10, 7, 60);
 }
 </style>

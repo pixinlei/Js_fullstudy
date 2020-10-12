@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let obj = {}
+  // delete get set hasOwnProperty toString
+  Object.getPrototypeOf(obj)
+  Object.setPrototypeOf(obj, {})
+  // key in obj (查找原型链)
+
+  let newObj = new Proxy(obj, {
+    get(target,k) {
+      // if(target.hasOwnProperty(k)){}
+      return Reflect.get(target,k)
+    },
+    set() {},
+    delete() {},
+    defineProperty() {},
+    has() {},
+    apply() {
+      console.log('func call');
+    }
+  })
+  let f = () => {}
+  let newf = new Proxy(f, {
+    apply(...argments) {
+      console.log('f call');
+      return Reflect.apply(...argments)
+    }
+  })
+  newf()
+</script>
+</html>

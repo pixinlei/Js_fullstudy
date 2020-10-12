@@ -1,0 +1,8 @@
+<script>
+  // vue监听数组变化
+  let origin = Array.prototype.push
+  Array.prototype.push = function() {
+    // 监听到
+    origin.call(this)
+  }
+</script>

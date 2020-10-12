@@ -1,23 +1,22 @@
 <template>
   <div class="page">
-    <div class="bgckground">
-    <div class="mytitle"><van-icon click="back" name="arrow-left" />      {{list.name}}</div>
-    <img :src="list.coverImgUrl" alt="">
-    </div>
-    <div class="item" v-for="item in list2" :key="item.id" @click="play(item.id)">
-      <div class="name">{{item.name}}</div>
-      <div class="desc"><span>{{item.ar[0].name}}</span></div>
-    </div>
+  <keep-alive>
+    <musicList :list="list" :list2="list2"></musicList>
+  </keep-alive>
   </div>
 </template>
 
 <script>
 import api from "@/api";
+import musicList from '@/components/musicList'
 export default {
+  components: {
+    musicList
+  },
   data() {
     return {
       list: [],
-      list2: []
+      list2: [],
     }
   },
   methods: {
@@ -25,9 +24,6 @@ export default {
       this.$router.push({ path:`/play/`,query:{
         id
       }})
-    },
-    back() {
-      this.$router.go(-1);
     },
     MusicDetail () {
       let that = this
@@ -37,13 +33,27 @@ export default {
         }
         api.MusicDetail(params).then((res) => {
           that.list = res.playlist 
-          console.log(res.playlist.tracks);  
+          console.log(that.list);
           that.list2 = res.playlist.tracks
+          // console.log(that.list2);
         })
       })
     }
   },
   created () {
+    this.MusicDetail()
+  },
+  computed: {
+    sinId () {
+      return this.$route.query.id
+    }
+  },
+  watch: {
+    sinId() {
+      this.MusicDetail()
+    }
+  },
+  destoryed () {
     this.MusicDetail()
   }
 }

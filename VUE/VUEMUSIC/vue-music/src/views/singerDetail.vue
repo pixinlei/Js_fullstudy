@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="bgckground">
+   <!-- <div class="bgckground">
     <div class="mytitle"><van-icon click="back" name="arrow-left" />      </div>
     <img :src="$route.query.img" alt="">
     </div>
@@ -8,13 +8,18 @@
       <div class="name">{{item.name}}</div>
       <div class="desc"><span>{{$route.query.name}}</span></div>
       
-    </div>
+    </div> -->
+    <musicList :list="list" :list2="list2"></musicList>
   </div>
 </template>
 
 <script>
 import api from "@/api";
+import musicList from '@/components/musicList'
 export default {
+  components: {
+    musicList
+  },
   data() {
     return {
       list: [],
@@ -22,9 +27,6 @@ export default {
     }
   },
   methods: {
-    back() {
-      this.$router.go(-1);
-    },
     MusicDetail () {
       let that = this
       Promise.resolve().then(() => {
@@ -34,12 +36,25 @@ export default {
         api.singerDetail(params).then((res) => {
           console.log(res.songs);
           that.list = res.songs
+          that.list.coverImgUrl = that.$route.query.img
+          console.log(that.list);
+          that.list2 = res.songs
         })
       })
     }
   },
   created () {
     this.MusicDetail()
+  },
+  computed: {
+    sinId () {
+      return this.$route.query.id
+    }
+  },
+  watch: {
+    sinId() {
+      this.MusicDetail()
+    }
   }
 }
 </script>
