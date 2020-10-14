@@ -27,11 +27,13 @@ export default {
       // console.log(event);
       if(event.target.className === "iconfont icon-bofang1") {
         event.target.className = "iconfont icon-zantingtingzhi"
-        console.log(this.$refs.audio.play());
+        this.$refs.audio.play()
+        console.log(1);
 
       } else {
         event.target.className = "iconfont icon-bofang1"
-        console.log(this.$refs.audio.pause());
+        console.log(1);
+        this.$refs.audio.pause()
       } 
       
     },
