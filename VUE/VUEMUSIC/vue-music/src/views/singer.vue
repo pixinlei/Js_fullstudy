@@ -1,5 +1,6 @@
 <template>
-  <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+<keep-alive>
+  <van-pull-refresh v-model="refreshing">
     <van-list
       v-model="loading"
       :finished="finished"
@@ -23,6 +24,7 @@
       </div>
     </van-list>
   </van-pull-refresh>
+</keep-alive>
 </template>
 
 <script>
@@ -53,7 +55,7 @@ export default {
       });
     },
     hotSinger(params) {
-      console.log(params);
+      // console.log(params);
       return new Promise((resolve, reject) => {
         api
           .hotSinger(params)
@@ -75,7 +77,7 @@ export default {
       this.hotSinger(this.params).then((res) => {
         // console.log(res.artists);
         this.list.push(...res.artists);
-        console.log(this.list);
+        // console.log(this.list);
       });
       // 加载状态结束
       this.limit += 10;
@@ -93,8 +95,12 @@ export default {
     },
   },
   created() {
-    // this.onLoad();
+    this.onLoad();
   },
+  actived() {
+    this.onLoad()
+
+  }
 };
 </script>
 

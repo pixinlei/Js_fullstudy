@@ -7,9 +7,10 @@
     </Header>
     <tab></tab>
 
-    <keep-alive>
+    <!-- <keep-alive>
       <router-view/>
-    </keep-alive>
+    </keep-alive> -->
+    <router-view/>
     
     <play></play>
 

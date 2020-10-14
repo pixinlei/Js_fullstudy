@@ -34,7 +34,7 @@ Vue.use(VueRouter)
       path: '/play',
       name: 'play',
       component: () => import('@/views/play.vue')
-    },
+    }
   ]
 
 const router = new VueRouter({

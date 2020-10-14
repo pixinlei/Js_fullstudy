@@ -43,17 +43,17 @@ export default {
   created () {
     this.MusicDetail()
   },
-  computed: {
-    sinId () {
-      return this.$route.query.id
-    }
-  },
-  watch: {
-    sinId() {
-      this.MusicDetail()
-    }
-  },
-  destoryed () {
+  // computed: {
+  //   sinId () {
+  //     return this.$route.query.id
+  //   }
+  // },
+  // watch: {
+  //   sinId() {
+  //     this.MusicDetail()
+  //   }
+  // }
+  actived() {
     this.MusicDetail()
   }
 }

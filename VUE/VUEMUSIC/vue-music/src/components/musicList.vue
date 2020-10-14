@@ -10,7 +10,7 @@
       class="item"
       v-for="item in list2"
       :key="item.id"
-      @click="play(item.id)"
+      @click="play(item.id,list.coverImgUrl,item.name,item.ar[0].name)"
     >
       <div class="name">{{ item.name }}</div>
       <div class="desc">
@@ -30,6 +30,17 @@ export default {
     };
   },
   methods: {
+    play(params,url,musicname,singername) {
+      this.$router.push({
+        path:'/play',
+        query: {
+          id: params,
+          img: url,
+          musicname:musicname,
+          singername:singername
+        }
+      })
+    },
     back() {
       // console.log(123);
       this.$router.go(-1);
@@ -46,6 +57,12 @@ export default {
       });
     },
   },
+  actived() {
+    this.musicUrl()
+  },
+  // created() {
+  //   this.musicUrl()
+  // }
 };
 </script>
 

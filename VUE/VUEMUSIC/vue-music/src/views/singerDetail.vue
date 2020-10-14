@@ -34,10 +34,10 @@ export default {
           id: that.$route.query.id
         }
         api.singerDetail(params).then((res) => {
-          console.log(res.songs);
+          // console.log(res.songs);
           that.list = res.songs
           that.list.coverImgUrl = that.$route.query.img
-          console.log(that.list);
+          // console.log(that.list);
           that.list2 = res.songs
         })
       })

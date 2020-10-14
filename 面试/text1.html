@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// 题目
+let animalNum = 0;
+// 填充 inherit 完成输出。
+function inherit(PContstructor,prototypeObj) {
+  // Animal(animal)
+  // console.log(animalNum);
+  // console.log(this.name);
+  // console.log(this.prototype);
+
+  // obj.say()
+  // animal.getName()
+  // func()
+  // 给自身加了个prototype
+  function F(name) {
+    PContstructor.call(this,name)
+  }
+  F.prototype = prototypeObj
+  // 继承过来的方法
+  F.prototype.__proto__ = PContstructor.prototype
+  return F;
+}
+// inherit.call(Animal)
+
+
+function Animal(name) {
+  animalNum ++;
+  this.name = name;
+}
+Animal.prototype.getName = function() {
+  return this.name;
+};
+const Cat = inherit(Animal, {  
+    say:function() {
+        console.log(`NO${animalNum}:${this.getName()}`);
+    }
+});
+// const cat1 = new Cat('小花');
+// cat1.say(); // NO1:小花
+
+</script>
+</html>
