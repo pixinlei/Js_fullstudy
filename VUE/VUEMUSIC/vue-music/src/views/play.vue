@@ -6,12 +6,18 @@
     <div class="roundImg">
       <div class="myimg"><img :src="img" alt=""></div>
     </div>
-    <div class="play"><i @click="change" class="iconfont icon-bofang1"></i></div>
+    <div class="play">
+    <i @click="before" class="iconfont icon-zuo"></i>
+    <i @click="change" class="iconfont icon-zantingtingzhi"></i>
+    <i @click="next" class="iconfont icon-right-circle"></i>
+    </div>
   </div>
 </template>
 
 <script>
 import api from "@/api";
+import { mapGetters } from 'vuex'
+import { Toast } from 'vant';
 
 export default {
   data() {
@@ -19,10 +25,102 @@ export default {
       url: "",
       img: '',
       musicname:'',
-      singername: ''
+      singername: '',
+      // list: [],
+      params: {},
+      list: []
     };
   },
   methods: {
+    before() {
+      console.log("left");
+      let that = this
+      console.log(that.getList);
+      for(let i=0;i<=that.getList.length-1;i++){
+        if(i>=1) {
+          if(that.getList[i].id  == that.params.id) {
+            console.log(that.params);
+            that.params = {
+              id: that.getList[i-1].id + ''
+            }
+            that.musicname = that.getList[i-1].name
+            console.log(that.params);
+            console.log(1,that.url);
+            that.musicUrl().then((res) => {
+              console.log(res);
+              that.url = res.data[0].url;
+              // that.img = that.$route.query.img
+              // that.singername = that.$route.query.singername
+              // that.musicname = that.$route.query.musicname
+              that.$refs.audio.src = that.url;
+
+              console.log(2,that.$refs.audio.src);
+              this.$refs.audio.pause()
+              this.$refs.audio.play()
+              // console.log(that.url);
+            })
+            // that.MusicDetail().then((res) => {
+            //   that.list = res
+            //   console.log(res);
+            // })
+            break
+          }
+        } else {
+          Toast('没有上一首了')
+        }
+      }
+    },
+    next() {
+      console.log("next");
+      let that = this
+      console.log(that.getList);
+      for(let i=0;i<=that.getList.length-1;i++){
+        if(i<=that.getList.length-2) {
+          if(that.getList[i].id  == that.params.id) {
+            console.log(that.params);
+            that.params = {
+              id: that.getList[i+1].id + ''
+            }
+            that.musicname = that.getList[i+1].name
+            console.log(that.params);
+            console.log(1,that.url);
+            that.musicUrl().then((res) => {
+              console.log(res);
+              that.url = res.data[0].url;
+              // that.img = that.$route.query.img
+              // that.singername = that.$route.query.singername
+              // that.musicname = that.$route.query.musicname
+              that.$refs.audio.src = that.url;
+
+              console.log(2,that.$refs.audio.src);
+              this.$refs.audio.pause()
+              this.$refs.audio.play()
+              // console.log(that.url);
+            })
+            // that.MusicDetail().then((res) => {
+            //   that.list = res
+            //   console.log(res);
+            // })
+            break
+          }
+        } else {
+          Toast('没有下一首了')
+        }
+      }
+    },
+    // 歌曲名
+    // MusicDetail () {
+    //   let that = this
+    //   return new Promise((resolve, reject) => {
+    //     api.singerDetail(that.params).then((res) => {
+    //       console.log(res);
+    //       resolve(res)
+    //     }).catch((error) => {
+    //       console.log(error);
+    //       reject(error)
+    //     }) 
+    //   })
+    // },
     change(event) {
       // console.log(event);
       if(event.target.className === "iconfont icon-bofang1") {
@@ -44,11 +142,8 @@ export default {
       let that = this;
       return new Promise((resolve, reject) => {
         // console.log(that.$route.query.id);
-        let params = {
-          id: that.$route.query.id,
-        };
         api
-          .musicUrl(params)
+          .musicUrl(that.params)
           .then((res) => {
             // console.log(res);
             resolve(res);
@@ -61,16 +156,19 @@ export default {
   },
   created() {
     // console.log(123);
+    let that = this
+    that.params = {
+      id: that.$route.query.id,
+    };
     this.musicUrl().then((res) => {
       // console.log(res);
       this.url = res.data[0].url;
       this.img = this.$route.query.img
       this.singername = this.$route.query.singername
       this.musicname = this.$route.query.musicname
-      console.log(this.url);
-      console.log(this.img);
-      console.log(this.singername);
-      console.log(this.musicname);
+      // this.list = this.$route.query.list
+      // console.log(this.list);
+      // console.log();
       this.$refs.audio.src = this.url;
       console.log(this.$refs.audio);
     });
@@ -79,6 +177,15 @@ export default {
     this.$refs.audio.controls = "true";
     this.$refs.audio.autoplay = "autoplay";
   },
+  computed: {
+    // ...mapState(['list']),
+    ...mapGetters(['getList'])
+  },
+  // watch: {
+  //   params(newVal) {
+
+  //   }
+  // }
 };
 </script>
 

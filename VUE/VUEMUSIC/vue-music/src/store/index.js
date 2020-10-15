@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import com from './modules/com'
 import music from './modules/music'
+import musicList from './modules/musicList'
 // import musicdetail from './modules/musicdetail'
 // import play from './modules/play'
 
@@ -11,7 +12,6 @@ export default new Vuex.Store({
   modules: {
     com,
     music,
-    // musicdetail,
-    // play
+    musicList
   }
 })

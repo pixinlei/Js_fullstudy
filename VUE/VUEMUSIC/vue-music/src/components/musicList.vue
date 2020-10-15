@@ -10,7 +10,7 @@
       class="item"
       v-for="item in list2"
       :key="item.id"
-      @click="play(item.id,list.coverImgUrl,item.name,item.ar[0].name)"
+      @click="play(item.id,list.coverImgUrl,item.name,item.ar[0].name,list2,list)"
     >
       <div class="name">{{ item.name }}</div>
       <div class="desc">
@@ -22,6 +22,7 @@
 
 <script>
 import api from "@/api";
+import { mapActions } from 'vuex'
 export default {
   props: ["list", "list2"],
   data() {
@@ -30,14 +31,18 @@ export default {
     };
   },
   methods: {
-    play(params,url,musicname,singername) {
+    ...mapActions(['giveList','givemusicNameList']),
+    play(params,url,musicname,singername,list,gequming) {
+      this.giveList(list)
+      this.givemusicNameList(gequming)
       this.$router.push({
         path:'/play',
         query: {
           id: params,
           img: url,
           musicname:musicname,
-          singername:singername
+          singername:singername,
+          // list: list
         }
       })
     },
