@@ -34,6 +34,11 @@ Vue.use(VueRouter)
       path: '/play',
       name: 'play',
       component: () => import('@/views/play.vue')
+    },
+    {
+      path: '/rank',
+      name: 'rank',
+      component: () => import('@/views/rank.vue')
     }
   ]
 

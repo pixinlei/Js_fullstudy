@@ -4,13 +4,13 @@
       <div class="mytitle">
         <van-icon @click="back" name="arrow-left" /> {{ list.name }}
       </div>
-      <img :src="list.coverImgUrl" alt="" />
+      <img :src="list.coverImgUrl" :alt="list.coverImgUrl" />
     </div>
     <div
       class="item"
       v-for="item in list2"
       :key="item.id"
-      @click="play(item.id,list.coverImgUrl,item.name,item.ar[0].name,list2,list)"
+      @click="play(item.id,list.coverImgUrl,item.name,item.ar[0].name,list2)"
     >
       <div class="name">{{ item.name }}</div>
       <div class="desc">

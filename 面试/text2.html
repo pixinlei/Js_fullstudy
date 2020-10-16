@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    <h2>
+      <h3></h3>
+    </h2>
+  </h1>
+</body>
+<script>
+  // let res = {}
+  function walk(root) {
+    // if(root.tagName.startsWith('H1')) {
+    //   if(res[root.tagName] !== undefined) {
+    //     res[root.tagName]++
+    //   } else {
+    //     res[root.tagName] = 1
+    //   }
+    // };
+    if(root.children) {
+      for(let child of root.children) {
+        // 所有子节点 还要子节点 children
+        walk(child)
+      }
+    }
+    root.getAttribute()
+  }
+  walk(document.documentElement)
+</script>
+</html>

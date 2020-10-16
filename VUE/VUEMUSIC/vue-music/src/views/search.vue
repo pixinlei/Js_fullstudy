@@ -8,7 +8,7 @@
       <scroll class="shortcut" ref="shortcut">
         <div>
           <div class="hot-key">
-            <h1 class="title">热门搜索</h1>
+            <h1 class="title" style="color:red">热门搜索</h1>
             <ul>
               <li class="item" v-for="(item, index) in hotKey" :key="index">
               <span>{{item.first}}</span>
@@ -75,6 +75,7 @@ export default {
       api.HotSearchKey().then((res) => {
         // console.log(res.data.result.hots);
         this.hotKey =  res.result.hots.slice(0, 10)
+        // console.log(this.hotKey);
       })
     },
     ...mapActions(['deleteSearchHistory','clearSearchHistory','saveSearchHistory','selectPlaySong'])

@@ -3,7 +3,7 @@
     <audio ref="audio" muted></audio> 
     <div class="musicname"><van-icon style="right:25vw" name="arrow-left" @click="back" />{{musicname}}</div>
     <div class="singername">{{singername}}</div>
-    <div class="roundImg">
+    <div :class="xuanzhuan?'roundImg mydiv':'mydiv'">
       <div class="myimg"><img :src="img" alt=""></div>
     </div>
     <div class="play">
@@ -22,6 +22,7 @@ import { Toast } from 'vant';
 export default {
   data() {
     return {
+      xuanzhuan: true,
       url: "",
       img: '',
       musicname:'',
@@ -127,11 +128,12 @@ export default {
         event.target.className = "iconfont icon-zantingtingzhi"
         this.$refs.audio.play()
         console.log(1);
-
+        this.xuanzhuan = true
       } else {
         event.target.className = "iconfont icon-bofang1"
         console.log(1);
         this.$refs.audio.pause()
+        this.xuanzhuan = false
       } 
       
     },
@@ -227,7 +229,7 @@ img {
   height 100%
   border-radius 50%
 }
-.roundImg {
+.mydiv {
   width: 250px;
   height: 250px;
   position relative
@@ -235,6 +237,8 @@ img {
   top 50px
   left 50px
   background-size: contain;
+}
+.roundImg {
   -webkit-animation: round_animate 5s linear infinite;
   animation: round_animate 5s linear infinite;
 }

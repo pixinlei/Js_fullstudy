@@ -79,5 +79,13 @@ export default {
   // 获取音乐 url
   musicUrl(params) {
     return fetchGet('/song/url',params)
+  },
+  // 热门歌单分类
+  hotplaylist(){
+    return fetchGet('/playlist/hot')
+  },
+  // 获取专辑内容
+  albumDetail(params) {
+    return fetchGet('/song/url',params)
   }
 }
