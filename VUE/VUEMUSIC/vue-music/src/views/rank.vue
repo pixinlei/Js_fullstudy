@@ -34,16 +34,16 @@ export default {
         })
       })
     },
-    albumDetail() {
-      return new Promise((resolve,reject) => {
-        api.albumDetail().then((res) => {
-          resolve(res)
-        })
-        .catch((error) => {
-          reject(error)
-        })
-      })
-    }
+    // albumDetail() {
+    //   return new Promise((resolve,reject) => {
+    //     api.albumDetail().then((res) => {
+    //       resolve(res)
+    //     })
+    //     .catch((error) => {
+    //       reject(error)
+    //     })
+    //   })
+    // }
   },
   created() {
     let that = this
@@ -53,10 +53,10 @@ export default {
       for (const i of that.res.tags) {
         let params = i.id
         console.log(params);
-        that.albumDetail(params).then((res) => {
-          that.myimg = res
-          console.log(res);
-        })
+        // that.albumDetail(params).then((res) => {
+        //   that.myimg = res
+        //   console.log(res);
+        // })
       }
     })
 

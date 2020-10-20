@@ -1,0 +1,41 @@
+<script>
+  // 手写深拷贝JSON.parse(JSON.stringify(target))
+  // 
+// function deepCopy(obj) {
+//   if(!obj && obj !== 'object') {
+//     throw new Error('不是对象')
+//   }
+//   const targetObj = Array.isArray(obj) ? [] : {}
+
+//   for (const key in obj) {
+//     if(obj.hasOwnProperty(key)) {
+//       if(obj[key] && typeof obj[key] === 'object') {
+//         targetObj[key] = deepCopy(obj[key])
+//       } else {
+//         targetObj[key] = obj[key]
+//       }
+//     }
+//   }
+//   return targetObj
+// }
+let a = [1,[1,2],{a:1,b:2}]
+console.log(deepCopy(a));
+
+function deepCopy(obj) {
+  if(!obj && obj !== 'object') {
+    throw new Error('error')
+  }
+  const targetObj = Array.isArray(obj) ? [] : {}
+
+  for (const key in obj) {
+    if (object.hasOwnProperty(key)) {
+      if(obj[key] && obj[key] === 'object') {
+        targetObj[key] = deepCopy(obj[key])
+      } else {
+        targetObj[key] = obj[key]
+      }
+    }
+  }
+  return targetObj
+}
+</script>
