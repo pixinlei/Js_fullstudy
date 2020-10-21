@@ -1,0 +1,47 @@
+<script>
+  var locationList = [
+    { id: 0, name: "中国" },
+    { id: 1, pid: 0, name: "北京市" },
+    { id: 2, pid: 1, name: "昌平区" },
+    { id: 3, pid: 1, name: "海淀区" },
+  ];
+
+  // function toObj(array) {
+  //   let myObj = {}
+  //   for (const key of array) {
+  //     if(key.id === 0) {
+  //       myObj = key
+  //     } else if (key.pid === 0) {
+  //       myObj.sub = key
+  //     } else if(key.id !== key.pid) {
+
+  //     }      
+  //   }
+  //   return myObj
+  // }
+  // console.log(toObj(locationList));
+
+
+  function transfrom(arr) {
+    let root = arr.shift()
+    function insert(pid, child) {
+      function walk(node) {
+        if(node.id === pid) {
+          if(!node.sub) node.sub = []
+          node.sub.push(child)
+          return
+        }
+        if(node.sub) {
+          for(let c of node.sub) {
+            walk(c)
+          }
+        }
+      }
+      walk(root)
+    }
+    for (const child of arr) {
+      let { pid } = child
+      insert(pid, child)
+    }
+  }
+</script>

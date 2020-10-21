@@ -1,0 +1,51 @@
+<script>
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+ var combinationSum = function(candidates, target) {
+    let res = []
+    function back(sum,array) {
+        if(sum === target) {
+            res.push(array)
+            return
+        }
+        for(let i=0;i<candidates.length;i++) {
+            if(target-sum < Math.min(...candidates)) {
+                return
+            }
+            
+
+            back(sum+candidates[i],[...array,candidates[i]])
+        }
+    }
+    back(0,[])
+    // res.filter((item) => {
+      
+    // })
+    // return [...new Set(JSON.stringify(res))]
+    let obj = {}
+    res.forEach(item => {
+      item.sort()
+      obj[item] = item
+    })
+    return Object.values(obj)
+};
+// function getUnique(array) {
+//   let newArray = []
+
+//   newArray = array.filter((item) => {
+//     let temp = null
+//     if(newArray.includes(JSON.stringify(item))) {
+//       temp = false
+//     } else {
+//       temp = true
+//       newArray.push(item)
+//     }
+//     return temp
+//   })
+//   return newArray
+// }
+console.log(combinationSum([2,3,6,7],7));
+</script>

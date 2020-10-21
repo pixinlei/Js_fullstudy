@@ -1,0 +1,37 @@
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  #el {
+    transition: all 0.5s;
+  }
+</style>
+<div id="el">123</div>
+<script>
+  const el = document.querySelector('#el')
+  const divNode = document.createElement('div')
+  // divNode.style.width = '20px'
+  // divNode.style.height = '20px'
+  // divNode.style.backgroundColor = 'pink'
+  let img = new Image()
+  img.src = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1708129923,239786940&fm=26&gp=0.jpg'
+  let prePosition = el.getBoundingClientRect()
+  setTimeout(() => {
+    document.body.insertBefore(img, el)
+    // FLIP 反转 first last invert play
+    // el.style.transform = 'translateY(-20px)'
+    // el.style.transform = 'translateY(0px)'
+    // keyframe
+    let currentPosition = el.getBoundingClientRect()
+    let keyFrame = [{
+      transform:`translateY(${prePosition.top-currentPosition.top}px)`
+    },{
+      transform:'translateY(0px)'
+    }]
+    el.animate(keyFrame,{
+      duration: 30000,
+      easing: 'ease-in-out'
+    })
+  },3000)
+</script>

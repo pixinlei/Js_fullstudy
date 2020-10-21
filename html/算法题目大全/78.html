@@ -1,0 +1,27 @@
+<script>
+  /**
+   * @param {number[]} nums
+   * @return {number[][]}
+   */
+  var subsets = function (nums) {
+    let res = []
+    function back(path, nums, count) {
+      if (path.length === count) {
+        res.push(path)
+        return
+      }
+      for (let i = 0; i < nums.length; i++) {
+        if (path.includes(i)) {
+          return
+        }
+        back(path.concat(i),nums,count)
+      }
+    }
+    for (let i = 0 + 1; i < nums.length + 1; i++) {
+      back([], nums, i)
+    }
+    res.push([])
+    return res
+  };
+  console.log(subsets([1, 2, 3]));
+</script>
