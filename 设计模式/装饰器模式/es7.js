@@ -7,5 +7,5 @@ function classDecorator(target) {
 class Button {
 
 }
-
+// 111
 console.log('button是否被装饰了：',Button.hasDecorator);
