@@ -1,0 +1,15 @@
+<script>
+  Function.prototype.mybind = function(THIS,...arg1) {
+    let fn = this // 哪个函数调用bind
+    function T(...arg2) {
+      return fn.call(this instanceof T ? this : THIS,...arg1,...arg2)
+    }
+    T.prototype = Object.create(fn.prototype)
+    return T
+  }
+  function sum(a,b,c) {
+    return a + b + c
+  }
+  let sum10 = sum.bind(null,10)
+  console.log(sum10(20,30));
+</script>

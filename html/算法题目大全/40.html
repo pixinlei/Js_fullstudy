@@ -1,0 +1,38 @@
+<script>
+  /**
+   * @param {number[]} candidates
+   * @param {number} target
+   * @return {number[][]}
+   */
+  var combinationSum2 = function (candidates, target) {
+    let res = []
+    const backtrack = (temp, sum,index) => {
+      if (sum === target) {
+        res.push(temp)
+        return
+      } else if (sum > target) {
+        return
+      } else {
+        // candidates.forEach((n) => {
+        //   if (temp.includes(n)) return
+        //   backtrack(temp.concat(n), sum + n,index.push(n))
+        // })
+        for(let i=0;i<candidates.length;i++) {
+          if(index.includes(i)) return
+          index.push(i)
+          backtrack([...temp,candidates[i]],sum + candidates[i], index)
+        }
+      }
+    }
+    backtrack([], 0, [])
+    
+    let obj = {}
+    res.forEach((item) => {
+      item.sort()
+      obj[item] = item
+    })
+    return Object.values(obj)
+    // return res
+  };
+  console.log(combinationSum2([10, 1, 2, 7, 6, 1, 5], 8));
+</script>

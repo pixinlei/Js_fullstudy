@@ -1,0 +1,9 @@
+<script>
+  function mynew(fn) {
+    let obj = {}
+    obj = Object.create(fn.prototype)
+    let args = Array.prototype.slice.call(arguments,1)
+    let res = fn.call(obj,...args)
+    return typeof res ==='object' || res instanceof Function ? res : obj
+  }
+</script>
