@@ -1,0 +1,23 @@
+<script>
+  /**
+   * @param {number[]} arr
+   * @return {boolean}
+   */
+  var uniqueOccurrences = function (arr) {
+    let obj = {}
+    for (let i = 0; i < arr.length; i++) {
+      if (!obj[arr[i]]) {
+        obj[arr[i]] = 1
+      } else {
+        obj[arr[i]]++
+      }
+    }
+    arr = Object.values(obj)
+    let newarr = new Set(arr)
+    if (newarr.size === arr.length) {
+      return true
+    }
+    return false
+  };
+console.log(  uniqueOccurrences([1, 2]));
+</script>

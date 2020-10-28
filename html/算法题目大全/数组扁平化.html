@@ -1,0 +1,29 @@
+<script>
+  function bianpinhua(arr) {
+    let res = []
+    function a(myarr) {
+      for (let i = 0; i < myarr.length; i++) {
+        if(Array.isArray(myarr[i])) {
+          a(myarr[i])
+        } else {
+          res.push(myarr[i])
+        }
+      }
+    }
+    a(arr)
+    res.sort()
+    res = new Set(res)
+    return res
+  }
+  console.log(bianpinhua([[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]));
+</script>
+
+<script>
+  function mynew(fn) {
+    let obj = {}
+    obj = Object.create(fn.prototype)
+    let args = Array.prototype.slice.call(fn,1)
+    let res = fn.call(obj, args)
+    return typeof res === 'object' || res instanceof 'Function' ? res : obj
+  }
+</script>

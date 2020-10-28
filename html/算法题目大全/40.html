@@ -19,8 +19,7 @@
         // })
         for(let i=0;i<candidates.length;i++) {
           if(index.includes(i)) return
-          index.push(i)
-          backtrack([...temp,candidates[i]],sum + candidates[i], index)
+          backtrack([...temp,candidates[i]],sum + candidates[i], [...index,i])
         }
       }
     }
