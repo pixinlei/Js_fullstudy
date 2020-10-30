@@ -5,4 +5,7 @@
 3. 完美支持treeshaking
 4. 
 
-组件： fragment teleport suspense
+组件： 
+  fragment 不再需要一个无用的根节点
+  teleport 
+  suspense

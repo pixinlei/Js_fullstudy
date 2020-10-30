@@ -1,7 +1,9 @@
 <template>
+  <div>
   <quick :data="left" v-if="left.length" />
   <li>{{flag}}</li> 
   <quick :data="right" v-if="right.length" /> 
+  </div>
 </template>
 
 <script>
