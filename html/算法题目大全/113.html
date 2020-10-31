@@ -1,0 +1,28 @@
+<script>
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {number[][]}
+ */
+ var pathSum = function(root, sum) {
+    let array = []
+    function deeptarck(root,path) {
+        if(root !== null) {
+            deeptarck(root.left,path.push(root))
+            deeptarck(root.right,path.push(root))
+        } else {
+            array.push(path)
+        }
+    }
+    deeptarck(root,[])
+    return array
+};
+
+</script>

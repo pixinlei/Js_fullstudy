@@ -1,0 +1,17 @@
+<script>
+function A(){
+      this.name = 'n';
+    }
+    A.prototype.run =  function () { console.log(`${this.name} run`); }
+    function B() {
+      // A所有的属性  // ??
+      this.call(A,...arguments)
+      this.email = 'email'
+    }
+    B.prototype  = // ??
+    B.prototype = Object.create(A.prototype)
+    B.prototype.swim = function() {
+
+    }
+
+</script>
