@@ -1,0 +1,26 @@
+<script>
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
+ var validMountainArray = function(A) {
+    if(A.length < 3 || new Set(A).size !== A.length) return false
+    let left = 0
+    while(left < A.length-2) {
+        if(A[left] < A[left+1]) {
+            left++
+        } else {
+            break
+        }
+    }
+    while(left < A.length-1) {
+        if(A[left] > A[left+1]) {
+            left++
+        } else {
+            return false
+        }
+    }
+    return true
+};
+validMountainArray([0,1,2,4,2,1])
+</script>

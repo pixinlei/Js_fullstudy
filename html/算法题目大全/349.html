@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -37,4 +37,23 @@ function dedupe(array){
  let nums1 = [2,1], nums2 = [1,2]
  intersection(nums1,nums2)
 </script>
-</html>
+</html> -->
+<script>
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+ var intersection = function(nums1, nums2) {
+    let res = []
+    nums1.forEach(n => {
+        if(nums2.includes(n)) {
+            res.push(n)
+        }
+    })
+    res = new Set([...res])
+    console.log(res);
+    return res
+};
+console.log(intersection([1,2,2,1],[2,2]));
+</script>
