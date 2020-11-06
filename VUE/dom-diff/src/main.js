@@ -1,15 +1,27 @@
 import { createElement, render, renderDom } from './element'
+import diff from './diff'
+import path from './patch'
 
 let vertualDom1 =  createElement('ul', {class: 'list'}, [
   createElement('li', {class: 'item'}, ['1']),
   createElement('li', {class: 'item'}, ['2']),
 ])
 
+let vertualDom2 =  createElement('ul', {class: 'list'}, [
+  createElement('li', {class: 'item'}, ['1']),
+  createElement('li', {class: 'item'}, ['2']),
+  createElement('li', {class: 'item'}, ['3']),
+])
+
 let el = render(vertualDom1)
 
 renderDom(el, document.getElementById('app'))
-console.log(vertualDom1);
-console.log(el);
+let patches = diff(vertualDom1, vertualDom2) // 补丁
+// 给元素打补丁 更新视图
+patch(el, patches)
+
+// console.log(vertualDom1);
+// console.log(el);
 
 
 
