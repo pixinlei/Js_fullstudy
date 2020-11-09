@@ -1,38 +1,29 @@
 <script>
-  // 设计一个简单的任务队列, 要求分别在 1,3,4 秒后打印出 "1", "2", "3"
-new Queue()
-  .task(1000, () => {
-    console.log(1);
-  })
-  .task(2000, () => {
-    console.log(2);
-  })
-  .task(1000, () => {
-    console.log(3);
-  })
-  .start();
-
-  class Queue {
-    constructor() {
-      this.task = []
-    }
-    task(time, cb) {
-      this.task.push({
-        time,
-        cb
-      })
-      // 链式调
-      return this
-    }
-    start() {
-      let t = 0
-      for(let task of this.task) {
-        t += task.time
-        setTimeout(() => {
-          task.cb()
-        }, t)
-      }
-    }
-  } 
+function Foo(){
+    // getName = function(){
+    //     console.log(1)
+    // }
+    return this;
+}
+Foo.getName = function(){
+    console.log(2)
+}
+Foo.prototype.getName = function(){
+    console.log(3)
+}
+var getName = function(){
+    console.log(4)
+}
+function getName(){
+    console.log(5)
+}
+// ouput:
+Foo.getName(); //2
+getName(); //4
+Foo().getName(); //2
+getName(); //1
+new Foo.getName(); //2
+new Foo().getName(); //3
+new new Foo().getName(); //报错
 
 </script>
