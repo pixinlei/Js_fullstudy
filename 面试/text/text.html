@@ -1,29 +1,28 @@
 <script>
-function Foo(){
-    // getName = function(){
-    //     console.log(1)
-    // }
-    return this;
+async function async1() {
+ console.log('async1 start');
+ await async2();
+ console.log('async1 end');
 }
-Foo.getName = function(){
-    console.log(2)
+async function async2() {
+ console.log('async2 start');
+ return new Promise((resolve, reject) => {
+  resolve();
+  console.log('async2 promise');
+ })
 }
-Foo.prototype.getName = function(){
-    console.log(3)
-}
-var getName = function(){
-    console.log(4)
-}
-function getName(){
-    console.log(5)
-}
-// ouput:
-Foo.getName(); //2
-getName(); //4
-Foo().getName(); //2
-getName(); //1
-new Foo.getName(); //2
-new Foo().getName(); //3
-new new Foo().getName(); //报错
-
+console.log('script start');
+setTimeout(function() {
+ console.log('setTimeout');
+}, 0);  
+async1();
+new Promise(function(resolve) {
+ console.log('promise1');
+ resolve();
+}).then(function() {
+ console.log('promise2');
+}).then(function() {
+ console.log('promise3');
+});
+console.log('script end');
 </script>

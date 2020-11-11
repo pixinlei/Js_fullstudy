@@ -1,0 +1,22 @@
+<script>
+/**
+ * @param {number} n
+ * @return {number}
+ */
+ var numSquares = function(n) {
+    let num = 0
+    function sum(n) {
+        let start = Math.floor(Math.sqrt(n))
+        num++
+        if(n - Math.pow(start, 2) === 0) {
+            return num
+        } else {
+          return sum(n - Math.pow(start, 2))
+        }
+        
+    }
+    sum(n)
+    return num
+};
+console.log(numSquares(13));
+</script>
