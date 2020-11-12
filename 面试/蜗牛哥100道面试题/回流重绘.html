@@ -1,0 +1,13 @@
+<script>
+  // 回流必定重绘，重绘不一定回流
+
+  // 优化：
+  // 避免使用 clientWidth... offsetWidth... getBoundingClientRect
+  // 因为会强制刷新浏览器的任务队列
+  // 使用transform 代替 top
+  // 使用visibility 代替 display: none
+  // 避免使用table布局
+  // 避免设置多层内联样式
+  // 避免频繁操作DOM
+  // 对具有复杂动画的元素使用绝对定位
+</script>

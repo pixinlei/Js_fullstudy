@@ -1,0 +1,18 @@
+<script>
+/**
+ * @param {string} path
+ * @return {string}
+ */
+ var simplifyPath = function(path) {
+    let mypath = path.split('/')
+    let res = mypath.reduce((total, val) => {
+        if(val === ""){} 
+        else if(val === "..") {return total.length>0 ? total.pop() : total = total}
+        else if(val === ".") {}
+        else  {return total.push(val)}
+    },[])
+    console.log(res);
+    return res
+};
+simplifyPath("/a/../../b/../c//.//")
+</script>
