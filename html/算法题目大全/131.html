@@ -1,0 +1,20 @@
+<script>
+/**
+ * @param {string} s
+ * @return {string[][]}
+ */
+ var partition = function(s) {
+  let res = []
+  fenge(res,[],0,s)
+  return res
+};
+
+function fenge(res, temp, index, s) {
+  for(let i = index;i<s.length;i++) {
+    if(index === s.length) return res.push(temp) 
+    temp.push(s.substring(index,i+1))
+    fenge(res,temp,i,s)
+  }
+}
+console.log(partition("aab"));
+</script>

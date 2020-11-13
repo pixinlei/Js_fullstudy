@@ -1,0 +1,23 @@
+<script>
+// 对象数组的去重
+const responseList = [
+  {id: 1, a: 1},
+  {id: 2, a: 2},
+  {id: 3, a: 3},
+  {id: 1, a: 4},
+]
+// function quchong(obj) {
+//   let res = []
+//   obj.forEach((v) => {
+//     if(!res.includes(res['id'])){
+//       res.push(v)
+//     }
+//   })
+//   console.log(res);
+// }
+// quchong(responseList)
+const result = responseList.reduce((acc,cur) => {
+  const ids = acc.map(item => item.id)
+  return ids.includes(cur.id) ? acc : [...acc,cur]
+}, [])
+</script>

@@ -1,21 +1,14 @@
-<style>
-  .div {
-    display: flex;
-    width: 500px;
-    height: 100px;
-    background-color: yellowgreen;
+<script>
+  function curry(fn) {
+    let arr = []
+    function t(...args) {
+      if(arr.length < fn.length) {
+        arr.push(...args)
+        return t
+      } else {
+        return fn.apply(this, arr)
+      }
+    }
+    return t
   }
-  .div1 {
-    flex: 100 1 200px;
-    background-color: pink;
-  }
-  .div2 {
-    flex: 0 1 200px;
-    background-color: black;
-  }
-</style>
-
-<div class="div">
-  <div class="div1"></div>
-  <div class="div2"></div>
-</div>
+</script>
