@@ -1,18 +1,56 @@
 <script>
-    function a(value) {
-        console.log(value, typeof value);
-        switch(value) {
-     case 'A':
-        console.log('a');
-        case value:
-        console.log('a');
-        break;
-     case undefined:
-        console.log('undefined');
-        break;
-     default:
-        console.log('default');
-}   
-    }
-    a(new String('A'))
+function Cola() {
+	this.sugar = '50g',
+	this.water = '100g'
+}
+function Packing() { // 第一种打包方式
+	this.createPkg = function(){
+		console.log('创建可乐外皮')
+	}
+    this.pushCola = function() {
+		console.log('可乐倒进瓶子')
+	}
+	this.complete = function() {
+		var cola = new Cola()
+		cola.complete = true
+		return cola
+	}
+	this.init = function() {
+	    this.createPkg() // 创建外皮
+	    this.pushCola() // 倒进瓶子
+	    //还可以增加其他步骤
+	    return this.complete() // 制作完成
+	}
+}
+function greenPacking() { //绿皮可乐打包方式
+	this.createPkg = function(){
+		console.log('创建green可乐外皮')
+	}
+    this.pushCola = function() {
+		console.log('可乐倒进green瓶子')
+	}
+	this.complete = function() {
+		var cola = new Cola()
+		cola.complete = true
+		return cola
+	}
+	this.init = function() {
+	    this.createPkg() // 创建外皮
+	    this.pushCola() // 倒进瓶子
+	    //还可以增加其他步骤
+	    return this.complete() // 制作完成
+	}
+}
+function Boss() {
+	this.createCola = function(packType) {
+	    const pack = new window[packType]
+	    this.product = pack.init() //完整产品产出
+	}
+	this.getCola = function(packType) {
+		this.createCola(packType);
+		return this.product
+	}
+}
+const boss = new Boss()
+var UserCola = boss.getCola('greenPacking') // UserCola.complete === true
 </script>

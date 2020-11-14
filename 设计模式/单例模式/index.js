@@ -5,7 +5,7 @@ class singleDog {
   }
   static getInstance() {
     // 判断是否被new过
-    if(singleDog.instance) {
+    if(!singleDog.instance) {
       singleDog.instance = new singleDog()
     }
     return singleDog.instance
