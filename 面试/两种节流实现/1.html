@@ -1,0 +1,22 @@
+<script>
+  function throttle(fn) {
+    let timeout
+    return function() {
+      if(!timeout) {
+        timeout = setTimeout(() => {
+          timeout = null
+        }, 2000)
+      }
+    }
+  }
+
+  function debounce(fn) {
+    let timeout = null
+    return function() {
+      if(timeout) clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        fn.apply(this, arguments)
+      }, 2000)
+    }
+  }
+</script>

@@ -1,14 +1,16 @@
 <script>
-  function curry(fn) {
-    let arr = []
-    function t(...args) {
-      if(arr.length < fn.length) {
-        arr.push(...args)
-        return t
-      } else {
-        return fn.apply(this, arr)
+   function shuangzhizhneg(temp) {
+      let left = 0, right = temp.length - 1
+      while (left <= right) {
+         if (temp[left] !== temp[right]) {
+            return false
+            // aaaaaaaaaa
+            console.log(temp);
+         }
+         left++
+         right--
       }
-    }
-    return t
-  }
+      return true
+   }
+   shuangzhizhneg([1,2,2,1])
 </script>

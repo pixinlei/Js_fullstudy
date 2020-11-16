@@ -1,0 +1,12 @@
+<script>
+  function throttle(fn) {
+    let pre = 0
+    return function() {
+      let now = Date.now()
+      if(now - pre >= 2000) {
+        fn()
+        pre = now
+      }
+    }
+  }
+</script>
