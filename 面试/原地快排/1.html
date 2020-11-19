@@ -1,0 +1,20 @@
+<script>
+const quickSort = (arr, i, j) => {
+        if(i >= j) return;
+        let left = i, right = j, base = arr[left];
+        while(left < right){
+            while(arr[right] >= base && left < right){
+                right --;
+            }
+            arr[left] = arr[right];
+            while (arr[left] <= base && right > left){
+                left ++;
+            }
+            arr[right] = arr[left];
+        }
+        arr[left] = base;
+        quickSort(arr, i, left-1);
+        quickSort(arr, left+1, j);
+      }
+      quickSort(arr,0,arr.length-1)
+</script>
