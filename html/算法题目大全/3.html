@@ -1,0 +1,18 @@
+<script>
+  for(let i=0;i<len;i++) {
+    // i作为终点
+    // 起点：如果之前出现过这个字符 ？上一个出现的位置后面 ？ 0
+  }
+  let str = "abcabcbb"
+  for(let i=0;i<str.length;i++) {
+    let map = {}
+    let char = str[i]
+    let leftStart = 0
+    let end = i
+    if(map[char] !== undefined) {
+      leftStart = map[char] + 1
+    }
+    map[char] = i
+    let dis = end - leftStart + 1
+  }
+</script>
