@@ -4,6 +4,7 @@
     "@vant/weapp": "^1.4.4",
     "babel-loader": "^8.1.0",
     "cheerio": "^1.0.0-rc.3",
+    "create-react-app": "^4.0.1",
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
