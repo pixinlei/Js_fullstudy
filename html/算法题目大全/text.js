@@ -1,26 +1,13 @@
-interface Data {
-  label: string,
-  value: string,
-  parentValue?: string
-}
-
-let data: Data[] = [
-{label: 'a', value: 1, parentValue: 3},
-{label: 'b', value: 2, parentValue: 3},
-{label: 'c', value: 3},
-]
-
-interface Output {
-label: string,
-value: string,
-children: Output[]
-}
-
-{
-label:'c',
-value: 3,
-children: [
-  {label: 'a', value: 1},
-  {label: 'b', value: 2}
-]
+function deepClone(obj) {
+  let res = obj instanceof 'object' ? {} : []
+  for(let i=0;i<obj.length;i++) {
+    if(Object.hasOwnproperty(obj[i])) {
+      if(typeof obj[i] === 'object') {
+        res[i] = deepClone(obj[i])
+      } else {
+        res[i] = obj[i]
+      }
+    }
+  }
+  return res
 }

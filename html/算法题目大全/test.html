@@ -1,20 +1,14 @@
 <script>
-//line=readline()
-//print(line)
-function repeat (func, times, wait) {
-    let num = 0
-    function a(...args) {
-        if(num !== times) {
-            setTimeout(() => {
-                func(...args)
-                num++
-                a(...args)
-            }, wait)
-        }
+    Array.prototype.filter = function(fn) {
+        // console.log(this);
+        let res = []
+        this.forEach((item) => {
+            if(fn(item)) {
+                res.push(item)
+            }
+        })
+        return res
     }
-    return a
-}
-
-const repeatFunc = repeat(alert, 4, 3000)
-repeatFunc("hellworld")
+    let array = [1,2,3].filter((item) => {return item > 2})
+    console.log(array);
 </script>
