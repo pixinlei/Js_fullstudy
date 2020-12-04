@@ -14,6 +14,7 @@ function generator(cb) {
       next: 0,
       stop: function() {}
     }
+    // AAA
     return {
       next: function() {
         var ret = cb(object)
