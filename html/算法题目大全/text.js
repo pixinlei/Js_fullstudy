@@ -1,13 +1,19 @@
-function deepClone(obj) {
-  let res = obj instanceof 'object' ? {} : []
-  for(let i=0;i<obj.length;i++) {
-    if(Object.hasOwnproperty(obj[i])) {
-      if(typeof obj[i] === 'object') {
-        res[i] = deepClone(obj[i])
-      } else {
-        res[i] = obj[i]
-      }
+// 对输入的字符串，去除其中的字符'b'以及连续出现的'a'和'c'
+// 'aacbd' -> 'ad'
+// 'aabcd' -> 'ad'
+// 'aaabbccc' -> ''
+
+function fn(str) {
+  let temp = []
+  for(let i=0;i<str.length;i++) {
+    if(str[i] === 'a' || str[i] === 'c') {
+      temp.push(i)
     }
   }
-  return res
+  for(let i=0;i<temp.length;i++) {
+    str.splice(temp[i], 1)
+  }
+  return str
 }
+
+fn('aacbd')

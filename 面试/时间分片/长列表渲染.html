@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #wrap {
+      height: 100vh;
+      overflow: auto;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div class="text" style="height: 1000px;"></div>
+    <div id="list"></div>
+  </div>
+</body>
+<script>
+  let arr = []
+  for(let i=0;i<100;i++) {
+    arr.push({value: i})
+  }
+  const wrap = document.getElementById('wrap')
+  const list = document.getElementById('list')
+  let liHeight = 100
+  function scroll() {
+    // console.log(wrap.scrollTop);
+    const scrollTop = wrap.scrollTop
+    const start = Math.floor(scrollTop / liHeight)
+    // console.log(window.innerHeight / liHeight);
+    const visableCount = Math.ceil(window.innerHeight / liHeight) 
+    const end = start + visableCount
+    const data = arr.slice(start, end > arr.length ? arr.length : end)
+    list.innerHTML = data.map(x => {
+      return `<li>${x.value}</li>`
+    }).join(' ')
+    let res = data.map(x => {
+      return `<li>${x.value}</li>`
+    })
+    console.log(arr);
+    console.log(data, start, end, visableCount);
+    console.log(res);
+    console.log(11111);
+    // list.innerHTML = 2
+    // console.log(111111111);
+  }
+  scroll()
+  wrap.addEventListener('scroll', scroll)
+</script>
+</html>

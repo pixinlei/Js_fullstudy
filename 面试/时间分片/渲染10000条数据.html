@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="list"></div>
+</body>
+<script>
+  let n = 0
+  function work() {
+    if(n >= 100) return
+    n++
+    for(let i=0;i <100;i++) {
+      const li = document.createElement('li')
+      li.textContent = i
+      // list.appendChild(li)
+      list.appendChild(li)
+    }
+    setTimeout(() => {
+      work()
+    }, 16)
+  }
+  work()
+</script>
+</html>

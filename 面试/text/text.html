@@ -1,17 +1,20 @@
 <script>
-   function shuangzhizhneg(temp) {
-      let left = 0, right = temp.length - 1
-      while (left <= right) {
-         if (temp[left] !== temp[right]) {
-            return false
-            // 11
-            // aaaaaaaaaa
-            console.log(temp);
-         }
-         left++
-         right--
+   let arr = [1,2,3,4,5]
+   Array.prototype.myReduce = function(fn, init = this[0]) {
+      for(let i=0;i<this.length;i++) {
+         let current = this[i]
+         init = fn(init, current, i, this)
       }
-      return true
+      return init
    }
-   shuangzhizhneg([1,2,2,1])
+   let myres =  arr.myReduce((pre, current,index, arr)=>{
+      console.log(pre, current, index, arr);
+      return pre += current
+   }, 0)
+   console.log(myres);
+   // let res = arr.reduce((pre, current, index, arr) => {
+   //    console.log(pre, current, index, arr);
+   //    return pre += current
+   // }, 0)
+   // console.log(res);
 </script>
