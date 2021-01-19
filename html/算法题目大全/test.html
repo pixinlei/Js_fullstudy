@@ -1,11 +1,23 @@
 <script>
-//  [1, 2, 2, '1', 'test'] => [1, '1', 'test']
-function fn(arr) {
-    let res = []
-    arr.forEach(v => {
-        if(!res.includes(v)) res.push(v)
-    })
-    return res
-}
-console.log(fn([1, 2, 2, '1', 'test']));
+//  浅拷贝
+    function fn(target) {
+        let result = []
+        for (const key in target) {
+            if (Object.hasOwnProperty(target)) {
+                result[key] = target[key];
+            }
+            return result
+        }
+    }
+//  深拷贝
+    function deepClone(target) {
+        if(typeof target !== 'object') return
+        let result = target.isArray() ? [] : {}
+        for (const key in target) {
+            if (Object.hasOwnProperty.call(target, key)) {
+                result[key] = deepClone(target)
+            }
+        }
+        return result
+    }
 </script>
