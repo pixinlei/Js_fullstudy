@@ -1,0 +1,15 @@
+<script>
+  function compareVersion(v1,v2) {
+    v1 = v1.split('.')
+    v2 = v2.split('.')
+    let count = Math.min(v1.length, v2.length)
+    let i =0
+    while(i < count) {
+      if(v1[i] > v2[i]) return 1
+      if(v1[i] < v2[i]) return -1
+      if(v1[i] = v2[i]) i++
+    }
+  }
+  let arr = ['1.1', '1.2', '2.1', '3.1']
+  console.log(arr.sort(compareVersion));
+</script>

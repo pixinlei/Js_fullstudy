@@ -1,23 +1,13 @@
 <script>
-//  浅拷贝
-    function fn(target) {
-        let result = []
-        for (const key in target) {
-            if (Object.hasOwnProperty(target)) {
-                result[key] = target[key];
-            }
-            return result
+    Array.prototype.myCall = function(context) {
+        if(context !== 'function') {
+            throw new Error('error')
         }
-    }
-//  深拷贝
-    function deepClone(target) {
-        if(typeof target !== 'object') return
-        let result = target.isArray() ? [] : {}
-        for (const key in target) {
-            if (Object.hasOwnProperty.call(target, key)) {
-                result[key] = deepClone(target)
-            }
-        }
-        return result
+        context = context || window
+        let args = [...arguments].slice(1)
+        context.fn = this
+        let res = context.fn(args)
+        delete context.fn
+        return res
     }
 </script>
