@@ -1,13 +1,15 @@
 <script>
-    Array.prototype.myCall = function(context) {
-        if(context !== 'function') {
-            throw new Error('error')
+    function curry(fn) {
+        let allArgs = []
+        return function next() {
+            let args = [].slice.call(arguments)
+            if(args.length > 0) {
+                allArgs.concat(args)
+                return next
+            }else {
+                fn.apply(null, allArgs)
+            }
+
         }
-        context = context || window
-        let args = [...arguments].slice(1)
-        context.fn = this
-        let res = context.fn(args)
-        delete context.fn
-        return res
     }
 </script>
