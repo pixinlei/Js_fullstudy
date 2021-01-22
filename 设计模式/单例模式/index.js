@@ -5,9 +5,12 @@ class singleDog {
   }
   static getInstance() {
     // 判断是否被new过
+    // @ts-ignore
     if(!singleDog.instance) {
+      // @ts-ignore
       singleDog.instance = new singleDog()
     }
+    // @ts-ignore
     return singleDog.instance
   }
 }

@@ -1,15 +1,9 @@
 <script>
-    function curry(fn) {
-        let allArgs = []
-        return function next() {
-            let args = [].slice.call(arguments)
-            if(args.length > 0) {
-                allArgs.concat(args)
-                return next
-            }else {
-                fn.apply(null, allArgs)
-            }
-
-        }
+    function reduceFlat(arr) {
+        return arr.reduce(function(preValue, currentValue, index, arr) {
+            preValue.concat(currentValue instanceof Array ? reduceFlat(currentValue) : currentValue)
+        }, [])
     }
+    let arr = [1,2,3]
+    console.log(reduceFlat(arr));
 </script>

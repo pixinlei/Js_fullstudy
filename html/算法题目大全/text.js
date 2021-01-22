@@ -1,19 +1,24 @@
-// 对输入的字符串，去除其中的字符'b'以及连续出现的'a'和'c'
-// 'aacbd' -> 'ad'
-// 'aabcd' -> 'ad'
-// 'aaabbccc' -> ''
-
-function fn(str) {
-  let temp = []
-  for(let i=0;i<str.length;i++) {
-    if(str[i] === 'a' || str[i] === 'c') {
-      temp.push(i)
+// @ts-ignore
+Promise.limitAll = function (promiseCreators, max) {
+  let i = 0, count = 0, pending = 0, res = [];
+  return new Promise((resolve, reject) => {
+    function requestWork() {
+      if (count >= promiseCreators.length) {
+        resolve(res);
+      }
+      while (pending < max && i < promiseCreators.length) {
+        const creator = promiseCreators[i];
+        let index = i;
+        creator().then((r) => {
+          pending--;
+          count++;
+          res[index] = r;  // 
+          requestWork();
+        })
+        i++;
+        pending++;
+      }
     }
-  }
-  for(let i=0;i<temp.length;i++) {
-    str.splice(temp[i], 1)
-  }
-  return str
+    requestWork();
+  })
 }
-
-fn('aacbd')
