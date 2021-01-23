@@ -1,9 +1,14 @@
 <script>
-    function reduceFlat(arr) {
-        return arr.reduce(function(preValue, currentValue, index, arr) {
-            preValue.concat(currentValue instanceof Array ? reduceFlat(currentValue) : currentValue)
-        }, [])
+    function quickSort(arr) {
+        if(arr.length <= 1) return arr
+        let arr1 = [], arr2 = [], p = arr[0]
+        for(let i=1;i<arr.length;i++) {
+            if(arr[i] < p) {
+                arr1.push(arr[i])
+            } else {
+                arr2.push(arr[i])
+            }
+        }
+        let res = [...quickSort(arr1), p, ...quickSort(arr2)]
     }
-    let arr = [1,2,3]
-    console.log(reduceFlat(arr));
 </script>
