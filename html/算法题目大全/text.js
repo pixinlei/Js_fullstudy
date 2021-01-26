@@ -1,24 +1,8 @@
-// @ts-ignore
-Promise.limitAll = function (promiseCreators, max) {
-  let i = 0, count = 0, pending = 0, res = [];
-  return new Promise((resolve, reject) => {
-    function requestWork() {
-      if (count >= promiseCreators.length) {
-        resolve(res);
-      }
-      while (pending < max && i < promiseCreators.length) {
-        const creator = promiseCreators[i];
-        let index = i;
-        creator().then((r) => {
-          pending--;
-          count++;
-          res[index] = r;  // 
-          requestWork();
-        })
-        i++;
-        pending++;
-      }
-    }
-    requestWork();
-  })
+function fn(leftnode, rightnode) {
+  if(leftnode && rightnode && leftnode.val === rightnode.val) {
+    fn(leftnode.left, rightnode.left)
+    fn(leftnode.right, rightnode.right)
+  } else if()
 }
+
+fn(root.left, root.right)

@@ -1,10 +1,23 @@
 <script>
-    function curry(add) {
-        this.add = add
-        console.log(this.add);
+    let banben = ['1.1','1.2', '1.1.1','1.001', '1.1.0', '1.1.0.1', '1.1.0.0']
+    function fn(arr1, arr2) {
+        arr1 = arr1.split('.')
+        arr2 = arr2.split('.')
+        let len = Math.min(arr1.length, arr2.length)
+
+        for(let i=0;i<len;i++) {
+            if(Number(arr1[i]) > Number(arr2[i])) return 1
+            if(Number(arr1[i]) < Number(arr2[i])) return -1
+        }
+        if(len < arr1.length && isZero(arr1, len)) return 1
+        if(len < arr2.length && isZero(arr2, len)) return -1
+        return 0 
     }
-    function add(a, b) {
-        return a+b
+    function isZero(arr, index) {
+        for(let i =index;i< arr.length; i++) {
+            if(Number(arr[i]) !== 0) return true 
+        }
+        return false
     }
-    curry()
+    console.log(fn('1.1', '1'));
 </script>
