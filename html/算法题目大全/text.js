@@ -1,8 +1,15 @@
-function fn(leftnode, rightnode) {
-  if(leftnode && rightnode && leftnode.val === rightnode.val) {
-    fn(leftnode.left, rightnode.left)
-    fn(leftnode.right, rightnode.right)
-  } else if()
-}
+let arr = [1, [2, [3, 4,[5,[6,[7,[8]]]]]]]
 
-fn(root.left, root.right)
+function flat(arr) {
+  let res = []
+
+  arr.forEach((v, i) => {
+    if (Array.isArray(v)) {
+      res.push(...flat(v))
+    }else {
+      res.push(v)
+    }
+  })
+  return res
+}
+console.log(flat(arr));

@@ -1,28 +1,17 @@
 <script>
-    class Queue{
-        constructor() {
-            this.arr = []
-        }
-        task(time, cb) {
-            this.arr.push({time, cb})
-            return this
-        }
-        start() {
-            let t = 0
-            for(let item of this.arr) {
-                t += item.time
-                setTimeout(() => {
-                    item.cb()
-                }, t)
-            }
-        }
+  let arr = [1, [2, [3, 4]]]
 
+function flat(arr) {
+  let res = []
+
+  arr.forEach((v, i) => {
+    if (Array.isArray(v)) {
+      res.push(...flat(v))
+    }else {
+      res.push(v)
     }
-    new Queue().task(1000, () => {
-        console.log(1);
-    }).task(2000, () => {
-        console.log(2);
-    }).task(3000, () => {
-        console.log(3);
-    }).start()
+  })
+  return res
+}
+console.log(flat(arr));
 </script>
