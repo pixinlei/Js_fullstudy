@@ -1,0 +1,116 @@
+
+    html, body {
+        width: 100%;
+        height: 100%;
+      }
+      
+      #app {
+        width: 100%;
+        height: 100%;
+      }
+      
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+      
+      input,
+      select,
+      textarea {
+        font-size: 100%;
+      }
+      
+      th {
+        text-align: inherit;
+      }
+      
+      a img,
+      fieldset,
+      img {
+        border: 0;
+      }
+      
+      ol,
+      ul {
+        list-style: none;
+      }
+      
+      caption,
+      th {
+        text-align: left;
+      }
+      
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 100%;
+        font-weight: 500;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+      }
+      
+      a,
+      ins {
+        text-decoration: none;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      ::-webkit-input-placeholder {
+        color: #939799;
+      }
+      
+      :-moz-placeholder {
+        color: #939799;
+      }
+      
+      ::-moz-placeholder {
+        color: #939799;
+      }
+      
+      input::-ms-clear, input::-ms-reveal {
+        display: none;
+      }
+      
+      @media screen and (max-width: 1024px) {
+        #app {
+          width: auto;
+          height: auto;
+        }
+        .continer {
+          position: relative !important;
+          width: 100%;
+          height: 100% !important;
+          display: flex;
+          justify-content: center;
+          padding-top: 70px !important;
+          padding-bottom: 170px;
+        }
+      }
+      
+      @media screen and (min-width: 1025px) {
+        #app {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+      
+    

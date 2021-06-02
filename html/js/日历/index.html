@@ -1,0 +1,404 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>日历</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta name="viewport"
+            content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+        <meta content="telephone=no" name="format-detection" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./base.css">
+        <link rel="stylesheet" href="./calnder.css">
+    </head>
+    
+    <body>
+        <div class="header-top" id="header-top" v-show="controlState === 2" v-cloak>
+            <div class="control-box">
+                <span>日历范围选择</span>
+                <span class="close__btn" @click="closeCalendar"></span>
+            </div>
+            <ul id="week-item"></ul>
+            <div class="current-time">
+                <input type="text" id="current-time" readonly>
+            </div>
+        </div>
+        <div class="main">
+            <div class="mode-one" id="mode-one">
+                <div id="week-box"></div>
+            </div>
+            <div class="calendar__dialog">最多可选六个月，请重新选择！</div>
+            <div class="footer-box">
+                <div class="confirm-btn">确定</div>
+            </div>
+        </div>
+        <script src="./resize.js"></script>
+        <script src="./utils.js"></script>
+        <script>
+            //默认显示当前月
+            window.scrollTo(0, document.body.scrollHeight);
+    
+            let startYear = 2010;
+            let $Yday = Utils.getElement('.j-year-day');
+            let $Yhour = Utils.getElement('.j-year-hour');
+            let $Dh = Utils.getElement('.j-day-h');
+            let $Dm = Utils.getElement('.j-day-m');
+            let $Ds = Utils.getElement('.j-day-s');
+            let $CurrentTime = Utils.getElement('.j-time');
+            let vm = {
+                timeArr: []
+            }
+            let date = new Date()
+            let year = date.getFullYear();
+            let thisMonth = date.getMonth();
+            let thisDay = date.getDate();
+            let dayS = 24 * 60 * 60;
+            let dateS = date.getTime();
+            let dateEndS = new Date(year, 11, 31, 23, 59, 59).getTime();
+            let weeks = ['日', '一', '二', '三', '四', '五', '六'];
+            let dayStr = '';
+            let dayItem = '';
+            for (let i = 0; i < weeks.length; i++) {
+                dayItem += '<li class="week-item">' + weeks[i] + '</li>'
+            }
+            let ulContent = Utils.getElement('.header-top ul');
+            ulContent.innerHTML = dayItem;
+    
+            // 立即生成日历html
+            ;(function createCalendar(y) {
+                let calnderBody = Utils.getElement('.mode-one');
+                for (y; y <= year; y++) {
+                    calnderBody.innerHTML = handelYear(y);
+                }
+            })(startYear)
+    
+            // 循环月份
+            function handelYear(y) {
+                for (let month = 0; month <= 11; month++) {
+                    if (y === year) {
+                        if (month > thisMonth) break;
+                    }
+                    // 每个月的第一天
+                    let firstDay = new Date(y, month, 1);
+                    let dayInMonth = daysInMonth(month, y);
+                    // 每个月的最后一天
+                    let lastDay = new Date(y, month, dayInMonth);
+    
+                    let weekday = firstDay.getDay(); // 星期几 0-6
+                    let lastDayWeekDay = lastDay.getDay(); // 当月的最后一天星期几 0-6
+                    let date = 1; // 第一天，计数用
+                    let showMonth = month + 1;
+                    let newMonth = Utils.timePad(showMonth)
+                    dayStr += '<div class="current-month">' + y + '年' + newMonth + '月 </div><div class="month">';
+                    // 补齐前面的空格
+                    for (let i = 0; i < weekday; i++) {
+                        dayStr += '<div class="item"></div>';
+                    }
+                    for (; date <= dayInMonth; date++) {
+                        let copyDate = date;
+                        let newDate = Utils.timePad(copyDate)
+                        if (month == thisMonth && date == thisDay && y == year) {
+                            dayStr += '<div class="item now dateItem" data-disabled=' + (date > thisDay) +
+                                ' data-current=' + y + '-' + newMonth + '-' + newDate + '>' + date + '</div>';
+                        } else if (month == thisMonth && y == year) {
+                            // data-disabled='+ (date > thisDay) +'
+                            dayStr += '<div class="item dateItem" data-disabled=' + (date > thisDay) + ' data-current=' +
+                                y + '-' + newMonth + '-' + newDate + ' >' + date + '</div>';
+                        } else {
+                            dayStr += '<div class="item dateItem" data-current=' + y + '-' + newMonth + '-' + newDate +
+                                ' >' + date + '</div>';
+                        }
+                        weekday++
+                        if (weekday % 7 == 0) {
+                            weekday = 0;
+                        }
+                    }
+                    // 补齐后面的空格
+                    for (let j = 0; j < (7 - lastDayWeekDay - 1); j++) {
+                        dayStr += '<div class="item"></div>';
+                    }
+                    // dayStr += '<br/></div>';
+                    dayStr += '<p class="after-dom" data-time=' + y + '年' + newMonth + '月></p></div>';
+                }
+                return dayStr
+            }
+            
+            document.body.onclick = function (ev) {
+                let e = ev || window.event;
+                checkActive();
+                let currBox = Utils.getElement('.current-time #current-time');
+                // 如果不是iphone 7plus 和 iphonex机型 要加一个月
+                if (currBox) {
+                    if (isIphonex()) {
+                        currBox.value = year + '年' + Utils.timePad(thisMonth) + '月'
+                    } else if (getPhoneType().replace(/\s*/g, "") === 'iphone6' || getPhoneType().replace(
+                            /\s*/g, "") === 'iphone5s' && !isIphonex()) {
+                        currBox.value = year + '年' + Utils.timePad(thisMonth + 1) + '月';
+                    } else if (getPhoneType() === 'iphone6 plus') {
+                        currBox.value = year + '年' + Utils.timePad(thisMonth + 1) + '月';
+    
+                    } else {
+                        currBox.value = year + '年' + Utils.timePad(thisMonth) + '月';
+                    }
+                }
+            }
+            // 监听滚动条事件
+            document.addEventListener('scroll', handelEvent, false)
+    
+            function handelEvent(e) {
+                scrollFunc();
+                let monthBox = Utils.getAllElement('.current-month'),
+                    currBox = Utils.getElement('.current-time #current-time');
+                let monthBoxList = Utils.getAllElement('.after-dom');
+                let top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                _Set('scrollTop', top)
+                if (scrollDirection == 'down') {
+                    // 判断 月盒子是否和头部日期盒子重叠，如果重叠就显示当前月的时间
+                    let listenCurTime = [];
+                    handelTitleAnimate(listenCurTime, monthBox, currBox, 'pushDown', 'pushUp', 1)
+                } else if (scrollDirection == 'up') {
+                    //判断每个月的盒子是否和头部日期盒子重叠
+                    let listenCurTime = [];
+                    handelTitleAnimate(listenCurTime, monthBoxList, currBox, 'pushUp', 'pushDown', 2);
+                }
+    
+            }
+            // 处理滑动时候，头部日期动画效果
+            function handelTitleAnimate(arr, ele, ele1, class1, class2, type) {
+                // let arr = [];
+                for (let i = 0; i < ele.length; i++) {
+                    if (collision(ele1, ele[i])) {
+                        if (type === 1) {
+                            ele1.value = ele[i].innerText;
+                            arr.push(ele1.value)
+                        } else {
+                            ele1.value = ele[i].getAttribute('data-time');
+                            arr.push(ele1.value);
+                        }
+                    }
+                }
+                if (arr.length) {
+                    ele1.classList.remove(class1);
+                    ele1.classList.add(class2);
+                } else {
+                    ele1.classList.remove(class2);
+                }
+            }
+            // 点击每个日期事件
+            function getCurrnetTime() {
+                let itemDay = document.querySelectorAll('.month .dateItem');
+                let items;
+                for (let i = 0, len = itemDay.length; i < len; i++) {
+                    items = itemDay[i];
+                    if (items.dataset.disabled === 'true') {
+                        items.classList.add('disabled')
+                    }
+                    document.onclick = function (ev) {
+                        let e = ev || window.event;
+                        let target = e.target || e.srcElement;
+                        let confirmBtn = Utils.getElement('.footer-box div');
+                        if (target.classList.contains('dateItem') === true) {
+                            let now = target.dataset.current;
+                            let isAllowChose = target.dataset.disabled;
+                            // 如果是今天之后的日期，点击无效
+                            if (isAllowChose === 'true') return;
+                            if (vm.timeArr.length < 2) {
+                                vm.timeArr.push(now)
+                                target.classList.add('active');
+                                if (vm.timeArr.length > 1) {
+                                    // scopeValue表示选中的日期范围值
+                                    let scopeValue = getAll(vm.timeArr[0], vm.timeArr[1]);
+                                    // 比较选中两个日期的大小，如果是倒序选择的，就重新选
+                                    // result表示是否是正序选择
+                                    let result = CompareDate(vm.timeArr[0], vm.timeArr[1]);
+                                    if (!result) {
+                                        checkClass('active');
+                                        vm.timeArr.splice(0, 1)
+                                        target.classList.add('active')
+                                    } else {
+                                        // 选中的日期范围去匹配相应的dom，加class
+                                        handelClass(scopeValue, undefined);
+                                    }
+                                    handelFinalBox(vm.timeArr[0], vm.timeArr[1], vm.timeArr);
+    
+                                }
+    
+                            } else {
+                                (vm.timeArr = [], vm.timeArr.push(now));
+                                checkClass('active');
+                                handelFinalBox(vm.timeArr[0], vm.timeArr[1], vm.timeArr)
+                                target.classList.add('active')
+                            }
+                            if (vm.timeArr.length == 1) {
+                                confirmBtn.classList.add('cover_back')
+                                handelClass(undefined, vm.timeArr);
+                                createVal(vm.timeArr);
+                                vm.maxDate = calcDate(vm.timeArr[0]);
+                                _Set('lastTop', _Get('scrollTop'))
+    
+                            } else if (vm.timeArr.length == 2) {
+                                // 拼接选择日期值
+                                createVal(vm.timeArr)
+                                // 判断如果超出可选范围，就提示重新选择
+                                if (CompareDate(vm.maxDate, vm.timeArr[1])) {
+                                    // 清除选中的日期，只保留第一个选择值，currentChose存第一次选择的值，让timeArr的值和本地存储的值都变成第一个选中的值
+                                    window.scrollTo(0, _Get('lastTop'));
+                                    Utils.getElement('.calendar__dialog').style.display = 'block'
+                                    vm.timeArr = [];
+                                    checkClass('l-border');
+                                    checkClass('r-border');
+                                    checkClass('cover-background');
+                                    var data = _Get('currentChose')[0];
+                                    vm.timeArr.push(data)
+                                    _Set('currentChose', data.split());
+                                    _Set('choseValue', data.split()[0]);
+                                    target.classList.remove('active')
+                                    setTimeout(function () {
+                                        Utils.getElement('.calendar__dialog').style.display = 'none'
+                                    }, 2000);
+                                }
+    
+                            } else {
+                                confirmBtn.classList.add('cover_back')
+                            }
+    
+                        }
+                        // 点击确定按钮，需清楚选中的日期值
+                        confirmBtn.onclick = function (e) {
+                            if (!e.target.classList.contains('cover_back')) return;
+                            handelClass(undefined, vm.timeArr);
+                            console.log(vm.timeArr)
+    
+                        }
+                    }
+                }
+            }
+    
+            getCurrnetTime();
+            function setDisabled() {
+                let endDate = calcDate(vm.timeArr[0]);
+                // leftDom表示结束日期，之后所有的dom 只是当前6个月可以选择，超出范围不能选择；
+                // 计算出当前日期和endDate的区间
+                let canChose = getAll(vm.timeArr[0], endDate);
+                let itemDay = document.querySelectorAll('.month .dateItem');
+                for (let i = 0, len = itemDay.length; i < len; i++) {
+                    let every = itemDay[i].getAttribute('data-current'),
+                        ele = itemDay[i];
+                    if (canChose.indexOf(every) < 0) {
+                        ele.classList.add('disabled')
+                        ele.setAttribute('data-disabled', true)
+                    } else {
+                        ele.classList.remove('disabled')
+                        ele.setAttribute('data-disabled', false)
+                    }
+                }
+            }
+            // 拼接选中日期值
+            function createVal(arr) {
+                // 如果不跨年，就不显示年份
+                if (arr.length === 1) {
+                    let finalArr = arr[0];
+                    _Set('choseValue', finalArr);
+                    _Set('currentChose', vm.timeArr);
+                } else if (arr.length === 2) {
+                    // 拼接选择日期值["2018-12-26","2019-02-26"]
+                    let containValue = arr[0] + '至' + arr[1];
+                    _Set('choseValue', containValue);
+                    _Set('currentChose', vm.timeArr);
+                }
+            }
+            // 检测是否含有某个class
+            function checkClass(str) {
+                let itemDay = document.querySelectorAll('.dateItem');
+                for (let i = 0; i < itemDay.length; i++) {
+                    let item = itemDay[i];
+                    if (item.classList.contains(str) == true) {
+                        item.classList.remove(str);
+                    }
+                }
+            }
+    
+            // 给选中范围内的日期加class
+            function handelClass(arr, choseArr) {
+                let itemDay = document.querySelectorAll('.dateItem');
+                for (let i = 0; i < itemDay.length; i++) {
+                    if (arr) {
+                        let item = itemDay[i].getAttribute('data-current');
+                        if (arr.indexOf(item) > -1) {
+                            itemDay[i].classList.add('cover-background');
+                        }
+                    }
+                    if (choseArr) {
+                        if (choseArr.length == 1 || !choseArr.length) {
+                            itemDay[i].classList.remove('cover-background');
+                        }
+                    }
+                }
+            }
+            // 处理选中两个日期后圆角问题
+            function handelFinalBox(fValue, eValue, itemArr) {
+                let itemDay = document.querySelectorAll('.dateItem');
+                for (let i = 0; i < itemDay.length; i++) {
+                    let item = itemDay[i].getAttribute('data-current');
+                    // 如果选择两个
+                    if (itemArr.length > 1) {
+                        if (item === fValue && itemArr.length > 1) {
+                            itemDay[i].classList.add('l-border');
+                        }
+                        if (item === eValue && itemArr.length > 1) {
+                            itemDay[i].classList.add('r-border');
+                        }
+                    } else {
+                        itemDay[i].classList.remove('l-border');
+                        itemDay[i].classList.remove('r-border');
+                    }
+                }
+            }
+            // init页面时候，处理添加active和cover-backgoround类名
+            function checkActive() {
+                let doc = document,
+                    itemDay = doc.querySelectorAll('.month .dateItem'),
+                    item;
+                if (_Get('currentChose')) {
+                    let currentChose = _Get('currentChose');
+                    let arrLi = doc.querySelectorAll('.month .dateItem');
+                    Array.prototype.forEach.call(arrLi, function (ele) {
+                        let curr = ele.getAttribute('data-current');
+                        if (currentChose.length === 1) {
+                            // 选择单个日期的情况
+                            if (curr === currentChose[0]) {
+                                ele.classList.add('active')
+                            }
+                        } else if (currentChose.length === 2) {
+                            let scopeValue = getAll(currentChose[0], currentChose[1]);
+                            // 如果是选中范围的情况
+                            if (scopeValue.indexOf(curr) > -1) {
+                                ele.classList.add('cover-background');
+                                // 如果选择两个
+                                if (currentChose.length > 1) {
+                                    if (curr === currentChose[0] && currentChose.length > 1) {
+                                        ele.classList.add('l-border');
+                                    }
+                                    if (curr === currentChose[1] && currentChose.length > 1) {
+                                        ele.classList.add('r-border');
+                                    }
+                                } else {
+                                    ele.classList.remove('l-border');
+                                    ele.classList.remove('r-border');
+                                }
+                            }
+                        }
+                    })
+    
+                }
+            }
+        </script>
+    </body>
+    
+    </html>
+    
