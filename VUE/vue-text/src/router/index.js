@@ -10,11 +10,30 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+  {
+    path: '/child1',
+    name: 'child1',
+    component: () => import('../components/child1.vue'),
+    children: [{
+        path: 'child2',
+        name: 'child2',
+        component: () => import('../components/child2.vue')
+    }]
+  },
+  {
+    path: '/child2',
+    name: 'child2',
+    component: () => import('../components/child2.vue')
+  },
+  {
+    path: '/redirect',
+    redirect: '/'
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('../components/404.vue')
+  },
 ]
 
 const router = new VueRouter({
