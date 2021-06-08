@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <van-button color="#7232dd">单色按钮</van-button>
+    <router-view/>
   </div>
 </template>
 
