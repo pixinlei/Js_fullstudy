@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-plus": "^1.0.2-beta.46",
     "nprogress": "^0.2.0",
     "postcss-px-to-viewport": "^1.1.1",
     "vant": "^3.0.3",

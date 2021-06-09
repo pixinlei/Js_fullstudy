@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     这里是home
+    <el-button type="primary">主要按钮</el-button>
     <van-button type="primary" @click="go">三秒后跳转到text</van-button>
   </div>
 </template>
