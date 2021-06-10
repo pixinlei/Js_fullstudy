@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import NProgress from 'nprogress';
 
-// import error from './modules/404.js'
+import modelRouters from './modules/index.js'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,11 +15,15 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Text',
     component: () => import('../views/text.vue')
   },
+  ...modelRouters,
+  {
+    path: '/:catchAll(.*)',
+    name: '/404',
+    component: () => import('../views/notFound.vue')
+  }
 ]
 
-// 
 
-// console.log(routes, '这个是什么');
 
 
 const router = createRouter({
