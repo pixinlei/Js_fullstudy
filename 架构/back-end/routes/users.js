@@ -4,18 +4,114 @@ const utils = require('../controllers/util')
 
 router.prefix('/users')
 
-router.get('/all',async function (ctx, next) {
+// router.get('/text', async)
+
+
+router.get('/all', async function (ctx, next) {
   await userService.getAllUsers().then((res) => {
     ctx.body = res
   })
 })
 
+// 注册
+router.post('/register', async (ctx, next) => {
+  var username = ctx.request.body.username
+  var password = ctx.request.body.password
+
+  let user = {
+    username,
+    password
+  }
+  await userService.findUser(user.username).then(async (res) => {
+    console.log(res);
+    if (res.length) {
+      try {
+        throw Error('用户名已存在')
+      } catch (error) {
+        console.log(error);
+      }
+      ctx.body = {
+        code: '80003',
+        data: 'err',
+        mess: '用户名已存在'
+      }
+    } else {
+      await userService.addUser([user.username, user.password]).then((res) => {
+        console.log(res);
+        let r = ''
+        if (res.affectedRows !== 0) {
+          r = 'ok'
+          ctx.body = {
+            code: '80000',
+            data: r,
+            mess: '注册成功'
+          }
+        } else {
+          r = 'error',
+            ctx.body = {
+              code: '80004',
+              data: r,
+              mess: '注册失败'
+            }
+        }
+      })
+        .catch((err) => {
+          ctx.body = {
+            code: '80002',
+            data: err
+          }
+        })
+    }
+  })
+
+})
+
+
+// 登录
+router.post('/login', async (ctx, next) => {
+  var username = ctx.request.body.username
+  var password = ctx.request.body.password
+  console.log(ctx.request.body,'这里有哪些');
+  console.log(username,password,'是正常的吗');
+  if (username && password) {
+    await userService.login(username, password).then((res) => {
+      if (!res.length) {
+        try {
+          throw Error("用户密码错误");
+        } catch (err) {
+          console.log(err);
+        }
+        ctx.body = {
+          code: "80005",
+          data: "err",
+          msg: "账号密码错误",
+        };
+      } else {
+        ctx.body = {
+          code: "200",
+          data: {
+            res,
+            token: new Date().getTime()
+          },
+          msg: "登录成功",
+        };
+      }
+    });
+  } else {
+    ctx.body = {
+      code: "80001",
+      msg: "用户名、密码或昵称不能为空",
+    };
+  }
+})
+
+
 // 登录注册
-router.post('/userRegister', async(ctx, next) => {
+router.post('/userRegister', async (ctx, next) => {
   var _username = ctx.request.body.username
   var _userpwd = ctx.request.body.userpwd
   var _nickname = ctx.request.body.nickname
-  if(!_username || !_userpwd || !_nickname) {
+  if (!_username || !_userpwd || !_nickname) {
     ctx.body = {
       code: '80001',
       mess: '用户名或密码或昵称不能为空'
@@ -23,13 +119,13 @@ router.post('/userRegister', async(ctx, next) => {
     return
   }
   let user = {
-    username : _username,
-    userpwd : _userpwd,
-    nickname : _nickname
+    username: _username,
+    userpwd: _userpwd,
+    nickname: _nickname
   }
-  await userService.findUser(user.username).then(async(res) => {
+  await userService.findUser(user.username).then(async (res) => {
     console.log(res)
-    if(res.length) {
+    if (res.length) {
       try {
         throw Error('用户名已存在')
       } catch (error) {
@@ -50,30 +146,30 @@ router.post('/userRegister', async(ctx, next) => {
             code: '80000',
             data: r,
             mess: '注册成功'
-          } 
+          }
         } else {
           r = 'error',
+            ctx.body = {
+              code: '80004',
+              data: r,
+              mess: '注册失败'
+            }
+        }
+      })
+        .catch((err) => {
           ctx.body = {
-            code: '80004',
-            data: r,
-            mess: '注册失败'
-          }   
-        }
-      })
-      .catch((err) => {
-        ctx.body = {
-          code: '80002',
-          data: err
-        }
-      })
+            code: '80002',
+            data: err
+          }
+        })
     }
   })
-  .catch((err) => {
-    ctx.body = {
-      code: '80002',
-      data: err
-    }
-  })
+    .catch((err) => {
+      ctx.body = {
+        code: '80002',
+        data: err
+      }
+    })
 })
 
 
@@ -101,7 +197,7 @@ router.post("/userLogin", async (ctx, next) => {
         }
         ctx.body = {
           code: "80000",
-          data:result,
+          data: result,
           msg: "登录成功",
         };
       }
@@ -118,7 +214,7 @@ router.post("/userLogin", async (ctx, next) => {
 router.post("/findNoteListByType", async (ctx, next) => {
   const note_type = ctx.request.body.note_type
   const userId = ctx.request.body.userId
-  await userService.findNoteListByType(note_type, userId).then(async(res) => {
+  await userService.findNoteListByType(note_type, userId).then(async (res) => {
     let r = ''
     if (res.length) {
       r = 'ok'
@@ -133,22 +229,22 @@ router.post("/findNoteListByType", async (ctx, next) => {
         code: '80004',
         data: r,
         mess: '查找失败'
-      }     
+      }
     }
   }).catch((err) => {
     ctx.body = {
       code: '80002',
       data: err,
-    } 
+    }
   })
 })
 
 
 // 根据文章id查找文章详情
-router.post('/findNoteDetailById', async(ctx, next) => {
+router.post('/findNoteDetailById', async (ctx, next) => {
   const id = ctx.request.body.id
   // conso
-  await userService.findNoteDetailById(id).then(async(res) => {
+  await userService.findNoteDetailById(id).then(async (res) => {
     console.log(11);
     let r = ''
     if (res.length) {
@@ -164,28 +260,28 @@ router.post('/findNoteDetailById', async(ctx, next) => {
         code: '80004',
         data: r,
         mess: '查找失败'
-      }     
+      }
     }
   }).catch((err) => {
     ctx.body = {
       code: '80002',
       data: err,
-    } 
+    }
   })
 })
 
 // 发表笔记
-router.post('/insertNote', async(ctx, next) => {
+router.post('/insertNote', async (ctx, next) => {
   let c_time = utils.getNowFormatDate()
   let m_time = utils.getNowFormatDate()
   let note_content = ctx.request.body.note_content
-  let head_img =  ctx.request.body.head_img
-  let title =  ctx.request.body.title
+  let head_img = ctx.request.body.head_img
+  let title = ctx.request.body.title
   let note_type = ctx.request.body.note_type
   let useId = ctx.request.body.userId
   let nickname = ctx.request.body.nickname
-  console.log(c_time,m_time,note_content,head_img,title,note_type,useId,nickname);
-  await userService.insertNote([c_time,m_time,note_content,head_img,title,note_type,useId,nickname]).then(async(res) => {
+  console.log(c_time, m_time, note_content, head_img, title, note_type, useId, nickname);
+  await userService.insertNote([c_time, m_time, note_content, head_img, title, note_type, useId, nickname]).then(async (res) => {
     // console.log(c_time,m_time,note_content,head_img,title,note_type,useId,nickname);
     let r = '';
     if (res.affectedRows) {
@@ -201,7 +297,7 @@ router.post('/insertNote', async(ctx, next) => {
         code: '80004',
         data: r,
         mess: '发表失败'
-      }    
+      }
     }
   }).catch((err) => {
     ctx.body = {

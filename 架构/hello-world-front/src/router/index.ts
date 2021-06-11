@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
-import NProgress from 'nprogress';
+// import NProgress from 'nprogress';
 
 import modelRouters from './modules/index.js'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/login.vue')
+  },
   {
     path: '/',
     name: 'Home',
@@ -34,15 +39,21 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-  // 有token就可以正常跳转，没有就跳转到登录页面
-  // if(localStorage.getItem('token')) next()
-  // router.replace('login')
-  NProgress.start();
-  next()
+  if(localStorage.getItem('token')) {
+    next()
+  } else {
+    if(to.path == '/login') {
+      next()
+    } else {
+      next({
+        path: '/login'
+      })
+    }
+  }
 })
 
 router.afterEach(() => {
-  NProgress.done();
+  // NProgress.done();
 });
 
 export default router

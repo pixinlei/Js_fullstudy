@@ -1,15 +1,17 @@
 const state = {
     name: '',
-    nickname: '',
-    avatar: ''
+    password: '',
+    avatar: '',
+    token: ''
 }
 
 
 const mutations = {
     SET_USER_INFROMATION: (state, data) => {
         state.name = data.name
-        state.nickname = data.nickname
+        state.password = data.password
         state.avatar = data.avatar
+        state.token = data.token
     },
 }
 

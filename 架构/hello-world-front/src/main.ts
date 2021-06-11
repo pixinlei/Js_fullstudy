@@ -8,6 +8,6 @@ import 'element-plus/lib/theme-chalk/index.css';
 // import {get, post} from './util/axios.js'
 const app = createApp(App)
 installVant(app)
+app.use(store).use(router).use(ElementPlus).mount('#app')
 // app.config.globalProperties.$get = get
 // app.config.globalProperties.$post = post
-app.use(store).use(router).use(ElementPlus).mount('#app')
