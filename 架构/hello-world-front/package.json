@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "default-passive-events": "^2.0.0",
     "element-plus": "^1.0.2-beta.46",
     "nprogress": "^0.2.0",
     "vant": "^3.0.3",
@@ -31,9 +32,10 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "sass-resources-loader": "^2.2.1",
+    "style-loader": "^2.0.0",
     "typescript": "~4.1.5",
     "vue-cli-plugin-vant-next": "^1.0.1"
   },
