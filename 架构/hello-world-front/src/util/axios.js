@@ -12,7 +12,7 @@ if (process.env.NODE_ENV == 'development') {
 } else if (process.env.NODE_ENV == 'debug') {    
     axios.defaults.baseURL = '';
 } else if (process.env.NODE_ENV == 'production') {    
-    axios.defaults.baseURL = 'http://10.0.8.7:3000/';
+    axios.defaults.baseURL = 'http://81.71.146.247:3000/';
 }
 
 // 请求超时时间
