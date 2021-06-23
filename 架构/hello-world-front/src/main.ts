@@ -9,10 +9,14 @@ import './styles/_variables.scss'
 import 'default-passive-events' //解决element的警告问题
 
 
+import './util/isMobile.js'
+
 // import {get, post} from './util/axios.js'
 const app = createApp(App)
 installVant(app)
 app.use(store).use(router).use(ElementPlus).mount('#app')
+
+
 // app.config.globalProperties.$get = get
 // app.config.globalProperties.$post = post
 

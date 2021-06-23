@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
-// import NProgress from 'nprogress';
+import NProgress from 'nprogress';
+import animation from './modules/animation.js'
 
 import modelRouters from './modules/index.js'
 
@@ -13,7 +14,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: animation
   },
   {
     path: '/text',
@@ -39,6 +41,7 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
+  NProgress.start();
   if(localStorage.getItem('token')) {
     next()
   } else {
@@ -53,7 +56,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  // NProgress.done();
+  NProgress.done();
 });
 
 export default router

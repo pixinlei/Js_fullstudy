@@ -117,11 +117,12 @@ const show = function () {
 }
 
 const comform = function (fn) {
-  document.getElementById('comformBtn').addEventListener('click', function () {
+  let func = function () {
     fn()
     const modal = new toast()
     modal.style.display = 'none'
-  })
+  }
+  document.getElementById('comformBtn').addEventListener('click',func)
 }
 export {
   toast,
