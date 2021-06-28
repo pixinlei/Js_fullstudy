@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import NProgress from 'nprogress';
 import animation from './modules/animation.js'
+import echarts from './modules/echarts.js'
 
 import modelRouters from './modules/index.js'
 
@@ -15,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    children: animation
+    children: [...animation, ...echarts]
   },
   {
     path: '/text',
