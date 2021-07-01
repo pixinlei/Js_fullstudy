@@ -21,13 +21,33 @@ axios.defaults.timeout = 10000;
 // post请求头
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
+
+
+// 解决重复点击问题
+let pending = [] //声明一个数组用于储存每个ajax请求的取消函数和ajax标识
+let cancelToken = axios.CancelToken
+function removePending(ever) {
+    for(let p in pending) {
+        if(pending[p].u == ever.url + '&' + ever.method) {
+            pending[p].f() //执行取消操作
+            pending.splice(p,1) //删除这条记录
+        }
+    }
+}
+
+
 // 请求拦截器
 axios.interceptors.request.use(    
     config => {
         // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
         const token = window.localStorage.getItem('token');        
-        token && (config.headers.Authorization = token);        
+        token && (config.headers.Authorization = token);      
+        
+        removePending(config) //在一个ajax发送前执行一下取消操作
+        config.cancelToken = new cancelToken((c) => {
+            pending.push({u: config.url + '&' + config.method, f:c})
+        })
         return config;    
     },    
     error => {        
@@ -37,6 +57,7 @@ axios.interceptors.request.use(
 // 响应拦截器
 axios.interceptors.response.use(    
     response => {        
+        removePending(response.config);  //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
         if (response.status === 200) {            
             return Promise.resolve(response);        
         } else {            
