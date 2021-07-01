@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "colorpicker-vue": "^1.0.3",
     "core-js": "^3.6.5",
     "default-passive-events": "^2.0.0",
     "echarts": "^5.1.2",
@@ -16,7 +17,9 @@
     "fastclick": "^1.0.6",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vant": "^3.0.3",
+    "vcolorpicker": "^1.1.0",
     "vue": "^3.0.0",
     "vue-echarts": "^6.0.0-rc.6",
     "vue-router": "^4.0.0-0",
