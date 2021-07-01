@@ -15,6 +15,7 @@
     "echarts": "^5.1.2",
     "element-plus": "^1.0.2-beta.46",
     "fastclick": "^1.0.6",
+    "live2d-widget": "^3.1.4",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
