@@ -5,12 +5,11 @@
 
     </el-drawer>
   </div>-->
-  <div class="page">
+  <div class="page" @mouseup="changeWidthUp">
     <div class="topMenu">
       <el-row style="height:65px;">
         <el-col :span="23">
-           
-          <colorSelect/>
+          <colorSelect />
         </el-col>
         <el-col :span="1" class="img-wrapper">
           <img src="../assets/default_avator.jpg" alt />
@@ -18,41 +17,8 @@
       </el-row>
     </div>
     <div class="flex">
-      <!-- <el-menu default-active="2" class="el-menu-vertical-demo" @select="handleSelect" router>
-      <el-submenu index="1">
-        <template #title>
-          <i class="el-icon-menu"></i>
-          <span>动画</span>
-        </template>
-        <el-menu-item-group>
-          <template #title>分组一</template>
-          <el-menu-item index="tarot">塔罗牌</el-menu-item>
-          <el-menu-item index="eCharts">ECharts</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template #title>选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <template #title>导航二</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-menu"></i>
-        <template #title>导航三</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-menu"></i>
-        <template #title>导航四</template>
-      </el-menu-item>
-      </el-menu>-->
-
       <div class="leftMenu" ref="leftMenu" :style="`width:${changedWidth}px`"></div>
-      <div class="drop-line" ref="dropLine" @mousemove="changeWidthMove($event)" @mousedown="changeWidthDown" @mouseup="changeWidthUp"></div>
+      <div class="drop-line" ref="dropLine" @mousemove="changeWidthMove($event)" @mousedown="changeWidthDown"></div>
       <router-view />
     </div>
   </div>
@@ -62,7 +28,7 @@
 import colorSelect from '../components/colorSelect.vue'
 import { onMounted, ref } from 'vue'
 export default {
-  components:{
+  components: {
     colorSelect
   },
   setup() {
@@ -89,6 +55,7 @@ export default {
         mouse_x = e.clientX - leftMenu.value.offsetWidth
       },
       changeWidthUp: function () {
+        console.log('up')
         changeWidth.isChangeWidth = false
       },
       isChangeWidth: false
