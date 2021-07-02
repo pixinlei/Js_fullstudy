@@ -6,73 +6,122 @@
     </el-drawer>
   </div>-->
   <div class="page" @mouseup="changeWidthUp">
-    <div class="topMenu">
-      <el-row style="height:65px;">
-        <el-col :span="23">
-          <colorSelect />
+    <div
+      class="topMenu"
+      :style="` background-image: linear-gradient(90deg, ${colors.color1}, ${colors.color2},${colors.color3},${colors.color4},${colors.color5},${colors.color6})`"
+    >
+      <el-row style="height:65px;" class="flex align-center">
+        <el-col :span="9"></el-col>
+        <el-col :span="3" class="flex-center">
+          <h1>{{title}}</h1>
         </el-col>
-        <el-col :span="1" class="img-wrapper">
-          <img src="../assets/default_avator.jpg" alt />
+        <el-col :span="9"></el-col>
+        <el-col :span="3" class="img-wrapper">
+          <router-link to="setting" class="flex-center">
+            <img src="../assets/default_avator.jpg" alt />
+            <span class="ml20 black">{{`默认用户`}}</span>
+          </router-link>
         </el-col>
       </el-row>
     </div>
     <div class="flex">
       <div class="leftMenu" ref="leftMenu" :style="`width:${changedWidth}px`"></div>
-      <div class="drop-line" ref="dropLine" @mousemove="changeWidthMove($event)" @mousedown="changeWidthDown"></div>
+      <div class="drop-line" id="resize"></div>
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import colorSelect from '../components/colorSelect.vue'
-import { onMounted, ref } from 'vue'
+import { get } from '../util/axios'
+import { ref, toRefs, onMounted,reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
   components: {
-    colorSelect
+    // colorSelect
   },
   setup() {
-    let color1 = ref(null)
+    let store = useStore()
+    let route = useRoute()
+    let title = ref(route.meta.title)
     let isPc = window.sessionStorage.getItem('pc')
     let activeIndex = ref('1')
-    let showLeftMenu = ref(true)
-    function handleSelect(key, keyPath) {
-      console.log(key, keyPath)
+
+    function initColor() {
+      let colors = store.state.user.colors
+      return colors
     }
 
-    let dropLine = ref(null)
-    let leftMenu = ref(null)
-
-    let changedWidth = ref(250)
-    let mouse_x = 0
-    let changeWidth = {
-      changeWidthMove: function (e) {
-        if (!changeWidth.isChangeWidth) return
-        changedWidth.value = e.clientX - mouse_x > 0 ? e.clientX - mouse_x : 1
-      },
-      changeWidthDown: function (e) {
-        changeWidth.isChangeWidth = true
-        mouse_x = e.clientX - leftMenu.value.offsetWidth
-      },
-      changeWidthUp: function () {
-        console.log('up')
-        changeWidth.isChangeWidth = false
-      },
-      isChangeWidth: false
+    async function initSetting() {
+      let id = window.localStorage.getItem('id')
+      await get('users/setting', { id }).then(res => {
+        store.commit('user/SET_USER_THEME_COLOR', res)
+      })
+      let colors = await initColor()
+      return { colors }
     }
+    let settings = reactive({
+      colors: {
+        color1: '#5A2BA7',
+        color2: '#BE1A92',
+        color3: '#F64173',
+        color4: '#FF7F57',
+        color5: '#FFBD4E',
+        color6: '#F9F871'
+      }
+    })
+    onMounted(() => {
+      let temp = initSetting()
+      settings = temp
+    })
+
     return {
-      color1,
+      title,
       activeIndex,
-      handleSelect,
-      showLeftMenu,
       isPc,
-      dropLine,
-      leftMenu,
-      changeWidthMove: changeWidth.changeWidthMove,
-      changeWidthDown: changeWidth.changeWidthDown,
-      changeWidthUp: changeWidth.changeWidthUp,
-      changedWidth
+      ...toRefs(settings)
     }
+  },
+  data() {
+    return {
+      changedWidth: 250
+    }
+  },
+  methods: {
+    saveThis() {
+      return this
+    },
+    dragControllerDiv: function () {
+      // 保留this引用
+      let self = this.saveThis()
+      let resize = document.getElementById('resize')
+      resize.onmousedown = function (e) {
+        // 颜色改变提醒
+        // resize.style.background = '#818181'
+        let startX = e.clientX
+        resize.left = resize.offsetLeft
+        document.onmousemove = function (e) {
+          // 计算并应用位移量
+          let endX = e.clientX
+          let moveLen = endX - startX
+          startX = endX
+          if (!(self.changedWidth <= 100 && moveLen < 0)) {
+            self.changedWidth += moveLen
+          }
+        }
+        document.onmouseup = function () {
+          // 颜色恢复
+          // resize.style.background = '#000'
+          document.onmousemove = null
+          document.onmouseup = null
+        }
+        return false
+      }
+    }
+  },
+  mounted() {
+    this.dragControllerDiv()
   }
 }
 </script>
@@ -99,15 +148,15 @@ export default {
 }
 .drop-line {
   position: relative;
-  width: 30px;
+  width: 10px;
   height: 94vh;
   // background: #ebeef5;
   cursor: w-resize;
-  margin-left: -15px;
+  margin-left: -5px;
 }
 .topMenu {
   width: 100vw;
-  height: 6vh;
+  height: 65px;
   border-bottom: 1px solid #e4e7ed;
   // background: #000;
 }
@@ -120,5 +169,8 @@ export default {
   display: flex;
   align-items: center;
   // background: #000;
+  span {
+    cursor: pointer;
+  }
 }
 </style>

@@ -12,7 +12,13 @@ router.get('/all', async function (ctx, next) {
     ctx.body = res
   })
 })
-
+// 获取setting表中的内容
+router.get('/setting', async function (ctx, next) {
+  let id = ctx.request.query.id
+  await userService.setting(id).then((res) => {
+    ctx.body = res
+  })
+})
 // 注册
 router.post('/register', async (ctx, next) => {
   var username = ctx.request.body.username

@@ -2,7 +2,15 @@ const state = {
     name: '',
     password: '',
     avatar: '',
-    token: ''
+    token: '',
+    colors: {
+        color1: '#5A2BA7',
+        color2: '#BE1A92',
+        color3: '#F64173',
+        color4: '#FF7F57',
+        color5: '#FFBD4E',
+        color6: '#F9F871'
+    }
 }
 
 
@@ -13,6 +21,9 @@ const mutations = {
         state.avatar = data.avatar
         state.token = data.token
     },
+    SET_USER_THEME_COLOR: (state, data) => {
+        state.colors = data
+    }
 }
 
 const actions = {

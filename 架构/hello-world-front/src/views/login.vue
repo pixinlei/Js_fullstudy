@@ -29,7 +29,9 @@
         <van-field type="password" v-model="password" label="密码" placeholder="请输入密码" autocomplete />
         <van-row>
           <van-col span="8"></van-col>
-          <van-col span="8"><el-button type="primary" @click="onSubmit">登录</el-button></van-col>
+          <van-col span="8">
+            <el-button type="primary" @click="onSubmit">登录</el-button>
+          </van-col>
           <van-col span="8"></van-col>
         </van-row>
       </form>
@@ -37,28 +39,31 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { get, post } from '../util/axios'
 import { useRouter } from 'vue-router'
-import { reactive, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { ElMessage } from 'element-plus'
+import { useStore } from 'vuex'
 export default {
   setup() {
     let isPc = window.sessionStorage.getItem('pc')
     let username = ref('')
     let password = ref('')
     let router = useRouter()
-    function onSubmit() {
+
+    async function onSubmit() {
       if (username.value == '') return ElMessage('请输入用户名')
       if (password.value == '') return ElMessage('请输入密码')
       let form = {
         username: username.value,
         password: password.value
       }
-      post('users/login', form).then(res => {
-        console.log(res)
+      await post('users/login', form).then(res => {
+        console.log(res, '这里是登录信息')
         if (res.code == '200') {
           window.localStorage.setItem('token', res.data.token)
+          window.localStorage.setItem('id', res.data.res[0].id)
           router.push({
             path: '/'
           })
@@ -66,6 +71,7 @@ export default {
           ElMessage('用户不存在，登录失败')
         }
       })
+      let id = { id: Number(window.localStorage.getItem('id')) }
     }
     return {
       username,
