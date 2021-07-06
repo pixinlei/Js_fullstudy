@@ -8,7 +8,7 @@
   <div class="page" @mouseup="changeWidthUp">
     <div
       class="topMenu"
-      :style="` background-image: linear-gradient(90deg, ${colors.color1}, ${colors.color2},${colors.color3},${colors.color4},${colors.color5},${colors.color6})`"
+      :style="` background-image: linear-gradient(90deg, ${initColor().color1},${initColor().color2},${initColor().color3},${initColor().color4},${initColor().color5},${initColor().color6})`"
     >
       <el-row style="height:65px;" class="flex align-center">
         <el-col :span="9"></el-col>
@@ -18,14 +18,17 @@
         <el-col :span="9"></el-col>
         <el-col :span="3" class="img-wrapper">
           <router-link to="setting" class="flex-center">
-            <img src="../assets/default_avator.jpg" alt />
-            <span class="ml20 black">{{`默认用户`}}</span>
+            <img class="bdrs50" v-if="!initUserInformation().avator" src="../assets/default_avator.jpg" alt />
+            <img class="bdrs50" v-else :src="initUserInformation().avator" alt="头像" />
+            <span class="ml20 black">{{initUserInformation().nickname ? initUserInformation().nickname :`默认用户`}}</span>
           </router-link>
         </el-col>
       </el-row>
     </div>
     <div class="flex">
-      <div class="leftMenu" ref="leftMenu" :style="`width:${changedWidth}px`"></div>
+      <div class="leftMenu" ref="leftMenu" :style="`width:${changedWidth}px;`">
+        <MyMenu :menuList="menuList" />
+      </div>
       <div class="drop-line" id="resize"></div>
       <router-view />
     </div>
@@ -33,15 +36,27 @@
 </template>
 
 <script>
+import Menu from '../components/leftMenuItem.vue'
 import { get } from '../util/axios'
-import { ref, toRefs, onMounted,reactive } from 'vue'
+import { ref, toRefs, onMounted, reactive, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 export default {
   components: {
+    MyMenu: Menu
     // colorSelect
   },
   setup() {
+    let menuList = reactive([
+      {
+        label: 'tarot',
+        children: [{ label: 'text11111111111', children: [] }]
+      },
+      {
+        label: 'echarts',
+        children: [{ label: 'text222222222222', children: [] }]
+      }
+    ])
     let store = useStore()
     let route = useRoute()
     let title = ref(route.meta.title)
@@ -52,35 +67,33 @@ export default {
       let colors = store.state.user.colors
       return colors
     }
+    function initUserInformation() {
+      let username = window.localStorage.getItem('username')
+      let avator = window.localStorage.getItem('avator')
+      let nickname = window.localStorage.getItem('nickname')
 
+      let user = {
+        username,
+        avator,
+        nickname
+      }
+      return user
+    }
     async function initSetting() {
       let id = window.localStorage.getItem('id')
       await get('users/setting', { id }).then(res => {
         store.commit('user/SET_USER_THEME_COLOR', res)
       })
-      let colors = await initColor()
-      return { colors }
     }
-    let settings = reactive({
-      colors: {
-        color1: '#5A2BA7',
-        color2: '#BE1A92',
-        color3: '#F64173',
-        color4: '#FF7F57',
-        color5: '#FFBD4E',
-        color6: '#F9F871'
-      }
-    })
-    onMounted(() => {
-      let temp = initSetting()
-      settings = temp
-    })
-
+    initSetting()
     return {
+      initUserInformation,
+      initColor,
+      initSetting,
       title,
       activeIndex,
       isPc,
-      ...toRefs(settings)
+      menuList
     }
   },
   data() {
@@ -139,13 +152,28 @@ export default {
 }
 .leftMenu {
   width: 250px;
+  min-width: 250px;
   height: 94vh;
   border-right: 1px solid #e4e7ed;
   position: relative;
-  // bottom: 0;
-  // top: 6vh;
-  // background: #000;
+  // border-radius: 50px;
+  border-radius: 0 20px 8px 0;
+  overflow: hidden;
+  box-shadow: 26px 26px 53px #b5a2a2, -26px -26px 53px #f5dbdb;
 }
+// .leftMenu::after {
+//   content: '';
+//   width: 250px;
+//   height: 94vh;
+//   background: inherit;
+//   position: absolute;
+//   left: 0px; //giving minus -25px left position
+//   right: 0;
+//   top: 0px; //giving minus -25px top position
+//   bottom: 0;
+//   box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
+//   filter: blur(10px);
+// }
 .drop-line {
   position: relative;
   width: 10px;
@@ -158,7 +186,19 @@ export default {
   width: 100vw;
   height: 65px;
   border-bottom: 1px solid #e4e7ed;
-  // background: #000;
+}
+.topMenu:before {
+  content: '';
+  width: 100vw;
+  height: 100px;
+  background: inherit;
+  position: absolute;
+  left: 0px; //giving minus -25px left position
+  right: 0;
+  top: -25px; //giving minus -25px top position
+  bottom: 0;
+  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
+  filter: blur(10px);
 }
 .topMenu img {
   width: 50px;

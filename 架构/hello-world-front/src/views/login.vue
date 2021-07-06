@@ -63,6 +63,9 @@ export default {
         console.log(res, '这里是登录信息')
         if (res.code == '200') {
           window.localStorage.setItem('token', res.data.token)
+          window.localStorage.setItem('username', res.data.res[0].username)
+          window.localStorage.setItem('avator', res.data.res[0].avator)
+          window.localStorage.setItem('nickname', res.data.res[0].nickname)
           window.localStorage.setItem('id', res.data.res[0].id)
           router.push({
             path: '/'

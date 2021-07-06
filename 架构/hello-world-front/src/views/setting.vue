@@ -21,6 +21,9 @@
           <el-color-picker v-model="color5"></el-color-picker>
           <el-color-picker v-model="color6"></el-color-picker>
         </el-form-item>
+        <el-form-item label="看板娘">
+          <!-- <el-switch v-model="1" active-text="开" inactive-text="关"> -->
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm()">立即创建</el-button>
           <el-button @click="resetForm()">重置</el-button>
@@ -37,13 +40,13 @@ import { get } from '../util/axios'
 export default {
   setup() {
     let colors = reactive({
-        color1: '#5A2BA7',
-        color2: '#BE1A92',
-        color3: '#F64173',
-        color4: '#FF7F57',
-        color5: '#FFBD4E',
-        color6: '#F9F871'
-      })
+      color1: '#5A2BA7',
+      color2: '#BE1A92',
+      color3: '#F64173',
+      color4: '#FF7F57',
+      color5: '#FFBD4E',
+      color6: '#F9F871'
+    })
     let ruleForm = reactive({
       name: '',
       avator: '',
@@ -95,12 +98,11 @@ export default {
 
 <style scoped lang="scss">
 .page {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .box-card {
   width: 80%;
-  height: auto;
-  margin-top: -20%;
+  margin-top: 10%;
 }
 </style>
