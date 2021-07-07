@@ -1,0 +1,19 @@
+<script>
+    let href = 'https://www.msgao.com/rihan/22806_50.html'
+
+    let count = href.replace(/[^\d]/g, ' ')
+
+    console.log(count);
+
+    let list = []
+    let map = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    for (let i = count.length - 1; i >= 0; i--) {
+        if (map.includes(Number(count[i]))) {
+            list.push(Number(count[i]))
+        } else {
+            break
+        }
+    }
+
+    console.log(list);
+</script>
