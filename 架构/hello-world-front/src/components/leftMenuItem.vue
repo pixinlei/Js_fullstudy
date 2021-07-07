@@ -3,32 +3,46 @@
     class="menu"
     v-for="(item, index) in menu"
     :key="index"
-    @click="showChildren(index)"
+    @click.self="showChildren(index, item)"
     @mouseout="changeColor($event, false)"
     @mouseover="changeColor($event, true)"
   >
     <div :class="activeIndex==index ? 'trangle-up' : 'trangle-down'"></div>
     {{item.label}}
-    <transition name="fade">
-      <div v-if="item.children.length" v-show="activeIndex==index" class="white">
-        <MyMenu :menuList="item.children" />
-      </div>
-    </transition>
+    <el-collapse-transition>
+      <transition name="fade">
+        <div v-if="item.children.length" v-show="activeIndex==index" class="white">
+          <MyMenu :menuList="item.children" />
+        </div>
+      </transition>
+    </el-collapse-transition>
   </div>
 </template>
 
 <script>
 import { computed, ref } from 'vue'
+import {useRouter} from 'vue-router'
 export default {
   name: 'MyMenu',
   props: {
     menuList: Array
   },
   setup(props) {
+    const router = useRouter()
     let activeIndex = ref(-1)
-    function showChildren(index) {
-      activeIndex.value = activeIndex.value == index ? -1 : index
+    function showChildren(index, item) {
+      if (item.children && item.children.length) {
+        activeIndex.value = activeIndex.value == index ? -1 : index
+      } else {
+        
+        console.log(router);
+        router.push({
+          path: `${item.label}`
+        })
+      }
     }
+
+
     const menuList = computed(() => {
       return props.menuList
     })
@@ -36,7 +50,6 @@ export default {
     function changeColor(e, bool) {
       if (bool) {
         e.target.style.background = 'rgb(236,245,255)'
-        // e.target.style.boxShadow = 'inset 26px 26px 53px #bdb8b8,inset -26px -26px 53px #fffafa'
       } else {
         e.target.style.background = ''
         e.target.style.boxShadow = ''
@@ -46,7 +59,7 @@ export default {
       menu,
       changeColor,
       showChildren,
-      activeIndex
+      activeIndex,
     }
   }
 }
@@ -95,13 +108,14 @@ export default {
 /* 设置持续时间和动画函数 */
 .fade-enter-active,
 .fade-leave-active {
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   // transition: height 10s ease;
   // transition: opacity 2s ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active, 2.1.8 版本以下 */ {
   // transform: translateY(-56px);
   // height: 56px;
-  opacity: 0;
+  // opacity: 0;
+  height: 56px;
 }
 </style>

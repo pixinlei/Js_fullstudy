@@ -3,14 +3,14 @@ const state = {
     password: '',
     avatar: '',
     token: '',
-    colors: {
-        color1: '#5A2BA7',
-        color2: '#BE1A92',
-        color3: '#F64173',
-        color4: '#FF7F57',
-        color5: '#FFBD4E',
-        color6: '#F9F871'
-    }
+    colors: [{
+        color1: '#000000',
+        color2: '#000000',
+        color3: '#000000',
+        color4: '#000000',
+        color5: '#000000',
+        color6: '#000000'
+    }]
 }
 
 

@@ -22,7 +22,7 @@
           <el-color-picker v-model="color6"></el-color-picker>
         </el-form-item>
         <el-form-item label="看板娘">
-          <!-- <el-switch v-model="1" active-text="开" inactive-text="关"> -->
+          <el-switch v-model="showKanbanMusume" active-color="#13ce66" inactive-color="#E4E7ED" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm()">立即创建</el-button>
@@ -50,7 +50,8 @@ export default {
     let ruleForm = reactive({
       name: '',
       avator: '',
-      themeColor: ''
+      themeColor: '',
+      showKanbanMusume: true
     })
     let rules = reactive({})
     async function submitForm() {
@@ -68,7 +69,8 @@ export default {
       ruleForm = reactive({
         name: '',
         avator: '',
-        themeColor: ''
+        themeColor: '',
+        showKanbanMusume: true
       })
     }
     function initColors() {

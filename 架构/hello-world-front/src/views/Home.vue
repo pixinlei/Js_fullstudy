@@ -49,12 +49,8 @@ export default {
   setup() {
     let menuList = reactive([
       {
-        label: 'tarot',
-        children: [{ label: 'text11111111111', children: [] }]
-      },
-      {
-        label: 'echarts',
-        children: [{ label: 'text222222222222', children: [] }]
+        label: '图表',
+        children: [{ label: 'echarts', children: [] }]
       }
     ])
     let store = useStore()
@@ -65,7 +61,7 @@ export default {
 
     function initColor() {
       let colors = store.state.user.colors
-      return colors
+      return colors[0]
     }
     function initUserInformation() {
       let username = window.localStorage.getItem('username')
@@ -86,6 +82,12 @@ export default {
       })
     }
     initSetting()
+    //  async function a() {
+    //    await initSetting()
+    //    await initColor()
+    //    await console.log(initColor());
+    //  }
+    //  a()
     return {
       initUserInformation,
       initColor,
