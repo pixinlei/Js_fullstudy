@@ -13,11 +13,11 @@ const { title } = require('process');
     for (let i = 0; i < 24; i++) {
         await page.goto(`https://www.msgao.com/tag/baoru/${i==0 ? '' : `index_${i}.html`}`);
 
-        await page.waitForSelector('body > div > div > ul > li > a > img')
+        await page.waitForSelector('li img')
 
-        let title = await page.$$eval('body > div > div > ul > li > a > img',
-            (links) => links.map(x => x.title));
-        let cover = await page.$$eval('body > div > div > ul > li > a > img',
+        let title = await page.$$eval('li img',
+            (links) => links.map(x => x.alt));
+        let cover = await page.$$eval('li img',
             (links) => links.map(x => x.src));
         let href = await page.$$eval('body > div:nth-child(13) > div > ul > li > a',
             (links) => links.map(x => x.href));
