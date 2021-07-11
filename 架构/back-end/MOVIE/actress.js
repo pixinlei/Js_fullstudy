@@ -4,7 +4,7 @@ async function actress(actressCoverData, pageNum = 1) {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.setDefaultTimeout(0)
-    if(pageNum == 1) {
+    if (pageNum == 1) {
         await page.goto(`https://netflav.com/actress`);
     } else {
         await page.goto(`https://netflav.com/actress?page=${pageNum}`);
@@ -12,17 +12,20 @@ async function actress(actressCoverData, pageNum = 1) {
     await page.waitForSelector('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a > div > img')
 
     let title = await page.$$eval('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a > div > div > div:nth-child(1)',
-    (links) => links.map(x => x.innerHTML));
+        (links) => links.map(x => x.innerHTML));
     let cover = await page.$$eval('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a > div > img',
-    (links) => links.map(x => x.src));
+        (links) => links.map(x => x.src));
+    let href = await page.$$eval('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a',
+        (links) => links.map(x => x.href));
     let movieCount = await page.$$eval('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a > div > div > div:nth-child(2)',
-    (links) => links.map(x => Number((x.innerHTML).replace(/[^\d]/g, ' '))));
+        (links) => links.map(x => Number((x.innerHTML).replace(/[^\d]/g, ' '))));
 
-    for(let i=0;i<title.length;i++) {
+    for (let i = 0; i < title.length; i++) {
         actressCoverData.push({
-            title: title[i],             
-            cover: cover[i],             
-            movieCount: movieCount[i],             
+            title: title[i],
+            cover: cover[i],
+            href: href[i],
+            movieCount: movieCount[i],
         })
     }
 }
