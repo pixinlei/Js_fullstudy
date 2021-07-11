@@ -10,6 +10,8 @@ async function actress(actressCoverData, pageNum = 1) {
         await page.goto(`https://netflav.com/actress?page=${pageNum}`);
     }
     await page.waitForSelector('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a > div > img')
+    let languageBtn = await page.waitForSelector('#mainlayout_container > div.header_root > div.header_language')
+    languageBtn.click()
 
     let title = await page.$$eval('#main_segment > div > div > div:nth-child(2) > div:nth-child(1) > div > a > div > div > div:nth-child(1)',
     (links) => links.map(x => x.innerHTML));
