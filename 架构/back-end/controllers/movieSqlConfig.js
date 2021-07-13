@@ -40,14 +40,14 @@ let allServices = {
 }
 
 // 自动执行方法
-async function Init(pageNum=1) {
+async function Init(pageNum = 1) {
   var actressCoverData = []
   await actress(actressCoverData, pageNum)
-  if(!actressCoverData.length) return -1
+  if (!actressCoverData.length) return -1
   for (let i = 0; i < actressCoverData.length; i++) {
     await inserMoiveActress(actressCoverData[i])
   }
-  
+
 }
 
 
@@ -63,6 +63,12 @@ let inserMoiveActress = function (value) {
   return allServices.query(_sql, value)
 }
 
+// 获取女优封面数据
+let getMovieActress = function (start, end) {
+  let _sql = `select * from movie_actress LIMIT ${start},${end};`
+  // let _sql = `select * from movie_actress;`
+  return allServices.query(_sql)
+}
 
 
 
@@ -70,5 +76,6 @@ let inserMoiveActress = function (value) {
 module.exports = {
   inserMoiveActress,
   Init,
-  cleanMoiveActress
+  cleanMoiveActress,
+  getMovieActress
 }

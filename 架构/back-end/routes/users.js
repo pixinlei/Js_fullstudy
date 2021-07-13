@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const userService = require('../controllers/mySqlConfig')
 const utils = require('../controllers/util')
+const MovieService = require('../controllers/movieSqlConfig')
 
 router.prefix('/users')
 
@@ -25,8 +26,8 @@ router.get('/setting', async function (ctx, next) {
 router.post('/login', async (ctx, next) => {
   var username = ctx.request.body.username
   var password = ctx.request.body.password
-  console.log(ctx.request.body,'这里有哪些');
-  console.log(username,password,'是正常的吗');
+  console.log(ctx.request.body, '这里有哪些');
+  console.log(username, password, '是正常的吗');
   if (username && password) {
     await userService.login(username, password).then((res) => {
       if (!res.length) {
@@ -59,7 +60,17 @@ router.post('/login', async (ctx, next) => {
   }
 })
 
-
+// // 女优封面数据
+// router.get('/actress', async (ctx, next) => { //一次性最多120条数据，从0开始
+//   let start = ctx.request.query.start
+//   let end = ctx.request.query.end
+//   await MovieService.getMovieActress(start, end).then((res) => {
+//     ctx.body = res
+//   })
+//   // .catch(err => {
+//   //   // ctx.body = []
+//   // })
+// })
 
 
 
