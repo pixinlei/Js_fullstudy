@@ -1,4 +1,7 @@
-const { Init, cleanMoiveActress } = require('./movieSqlConfig.js');
+const { Init, cleanMoiveActress, getMovieActress } = require('./movieSqlConfig.js');
+
+const movies = require('../MOVIE/movies')
+
 
 
 (async() => {
@@ -8,6 +11,7 @@ const { Init, cleanMoiveActress } = require('./movieSqlConfig.js');
 
 async function LoopFn() {
     let NextPage = 1
+    // 首先是拿到了所有的女优封面相关的信息
     while (NextPage) {
         console.log('开始下载一页数据');
         let temp = await everyDayInit(NextPage)
@@ -19,8 +23,18 @@ async function LoopFn() {
             NextPage = 0
         }
     }
+
+    // 循环取出这些信息，然后拿到电影的详细信息
+
 }
 
+// 拿到一个女优电影信息
+async function getOneMovie(type, value, count) {
+    movies(movieData,type, value, count)
+}
+
+
+// 拿到一页女优封面信息
 async function everyDayInit(pageNum = 1) {
     let temp = await Init(pageNum)
     return temp
@@ -32,4 +46,4 @@ async function everyDayInit(pageNum = 1) {
 setInterval(async() => {
     await cleanMoiveActress()
     await LoopFn()
-}, 259200000) //三天更新一次
+}, 1000*60*60*24*7) //三天更新一次
