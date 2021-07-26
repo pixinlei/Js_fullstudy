@@ -40,7 +40,7 @@ let allServices = {
 }
 
 // 自动执行方法
-async function Init(pageNum = 1) {
+async function Init (pageNum = 1) {
   var actressCoverData = []
   await actress(actressCoverData, pageNum)
   if (!actressCoverData.length) return -1
@@ -68,6 +68,12 @@ let getMovieActress = function (start, end) {
   let _sql = `select * from movie_actress LIMIT ${start},${end};`
   // let _sql = `select * from movie_actress;`
   return allServices.query(_sql)
+}
+
+// 将女优电影数据存到数据库中
+let inserMoives = function (value) {
+  let _sql = `INSERT INTO movie_actress SET title="${value.title}",cover="${value.cover}",href="${value.href}",movieCount="${value.movieCount}";`
+  return allServices.query(_sql, value)
 }
 
 

@@ -1,19 +1,18 @@
-async function movies(movieData, type, value, count) {
+async function movies (movieData, type, value, count, needToSaveData) {
     const puppeteer = require('puppeteer');
     const fs = require("fs");
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.setDefaultTimeout(60000) //超时时间改成60秒吧
-    let count = count
+    let newcount = count
     const pageNum = 1
-
-    while (count > 0) {
+    while (newcount > 0) {
         if (pageNum == 1) {
-            count -= 16
+            newcount -= 16
             pageNum++
             await page.goto(`https://netflav.com/all?${type}=${value}`);
         } else {
-            if (count > 0) {
+            if (newcount > 0) {
                 await page.goto(`https://netflav.com/all?${type}=${value}&page=${pageNum}`);
             }
         }
@@ -29,7 +28,7 @@ async function movies(movieData, type, value, count) {
             (links) => links.map(x => x.href));
 
         for (let i = 0; i < title.length; i++) {
-            movieData.push({
+            needToSaveData.push({
                 title: title[i],
                 cover: cover[i],
                 href: href[i],
