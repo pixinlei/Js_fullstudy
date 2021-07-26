@@ -3,7 +3,7 @@ async function actress(actressCoverData, pageNum = 1) {
     const fs = require("fs");
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.setDefaultTimeout(60000) //超时时间改成60秒吧
+    await page.setDefaultTimeout(6000000) //超时时间改成100分钟吧
     if (pageNum == 1) {
         await page.goto(`https://netflav.com/actress`);
     } else {

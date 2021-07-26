@@ -72,16 +72,15 @@ let getMovieActress = function (start, end) {
 
 // 将女优电影数据存到数据库中
 let inserMoives = function (value) {
-  let _sql = `INSERT INTO movie_actress SET title="${value.title}",cover="${value.cover}",href="${value.href}",movieCount="${value.movieCount}";`
+  let _sql = `INSERT INTO movie_actress_detail SET title="${value.title}",cover="${value.cover}",href="${value.href}",id="${value.id}",name="${value.name}";`
   return allServices.query(_sql, value)
 }
-
-
 
 // 导出方法
 module.exports = {
   inserMoiveActress,
   Init,
   cleanMoiveActress,
-  getMovieActress
+  getMovieActress,
+  inserMoives
 }
