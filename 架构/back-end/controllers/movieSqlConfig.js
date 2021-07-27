@@ -76,11 +76,18 @@ let inserMoives = function (value) {
   return allServices.query(_sql, value)
 }
 
+// 获取女优电影详情数据
+let getMovieActressDetail = function (start, end) {
+  let _sql = `select * from movie_actress_detail LIMIT ${start},${end};`
+  return allServices.query(_sql)
+}
+
 // 导出方法
 module.exports = {
   inserMoiveActress,
   Init,
   cleanMoiveActress,
   getMovieActress,
-  inserMoives
+  inserMoives,
+  getMovieActressDetail
 }

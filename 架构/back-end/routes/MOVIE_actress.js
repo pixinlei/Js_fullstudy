@@ -31,6 +31,19 @@ router.get('/actress', async (ctx, next) => { //一次性最多120条数据，�
   // })
 })
 
+// 女优电影详细信息
+router.get('/actressDetail', async (ctx, next) => { //一次性最多120条数据，从0开始
+  let start = ctx.request.query.start
+  let end = ctx.request.query.end
+  await MovieService.getMovieActressDetail(start, end).then((res) => {
+    ctx.body = res
+  })
+  // .catch(err => {
+  //   // ctx.body = []
+  // })
+})
+
+
 router.get('/all', async function (ctx, next) {
   await userService.getAllUsers().then((res) => {
     ctx.body = res
