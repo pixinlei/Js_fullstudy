@@ -1,11 +1,12 @@
 const { Init, cleanMoiveActress, getMovieActress } = require('./movieSqlConfig.js');
 
-const movies = require('../MOVIE/movies')
+const movies = require('../MOVIE/movies');
 
 
 
     (async () => {
-        await cleanMoiveActress()
+        // 首先是清空数据库
+        // await cleanMoiveActress()
         await LoopFn()
     })()
 
@@ -44,6 +45,6 @@ async function everyDayInit (pageNum = 1) {
 
 
 setInterval(async () => {
-    await cleanMoiveActress()
-    await LoopFn()
+    // await cleanMoiveActress()
+    LoopFn()
 }, 1000 * 60 * 60 * 24 * 7) //三天更新一次

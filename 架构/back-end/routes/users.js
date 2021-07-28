@@ -60,6 +60,13 @@ router.post('/login', async (ctx, next) => {
   }
 })
 
+// 查找是有有这个用户，看看会返回什么
+router.get('/findTheUser', async (ctx, next) => {
+  let user = ctx.request.query.user
+  await userService.findUser(user).then(res => {
+    ctx.body = res
+  })
+})
 // // 女优封面数据
 // router.get('/actress', async (ctx, next) => { //一次性最多120条数据，从0开始
 //   let start = ctx.request.query.start

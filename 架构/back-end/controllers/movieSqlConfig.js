@@ -45,9 +45,11 @@ async function Init (pageNum = 1) {
   await actress(actressCoverData, pageNum)
   if (!actressCoverData.length) return -1
   for (let i = 0; i < actressCoverData.length; i++) {
+    let isAlreadyInsert = await findMovieActress(actressCoverData[i].title)
+    console.log(isAlreadyInsert, '如果已经有了的话，那就会拿到一条数据，否则为空数组');
+    if(isAlreadyInsert.length) return
     await inserMoiveActress(actressCoverData[i])
   }
-
 }
 
 
@@ -63,6 +65,12 @@ let inserMoiveActress = function (value) {
   return allServices.query(_sql, value)
 }
 
+// 在添加女优封面之前查看这条数据是否已经被添加上了
+let findMovieActress = function (title) {
+  let _sql = `select * from movie_actress where title="${title}";`
+  return allServices.query(_sql)
+}
+
 // 获取女优封面数据
 let getMovieActress = function (start, end) {
   let _sql = `select * from movie_actress LIMIT ${start},${end};`
@@ -75,6 +83,13 @@ let inserMoives = function (value) {
   let _sql = `INSERT INTO movie_actress_detail SET title="${value.title}",cover="${value.cover}",href="${value.href}",id="${value.id}",name="${value.name}";`
   return allServices.query(_sql, value)
 }
+
+// 在添加女优电影数据之前查看这条数据是否已经被添加上了
+let findMovies = function (title) {
+  let _sql = `select * from movie_actress_detail where title="${title}";`
+  return allServices.query(_sql)
+}
+
 
 // 获取女优电影详情数据
 let getMovieActressDetail = function (start, end) {
@@ -89,5 +104,6 @@ module.exports = {
   cleanMoiveActress,
   getMovieActress,
   inserMoives,
-  getMovieActressDetail
+  getMovieActressDetail,
+  findMovies
 }

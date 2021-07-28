@@ -1,5 +1,5 @@
 const movies = require('../MOVIE/movies');
-const { getMovieActress, inserMoives } = require('./movieSqlConfig.js');
+const { getMovieActress, inserMoives, findMovies } = require('./movieSqlConfig.js');
 let MovieHref = []; //这里是要储存最终的结果
 let hasMorePage = true;
     (() => {
@@ -50,7 +50,16 @@ async function getCoverData(start, end, MovieHref) {
 // 拿到href和count，进去获取movie的详细信息
 async function getDetailInformation(type, name, count, MovieHref) {
     await movies(type, name, count, MovieHref)
-    MovieHref.forEach((v,i) => {
+    MovieHref.forEach(async (v,i) => {
+        // 已经有的就不插入
+        let isAlreadyInsert = await findMovies(v.title)
+        console.log(isAlreadyInsert, '这里数据库中已经有的，就不插入');
+        if(isAlreadyInsert.length) return
         inserMoives(v)
     })    
 }
+
+setInterval(async () => {
+    // await cleanMoiveActress()
+    getAllCoverData()
+}, 1000 * 60 * 60 * 24 * 7) //三天更新一次
