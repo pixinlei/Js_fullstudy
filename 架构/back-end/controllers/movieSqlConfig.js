@@ -90,12 +90,24 @@ let findMovies = function (title) {
   return allServices.query(_sql)
 }
 
-
 // 获取女优电影详情数据
 let getMovieActressDetail = function (start, end) {
   let _sql = `select * from movie_actress_detail LIMIT ${start},${end};`
   return allServices.query(_sql)
 }
+
+// 将女优电影url数据存到数据库中
+let updataMoiveUrl = function (movieTitle,movieUrl,mach,previewPicture,magneticTitle,magnetic, id) {
+  movieTitle = String(movieTitle)
+  movieUrl = String(movieUrl)
+  mach = String(mach)
+  previewPicture = String(previewPicture)
+  magneticTitle = String(magneticTitle)
+  magnetic = String(magnetic)
+  let _sql = `UPDATE movie_actress_detail SET movieTitle="${movieTitle}", movieUrl="${movieUrl}", mach="${mach}",previewPicture="${previewPicture}",magneticTitle="${magneticTitle}",magnetic="${magnetic}" WHERE id="${id}";`
+  return allServices.query(_sql)
+}
+
 
 // 导出方法
 module.exports = {
@@ -105,5 +117,6 @@ module.exports = {
   getMovieActress,
   inserMoives,
   getMovieActressDetail,
-  findMovies
+  findMovies,
+  updataMoiveUrl
 }
