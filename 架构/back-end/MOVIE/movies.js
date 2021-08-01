@@ -8,13 +8,13 @@ async function movies (type, value, count, needToSaveData) {
     let pageNum = 1
     while (newcount > 0) {
         if (pageNum == 1) {
-            newcount -= 16
+            newcount -= 20
             pageNum++
             await page.goto(`https://netflav.com/all?${type}=${value}`);
         } else {
             if (newcount > 0) {
                 await page.goto(`https://netflav.com/all?${type}=${value}&page=${pageNum}`);
-                newcount -= 16
+                newcount -= 20
                 pageNum++
             }
         }
