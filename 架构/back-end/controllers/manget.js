@@ -43,6 +43,11 @@ async function getOneMovieData(start, end) {
 }
 
 
+// 每三天更新一次
+setInterval(()=> {
+    getAllMovieData()
+}, 1000 * 60 * 60 *24 *3)
+
 
 
 
