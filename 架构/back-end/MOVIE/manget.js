@@ -1,7 +1,7 @@
 async function actress(movieData, id) {
     const puppeteer = require('puppeteer');
     const fs = require("fs");
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setDefaultTimeout(6000000) //超时时间改成100分钟吧
     await page.goto(`https://netflav.com/video?id=${id}`);
