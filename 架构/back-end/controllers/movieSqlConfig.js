@@ -123,5 +123,6 @@ module.exports = {
   inserMoives,
   getMovieActressDetail,
   findMovies,
-  updataMoiveUrl
+  updataMoiveUrl,
+  getMovieByActress
 }
