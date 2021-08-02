@@ -47,7 +47,7 @@ async function Init (pageNum = 1) {
   for (let i = 0; i < actressCoverData.length; i++) {
     let isAlreadyInsert = await findMovieActress(actressCoverData[i].title)
     console.log(isAlreadyInsert, '如果已经有了的话，那就会拿到一条数据，否则为空数组');
-    if(isAlreadyInsert.length) return
+    if (isAlreadyInsert.length) return
     await inserMoiveActress(actressCoverData[i])
   }
 }
@@ -97,7 +97,7 @@ let getMovieActressDetail = function (start, end) {
 }
 
 // 将女优电影url数据存到数据库中
-let updataMoiveUrl = function (movieTitle,movieUrl,mach,previewPicture,magneticTitle,magnetic, id) {
+let updataMoiveUrl = function (movieTitle, movieUrl, mach, previewPicture, magneticTitle, magnetic, id) {
   movieTitle = String(movieTitle)
   movieUrl = String(movieUrl)
   mach = String(mach)
@@ -108,6 +108,11 @@ let updataMoiveUrl = function (movieTitle,movieUrl,mach,previewPicture,magneticT
   return allServices.query(_sql)
 }
 
+// 通过女优封面信息获取女优电影数据
+let getMovieByActress = function (name) {
+  let _sql = `select * from  movie_actress_detail where name="${name}";`
+  return allServices.query(_sql)
+}
 
 // 导出方法
 module.exports = {
