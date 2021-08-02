@@ -26,6 +26,19 @@ module.exports = {
                         },
                     }),
                 ],
+                resolve: {
+                    alias: {
+                        '@': 'src',
+                    },
+                },
+            }
+        } else {
+            return {
+                resolve: {
+                    alias: {
+                        '@': 'src',
+                    },
+                },
             }
         }
 

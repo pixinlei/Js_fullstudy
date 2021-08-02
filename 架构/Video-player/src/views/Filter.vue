@@ -15,7 +15,7 @@
     </van-dropdown-menu>
   </van-sticky>
   <template v-if="currentList.length">
-    <ul v-infinite-scroll="load" class="list-wrapper" v-for="(item, index) in currentList" :key="index" style="overflow:auto">
+    <!-- <ul v-infinite-scroll="load" class="list-wrapper" v-for="(item, index) in currentList" :key="index" style="overflow:auto;height:100%">
       <van-row>
         <van-col span="24">
           <van-swipe-cell>
@@ -23,8 +23,12 @@
           </van-swipe-cell>
         </van-col>
       </van-row>
-      
-    </ul>
+    </ul>-->
+    <!-- <van-pull-refresh v-model="refreshing" @refresh="onRefresh"> -->
+      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="load">
+        <van-cell v-for="(item, index) in currentList" :key="index" :title="item.title" />
+      </van-list>
+    <!-- </van-pull-refresh> -->
   </template>
   <van-empty description="没有更多了" v-if="!currentList.length" />
 </template>
@@ -46,20 +50,31 @@ export default {
       start: 0,
       end: 10
     })
+    let refreshing = false
+    let loading = ref(false)
+    let finished = ref(false)
     async function load() {
-      params.start +=100
-      params.end +=100
-
-      // await getListData()
+      params.start += 10
+      await getListData()
     }
-    
-
+    function onRefresh() {
+      finished.value = false
+      params.start = 0
+      currentList = []
+      getListData()
+    }
     function getListData() {
+      loading.value = true
       get('/Movie/actress', params).then(res => {
         console.log(res)
+        if (!res.length) {
+          finished.value = true
+          return
+        }
         res.forEach((v: MovieCoverData) => {
           currentList.push(v)
         })
+        loading.value = false
       })
     }
     getListData()
@@ -99,7 +114,11 @@ export default {
       changeListType,
       ListType,
       currentList,
-      load
+      load,
+      loading,
+      finished,
+      refreshing,
+      onRefresh
     }
   }
 }
