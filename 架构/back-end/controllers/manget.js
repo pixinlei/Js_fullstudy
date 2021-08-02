@@ -23,7 +23,7 @@ async function getOneMovieData(start, end) {
     let hasNextPage = await getMovieActressDetail(start.value, end.value)
     if (hasNextPage.length) {
         start.value++
-        end.value++
+        // end.value++ // end代表的是取多少条数据
     }
     let currentData = await findMovies(hasNextPage[0].title)
     if (currentData[0].movieUrl) {

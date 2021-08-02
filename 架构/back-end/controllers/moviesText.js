@@ -20,7 +20,7 @@ async function getAllCoverData() {
     while(hasMorePage) {
         await getCoverData(start, end, MovieHref)
         start++
-        end++
+        // end++ // end代表的是最多获取多少条数据
     }
 }
 
