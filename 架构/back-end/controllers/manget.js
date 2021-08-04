@@ -21,13 +21,15 @@ async function getAllMovieData() {
 async function getOneMovieData(start, end) {
     let movieData = {}
     let hasNextPage = await getMovieActressDetail(start.value, end.value)
-    if (hasNextPage.length) {
+    if (hasNextPage.length) { // 有数据，就可以前往下一条数据
         start.value++
         // end.value++ // end代表的是取多少条数据
+    } else { // 没有数据，不能前往下一条数据
+        return false
     }
     let currentData = await findMovies(hasNextPage[0].title)
-    if (currentData[0].movieUrl) {
-        return false
+    if (currentData[0].movieUrl) { // 已经保存过了，直接返回就可以了
+        return true
     }
     await movies(movieData, currentData[0].id)
     let movieTitle = await movieData.movieTitle
