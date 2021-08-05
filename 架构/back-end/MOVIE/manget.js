@@ -35,7 +35,7 @@ async function actress(movieData, id) {
     movieData.magneticTitle = magneticTitle
     movieData.magnetic = magnetic
     console.log('电影url成功拿到了');
-    // await browser.close();
+    await browser.close();
 }
 
 module.exports = actress
