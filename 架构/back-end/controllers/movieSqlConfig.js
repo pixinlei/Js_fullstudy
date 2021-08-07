@@ -40,7 +40,7 @@ let allServices = {
 }
 
 // 自动执行方法
-async function Init (pageNum = 1) {
+async function Init(pageNum = 1) {
   var actressCoverData = []
   await actress(actressCoverData, pageNum)
   if (!actressCoverData.length) return -1
@@ -80,13 +80,24 @@ let getMovieActress = function (start, end) {
 
 // 将女优电影数据存到数据库中
 let inserMoives = function (value) {
+  var reg1 = new RegExp('"',"g")
+  var reg2 = new RegExp("'","g")
+  value.title = value.title.replace(reg1, "")
+  value.title = value.title.replace(reg2, "")
   let _sql = `INSERT INTO movie_actress_detail SET title="${value.title}",cover="${value.cover}",href="${value.href}",id="${value.id}",name="${value.name}";`
   return allServices.query(_sql, value)
 }
 
 // 在添加女优电影数据之前查看这条数据是否已经被添加上了
 let findMovies = function (title) {
-  let _sql = `select * from movie_actress_detail where title="${title}";`
+  // 将引号改掉
+  let newTitle = String(title).replaceAll("'", ',')
+  newTitle = String(title).replaceAll('"', ',')
+  var reg1 = new RegExp('"',"g")
+  var reg2 = new RegExp("'","g")
+  newTitle = newTitle.replace(reg1, "")
+  newTitle = newTitle.replace(reg2, "")
+  let _sql = `select * from movie_actress_detail where title="${newTitle}";`
   return allServices.query(_sql)
 }
 
@@ -109,8 +120,8 @@ let updataMoiveUrl = function (movieTitle, movieUrl, mach, previewPicture, magne
 }
 
 // 通过女优封面信息获取女优电影数据
-let getMovieByActress = function (name) {
-  let _sql = `select * from  movie_actress_detail where name="${name}";`
+let getMovieByActress = function (name, start, end) {
+  let _sql = `select * from  movie_actress_detail where name="${name}" LIMIT ${start},${end};`
   return allServices.query(_sql)
 }
 

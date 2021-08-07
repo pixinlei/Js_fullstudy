@@ -47,7 +47,9 @@ router.get('/actressDetail', async (ctx, next) => { //一次性最多120条数�
 // 通过封面信息找到对应女优
 router.get('/getMovieByActress', async (ctx, next) => {
   let name = ctx.request.query.name
-  await MovieService.getMovieByActress(name).then(res => {
+  let start = ctx.request.query.start
+  let end = ctx.request.query.end
+  await MovieService.getMovieByActress(name,start, end).then(res => {
     ctx.body = res
   })
 })

@@ -55,7 +55,12 @@ async function getDetailInformation(type, name, count, MovieHref) {
         let isAlreadyInsert = await findMovies(v.title)
         console.log(isAlreadyInsert, '这里数据库中已经有的，就不插入');
         if(isAlreadyInsert.length) return
-        inserMoives(v)
+        try {
+            inserMoives(v)
+        } catch (err) {
+            console.log(err);
+            console.log(v);
+        }
     })    
 }
 

@@ -1,4 +1,4 @@
-async function movies (type, value, count, needToSaveData) {
+async function movies(type, value, count, needToSaveData) {
     const puppeteer = require('puppeteer');
     const fs = require("fs");
     const browser = await puppeteer.launch({ headless: false });
@@ -6,6 +6,7 @@ async function movies (type, value, count, needToSaveData) {
     await page.setDefaultTimeout(6000000) //超时时间改成100分钟吧
     let newcount = count
     let pageNum = 1
+    let title = null
     while (newcount > 0) {
         if (pageNum == 1) {
             newcount -= 20
@@ -18,13 +19,27 @@ async function movies (type, value, count, needToSaveData) {
                 pageNum++
             }
         }
+        // await page.waitForSelector('#main_segment > div > div > div')
+        // let empty = await page.$$eval('#main_segment > div > div > div',
+        // (links) => links.map(x => x.href));
+        // if(empty[0].indexOf('結果') != -1) {
+        //     console.log('这里是空的');
+        //     await browser.close();
+        // }
+
+        setTimeout(() => {
+            if (!title) {
+                console.log('走这里结束的');
+                browser.close();
+            }
+        }, 60 * 1000 * 3) // 三分钟没有就结束
         await page.waitForSelector('#main_segment > div > div:nth-child(2) > div.video_grid_container > div.grid_root > div > a > div.grid_title')
         await page.waitForSelector('#main_segment > div > div:nth-child(2) > div.video_grid_container > div.grid_root > div > a:nth-child(1) > div > div > img')
         await page.waitForSelector('#main_segment > div > div:nth-child(2) > div.video_grid_container > div.grid_root > div > a:nth-child(1)')
         let languageBtn = await page.waitForSelector('#mainlayout_container > div.header_root > div.header_language')
         await languageBtn.click()
 
-        let title = await page.$$eval('#main_segment > div > div:nth-child(2) > div.video_grid_container > div.grid_root > div > a > div.grid_title',
+        title = await page.$$eval('#main_segment > div > div:nth-child(2) > div.video_grid_container > div.grid_root > div > a > div.grid_title',
             (links) => links.map(x => x.innerHTML));
         let cover = await page.$$eval('#main_segment > div > div:nth-child(2) > div.video_grid_container > div.grid_root > div > a:nth-child(1) > div > div > img',
             (links) => links.map(x => x.src));
@@ -36,7 +51,7 @@ async function movies (type, value, count, needToSaveData) {
                 title: title[i],
                 cover: cover[i],
                 href: href[i],
-                id:href[i].split('id=')[1],
+                id: href[i].split('id=')[1],
                 name: value
             })
         }

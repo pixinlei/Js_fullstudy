@@ -7,7 +7,10 @@ async function actress(movieData, id) {
     await page.goto(`https://netflav.com/video?id=${id}`);
     await page.waitForSelector('.swiper-slide img')
     await page.waitForSelector('#video-details > div.videodetail_title')
-    let languageBtn = await page.waitForSelector('#mainlayout_container > div.header_root > div.header_language')
+    await page.waitForSelector('#iframe-block')
+    await page.waitForSelector('#video-details > div:nth-child(4) > div > div.videodetail_field_values')
+    await page.waitForSelector('.magnet_item_title')
+    let languageBtn = await page.waitForSelector('.magnet_item_title a')
     await languageBtn.click()
     // $$('#mainvideo').map(x=>x.src)
     // 标题
