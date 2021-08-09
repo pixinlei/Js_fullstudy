@@ -1,13 +1,5 @@
 <template>
-  <van-nav-bar
-    :safe-area-inset-top="true"
-    :placeholder="true"
-    title="影片群组"
-    border
-    fixedtitle="标题"
-    :left-arrow="showLeftButton"
-    @click-left="onClickLeft"
-  />
+  <TitleBar :title="`影片群组`" :showLeftButton="false" />
   <van-sticky>
     <van-dropdown-menu>
       <van-dropdown-item v-model="currentDropdown1" :options="optionList1" />
@@ -24,16 +16,22 @@
         </van-col>
       </van-row>
     </ul>-->
-    <!-- <van-pull-refresh v-model="refreshing" @refresh="onRefresh"> -->
-      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="load">
-        <van-cell v-for="(item, index) in currentList" :key="index" :title="item.title" />
-      </van-list>
-    <!-- </van-pull-refresh> -->
+    <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="load">
+      <!-- <van-cell v-for="(item, index) in currentList" :key="index" :title="item.title" /> -->
+      <van-row>
+        <van-col span="24" v-for="(item, index) in currentList" :key="index" @click="goMovieDetail">
+          <van-swipe-cell>
+            <van-card :price="item.movieCount" desc="电影数量" :title="item.title" class="goods-card" :thumb="item.cover" />
+          </van-swipe-cell>
+        </van-col>
+      </van-row>
+    </van-list>
   </template>
   <van-empty description="没有更多了" v-if="!currentList.length" />
 </template>
 
 <script lang="ts">
+import TitleBar from '../components/TitleBar.vue'
 import { get } from '../util/axios.js'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
@@ -45,6 +43,9 @@ interface MovieCoverData {
   title: string
 }
 export default {
+  components: {
+    TitleBar
+  },
   setup() {
     let params = reactive({
       start: 0,
@@ -57,6 +58,12 @@ export default {
       params.start += 10
       await getListData()
     }
+    function goMovieDetail() {
+      router.push({
+        name: 'MovieDetail'
+      })
+    }
+
     function onRefresh() {
       finished.value = false
       params.start = 0
@@ -118,7 +125,8 @@ export default {
       loading,
       finished,
       refreshing,
-      onRefresh
+      onRefresh,
+      goMovieDetail
     }
   }
 }
