@@ -16,6 +16,10 @@
 <script>
 export default {
   props: {
+    speed: {
+      type: Number,
+      default: 10
+    },
     list: {
       type: Array,
       default: () => ['用户管理', '配置管理', '角色管理', '定时任务补偿']
@@ -80,7 +84,7 @@ export default {
         this.$refs[`TabItem${index}`][0].offsetLeft + this.$refs[`TabItem${index}`][0].clientWidth / 2 - this.$refs.lineRef.clientWidth / 2
       )
       while (this.beforeLineLocation != this.afterLineLocation) {
-        await this.animationFn(10)
+        await this.animationFn(this.speed)
       }
     },
     async animationFn(time) {

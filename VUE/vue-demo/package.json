@@ -1,12 +1,14 @@
 {
-  "name": "vue-demo",
-  "version": "0.1.0",
-  "private": true,
+  "name": "pixinlei-tabs",
+  "description": "发布一个npm包",
+  "version": "0.1.2",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "main": "./myPlugin/index.js",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",

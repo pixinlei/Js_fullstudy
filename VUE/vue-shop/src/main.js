@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import tabs from 'vue-demo@0.1.0'
 // Vue.use(ElementUI);
 
+Vue.use(tabs)
 Vue.config.productionTip = false
 
 new Vue({

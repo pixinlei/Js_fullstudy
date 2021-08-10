@@ -1,5 +1,5 @@
 module.exports = {
-  lintOnSave: 'warning',
+  // lintOnSave: false,
   css: {
     loaderOptions: {
       stylus: {

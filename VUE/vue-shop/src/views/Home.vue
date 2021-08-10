@@ -5,6 +5,8 @@
       <h1 v-if="flag">transation动画</h1>
     </transition>
   </div>
+  1111111111111
+  
 </template>
 
 <script>

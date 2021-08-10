@@ -1,9 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div>
+    <tabs />
   </div>
 </template>
 
-<style lang="stylus">
+<script>
+export default {
+
+}
+</script>
+
+<style>
 
 </style>
