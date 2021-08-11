@@ -68,6 +68,7 @@ export default {
   },
   data() {
     return {
+      isFirst: true, // 第一次的话直接移动到第一格，不滑动
       active: 0,
       beforeLineLocation: 0, // 上一次的横线位置
       afterLineLocation: 0 //当前的横线位置
@@ -83,6 +84,11 @@ export default {
       this.afterLineLocation = Math.round(
         this.$refs[`TabItem${index}`][0].offsetLeft + this.$refs[`TabItem${index}`][0].clientWidth / 2 - this.$refs.lineRef.clientWidth / 2
       )
+      if (this.isFirst) {
+        this.beforeLineLocation = this.afterLineLocation
+        this.isFirst = false
+        return
+      }
       while (this.beforeLineLocation != this.afterLineLocation) {
         await this.animationFn(this.speed)
       }

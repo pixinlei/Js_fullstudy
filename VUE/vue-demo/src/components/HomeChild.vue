@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <p>首页的子主页</p><hr/>
+    <p>首页的子主页</p>
+    <hr />
     <h3>{{count}}</h3>
     <p>{{$store.state.a.count}}</p>
     <div class="btn">
@@ -12,9 +13,9 @@
 
 <script>
 import store from '@/vuex/store.js'
-import {mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
 export default {
-  data () {
+  data() {
     return {
       msg: 'helloworld'
     }
@@ -46,12 +47,11 @@ export default {
   //   'add','reduce'
   // ])
   methods: {
-    ...mapMutations(['add','reduce']),
-    ...mapActions (['addAction'])
+    ...mapMutations(['add', 'reduce']),
+    ...mapActions(['addAction'])
   }
 }
 </script>
 
 <style>
-
 </style>
