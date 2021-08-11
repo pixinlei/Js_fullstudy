@@ -19,7 +19,7 @@
     <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="load">
       <!-- <van-cell v-for="(item, index) in currentList" :key="index" :title="item.title" /> -->
       <van-row>
-        <van-col span="24" v-for="(item, index) in currentList" :key="index" @click="goMovieDetail">
+        <van-col span="24" v-for="(item, index) in currentList" :key="index" @click="goMovieDetail(item)">
           <van-swipe-cell>
             <van-card :price="item.movieCount" desc="电影数量" :title="item.title" class="goods-card" :thumb="item.cover" />
           </van-swipe-cell>
@@ -58,9 +58,12 @@ export default {
       params.start += 10
       await getListData()
     }
-    function goMovieDetail() {
+    function goMovieDetail(item) {
       router.push({
-        name: 'MovieDetail'
+        name: 'MovieDetail',
+        query: {
+          name: item.title
+        }
       })
     }
 

@@ -8,11 +8,11 @@
 
  // 环境的切换
 if (process.env.NODE_ENV == 'development') {    
-    axios.defaults.baseURL = 'http://pixinlei.ltd:3001';
+    axios.defaults.baseURL = 'http://pixinlei.ltd:3000';
 } else if (process.env.NODE_ENV == 'debug') {    
     axios.defaults.baseURL = '';
 } else if (process.env.NODE_ENV == 'production') {    
-    axios.defaults.baseURL = 'http://pixinlei.ltd:3001';
+    axios.defaults.baseURL = 'http://pixinlei.ltd:3000';
 }
 
 // 请求超时时间
