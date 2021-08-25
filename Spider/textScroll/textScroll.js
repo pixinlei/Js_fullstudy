@@ -25,21 +25,25 @@ async function TextScroll() {
 }
 
 async function scrollPage(page, needHeight = 100) {
-    await page.evaluate(async () => {
-        await new Promise((resolve) => {
-            let totalHeight = 0
-            let distance = 100
-            let timer = setInterval(() => {
-                window.scrollBy(0, distance)
-                totalHeight += distance
-
-                if(totalHeight >= needHeight) {
-                    clearInterval(timer)
-                    resolve()
-                }
-            }, 120)
-        })
+    page.evaluate(() => {
+        let i = 0
+        
     })
+    // await page.evaluate(async () => {
+    //     await new Promise((resolve) => {
+    //         let totalHeight = 0
+    //         let distance = 100
+    //         let timer = setInterval(() => {
+    //             window.scrollBy(0, distance)
+    //             totalHeight += distance
+
+    //             if(totalHeight >= needHeight) {
+    //                 clearInterval(timer)
+    //                 resolve()
+    //             }
+    //         }, 120)
+    //     })
+    // })
 }
 
 

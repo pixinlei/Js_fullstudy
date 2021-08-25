@@ -10,6 +10,7 @@ const cors = require('koa2-cors')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const MOVIE_actress = require('./routes/MOVIE_actress')
+const Picture = require('./routes/Picture')
 
 // error handler
 onerror(app)
@@ -53,6 +54,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(MOVIE_actress.routes(), MOVIE_actress.allowedMethods())
+app.use(Picture.routes(), Picture.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
