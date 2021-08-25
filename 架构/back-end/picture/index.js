@@ -4,8 +4,16 @@ const { getPictureCosplay, insertPictureCosplay } = require('../controllers/pict
 const { getData } = require('./functions')
 
 
-// picture('Cosplay') // 获取封面
 
-getData(getPictureCosplay, pictureData)
-// console.log(getPictureCosplay({start: 0, end: 1}));
-// pictureData()
+
+
+async function Init(type) {
+    for await (let item of type) {
+        await picture(item) // 获取封面
+        await getData(getPictureCosplay, pictureData)
+    }
+}
+
+let types = ['Cosplay', 'Neiyiyouwu']
+
+Init(types)

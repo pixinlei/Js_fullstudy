@@ -43,7 +43,7 @@ let allServices = {
 let insertPictureCosplay= function (value) {
   let _sql = ``
     if(value.img) {
-      _sql = `INSERT INTO picture_cosplay set img='${value.img}';`
+      _sql = `UPDATE picture_cosplay SET img="${value.img}" WHERE href="${value.href}";`
     } else {
       _sql = `INSERT INTO picture_cosplay set href='${value.href}',title='${value.title}',cover='${value.cover}';`
     }
