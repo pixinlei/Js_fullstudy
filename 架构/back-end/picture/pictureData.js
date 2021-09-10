@@ -1,10 +1,11 @@
 const { insertPictureCosplay } = require('../controllers/pictureSqlConfig')
 async function picture(value) {
     const puppeteer = require('puppeteer');
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setDefaultTimeout(6000000) //超时时间改成100分钟吧
     await page.goto(value[0].href);
+    console.log('开始获取内容');
     await page.waitForSelector('.article-content img')
     await page.waitForSelector('.pagination a')
 
@@ -17,6 +18,7 @@ async function picture(value) {
     let imgs = []
     for await (let item of pictureHref) {
         await page.goto(item);
+        console.log('获取完一页内容');
         await page.waitForSelector('.article-content img')
         // 图片
         let title = await page.$$eval('.article-content img',
@@ -25,8 +27,8 @@ async function picture(value) {
         console.log('进入下一页');
     }
     imgs = imgs.toString()
-    console.log(imgs, '这里是正常的字符串');
     await insertPictureCosplay({img: imgs, href: value[0].href})
+    console.log('获取完成一整个的内容');
     await browser.close();
 }
 

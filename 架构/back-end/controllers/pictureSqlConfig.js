@@ -47,7 +47,7 @@ let insertPictureCosplay= function (value) {
       return allServices.query(_sql, value)
     } else {
       console.log('添加之前');
-      getPictureCosplay(value.href).then(res => {
+      getPictureCosplayAlredy(value.href).then(res => {
         console.log(res, res.length, '查找到了吗');
         if(res.length) return
         console.log('开始添加了');
@@ -62,7 +62,7 @@ let getPictureCosplay = function (value) {
     return allServices.query(_sql)
   }
 // 查找是否已经添加过
-let getPictureCosplay = function (href) {
+let getPictureCosplayAlredy = function (href) {
   let _sql = `select * from picture_cosplay where href="${href}";`
   return allServices.query(_sql)
 }
