@@ -28,6 +28,7 @@ async function picture(value) {
     }
     imgs = imgs.toString()
     await insertPictureCosplay({img: imgs, href: value[0].href})
+    console.log(value[0].href, '理论上插入了，为什么没有');
     console.log('获取完成一整个的内容');
     await browser.close();
 }
