@@ -3,7 +3,7 @@ async function picture(value) {
     const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.setDefaultTimeout(6000000) //超时时间改成100分钟吧
+    await page.setDefaultTimeout(60000) //超时时间改成100分钟吧
     await page.goto(value[0].href);
     console.log('开始获取内容');
     await page.waitForSelector('.article-content img')
