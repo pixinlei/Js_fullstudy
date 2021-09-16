@@ -19,7 +19,8 @@ async function Init(type) {
     }
 }
 
-let types = ['Cosplay', 'Neiyiyouwu', 'Xgyw', 'Guochanmeinv', 'Gangtaimeinv', 'Rihanmeinv', 'Oumeimeinv', 'Siwameitui', 'Siwameitui', 'LEGBABY',
-    'MissLeg', 'YaoJingShe', 'Tuigirl', 'Ugirls', 'IMiss', 'MiiTao', 'Uxing', 'Pdl', 'Artgravia', 'Candy']
+// let types = ['Cosplay', 'Neiyiyouwu', 'Xgyw', 'Guochanmeinv', 'Gangtaimeinv', 'Rihanmeinv', 'Oumeimeinv', 'Siwameitui', 'Siwameitui', 'LEGBABY',
+//     'MissLeg', 'YaoJingShe', 'Tuigirl', 'Ugirls', 'IMiss', 'MiiTao', 'Uxing', 'Pdl', 'Artgravia', 'Candy']
+let types = ['Cosplay',]
 
 Init(types)
