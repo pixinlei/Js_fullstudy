@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <ul>
+            <!-- 定义路由 -->
+            <li><a href="#/home">home</a></li>
+            <li><a href="#/about">about</a></li>
+
+            <!-- 渲染对应的ui -->
+            <div class="routerView"></div>
+        </ul>
+    </ul>
+</body>
+<script>
+    let routerView = document.getElementsByClassName('routerView')[0]
+    window.addEventListener('hashchange', () => {
+        let hash = location.hash
+        console.log('hash', '拿到了对应的hash');
+        console.log(routerView, '拿到了对应的组件');
+        routerView.innerHTML = hash
+    })
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if(!location.hash) { // 如果不存在hash值，就重定向到#/
+            location.hash = '/'
+        } else { // 存在hash，就渲染对应的ui
+            let hash = location.hash
+            routerView.innerHTML = hash
+        }
+    })
+</script>
+</html>

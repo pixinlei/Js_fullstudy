@@ -12,15 +12,16 @@ async function Init(type) {
         try {
             await picture(item) // 获取封面
             console.log('获取一类封面完毕');
-            await getData(getPictureCosplay, pictureData)
+            // await getData(getPictureCosplay, pictureData)
         } catch {
-            console.log('页面不存在等问题，先跳过');
+            console.log('最外层，说明封面或者内容部分出问题了');
         }
     }
 }
 
-// let types = ['Cosplay', 'Neiyiyouwu', 'Xgyw', 'Guochanmeinv', 'Gangtaimeinv', 'Rihanmeinv', 'Oumeimeinv', 'Siwameitui', 'Siwameitui', 'LEGBABY',
-//     'MissLeg', 'YaoJingShe', 'Tuigirl', 'Ugirls', 'IMiss', 'MiiTao', 'Uxing', 'Pdl', 'Artgravia', 'Candy']
-let types = ['Cosplay',]
+let types = ['Cosplay', 'Neiyiyouwu', 'Xgyw', 'Guochanmeinv', 'Gangtaimeinv', 'Rihanmeinv', 'Oumeimeinv', 'Siwameitui', 'Siwameitui', 'LEGBABY',
+    'MissLeg', 'YaoJingShe', 'Tuigirl', 'Ugirls', 'IMiss', 'MiiTao', 'Uxing', 'Pdl', 'Artgravia', 'Candy']
 
-Init(types)
+// Init(types)
+
+getData(getPictureCosplay, pictureData)

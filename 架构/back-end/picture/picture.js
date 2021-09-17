@@ -5,7 +5,7 @@ async function picture(type, currentPage = 1) {
     // const fs = require("fs");
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.setDefaultTimeout(60000) //超时时间改成100分钟吧
+    await page.setDefaultTimeout(20 * 1000) //超时时间改成100分钟吧
     let url = currentPage == 1 ? `https://www.jpxgmn.top/${type}/` : `https://www.jpxgmn.top/${type}/page_${currentPage}.html`
     await page.goto(url);
     console.log('开始获取封面');
