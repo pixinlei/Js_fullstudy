@@ -1,0 +1,28 @@
+<script>
+    let input = { red_apple: '111', blue_apple: { green_apple: { orange_apple: '222' } } }
+
+
+    function Index(input, result = {}) {
+        for (let item in input) {
+            if (input[item] instanceof Object) {
+
+                let temp = ''
+                item.split('_').forEach((v, i) => {
+                    i == 0 ? temp = temp + v : temp = temp + v[0].toUpperCase() + v.slice(1)
+                })
+                result[temp] = {}
+
+                Index(input[item], result[temp])
+            } else {
+                let temp = ''
+                item.split('_').forEach((v, i) => {
+                    i == 0 ? temp = temp + v : temp = temp + v[0].toUpperCase() + v.slice(1)
+                })
+                result[temp] = input[item]
+            }
+        }
+        return result
+    }
+
+    console.log(Index(input));
+</script>

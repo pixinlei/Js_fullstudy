@@ -1,61 +1,40 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import store from './store'
-import {Provider, connect} from 'react-redux'
+import ReactDOM from 'react-dom'
 
-const stateToProps = (state)=> {
-    return {
-        inputValue: state.inputValue
-    }
-}
-
-class UseConnect extends React.Component {
+class Son extends React.Component {
     constructor(props) {
         super(props)
-        this.state = store.getState()
+        this.state = {}
     }
     render() { 
-        console.log(this.props, '怎么用哪个');
-        return <div>{this.props.inputValue}</div>;
+        console.log(this.props.add)
+        return <div onClick={this.props.add}>子组件 --- {this.props.fatherToSon}</div>;
     }
 }
  
-// export {connect(UseConnect, null)(UseConnect)};
-export default connect(stateToProps, null)(UseConnect)
 
-function Home() {
-    return <div>
-        <UseConnect />
-        <h1>home页面</h1>
-    </div>
-}
-function About() {
-    return <h1>About页面</h1>
-}
-
-class Index extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = store.getState()
+        this.state = {
+            fatherToSon: '父传给子的参数',
+            fatherData: 1
+        }
+
+    }
+    add() {
+        console.log(this, '1111111')
+        // let temp = this.state.fatherData + 1
+        // this.setState({fatherData: temp})
     }
     render() { 
         return (<div>
-            <Router>
-                <li><Link to="/">home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <Route path="/" exact component={Home}></Route>
-                <Route path="/about" exact component={About}></Route>
-            </Router>
-        </div>)
+            父组件 ---- {this.state.fatherData}
+            <Son fatherToSon={this.state.fatherToSon} add={this.add} />
+            </div>)
     }
 }
-const App = (
-    <Provider store={store}>
-        <Index />
-    </Provider>
-)
+ 
 
-ReactDOM.render(App, document.getElementById('root'))
-// export default App;
 
+ReactDOM.render(<App />, document.getElementById('root'))

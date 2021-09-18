@@ -19,4 +19,5 @@ async function Index(value = {href: 'https://juejin.cn/post/7008723298414493710'
         console.log('页面不存在等问题，反正没有正确执行');
     }
 }
-module.exports = Index
+Index()
+// module.exports = Index
