@@ -1,0 +1,11 @@
+<input type="text" class="input">
+
+<script>
+//MutationObserver基本用法 
+var observer = new MutationObserver(function(){   //这里是回调函数 
+  console.log('DOM被修改了！'); 
+}); 
+var article = document.querySelector('.input'); 
+console.log(observer.observe(article));
+
+</script>

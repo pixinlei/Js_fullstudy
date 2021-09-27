@@ -1,25 +1,28 @@
-let arr = [
-  { id: 1, name: '部门1', pid: 0 },
-  { id: 2, name: '部门2', pid: 1 },
-  { id: 3, name: '部门3', pid: 1 },
-  { id: 4, name: '部门4', pid: 3 },
-  { id: 5, name: '部门5', pid: 4 },
-]
-
-function arrToTree(arr, pid) {
-  let result = []
-  getChildren(arr,result, pid)
-  return result
+var Foo = function () {
+  getName = function () {
+    console.log(1);
+  }
+  return this
 }
 
-function getChildren(data, result, pid) {
-  data.forEach((v,i) => {
-    if(v.pid == pid) {
-      let newItem = {...v, children: []}
-      result.push(newItem)
-      getChildren(data, newItem.children, v.id)
-    }
-  })
+Foo.getName = function() {
+  console.log(2);
 }
 
-console.log(arrToTree(arr, 0));
+Foo.prototype.getName = function() {
+  console.log(3);
+}
+
+var getName = function() {
+  console.log(4);
+}
+function getName() {
+  console.log(5);
+}
+
+getName() // 4
+Foo.getName() // 2
+// console.log(Foo().getName);
+Foo().getName() //3
+getName() // 4
+new Foo().getName() // 3

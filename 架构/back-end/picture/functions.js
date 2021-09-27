@@ -1,4 +1,4 @@
-async function getData(getFn, setFn, start = 0, end = 1,) {
+async function getData(getFn, setFn, start = 585, end = 1,) {
     await getFn({ start: start, end: end }).then(async res => {
         if (!res.length) return
         await setFn(res)
