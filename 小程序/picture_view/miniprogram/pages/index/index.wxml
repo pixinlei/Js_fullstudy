@@ -1,24 +1,22 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
+<view class="home">
+  <view class="" id="contenter" hover-class="none" hover-stop-propagation="false">
+    <view class="box" hover-class="none" hover-stop-propagation="false">
+      <view class="box-img" hover-class="none" hover-stop-propagation="false">
+        <image lazy-load class="img" src="https://img0.baidu.com/it/u=3108985497,127936925&fm=26&fmt=auto" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+          
+        </image>
       </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-    <button bind:tap="changeName">变</button>
+    </view>
+        <view class="box" hover-class="none" hover-stop-propagation="false">
+      <view class="box-img" hover-class="none" hover-stop-propagation="false">
+        <image class="img" src="https://img0.baidu.com/it/u=3108985497,127936925&fm=26&fmt=auto" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+      </view>
+    </view>
+        <view class="box" hover-class="none" hover-stop-propagation="false">
+      <view class="box-img" hover-class="none" hover-stop-propagation="false">
+        <image class="img" src="https://img0.baidu.com/it/u=3108985497,127936925&fm=26&fmt=auto" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+      </view>
+    </view>
   </view>
 </view>
