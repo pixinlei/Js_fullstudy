@@ -40,27 +40,28 @@ let allServices = {
 }
 
 // 插入cosplay模块数据
-let insertPictureCosplay= function (value) {
+let insertPictureCosplay = function (value) {
   let _sql = ``
-    if(value.img) {
-      _sql = `UPDATE picture_cosplay SET img="${value.img}" WHERE href="${value.href}";`
+  if (value.img) {
+    _sql = `UPDATE picture_cosplay SET img="${value.img}" WHERE href="${value.href}";`
+    return allServices.query(_sql, value)
+  } else {
+    console.log('添加之前');
+    getPictureCosplayAlredy(value.href).then(res => {
+      console.log(res, res.length, '查找到了吗');
+      if (res.length) return
+      console.log('开始添加了');
+      _sql = `INSERT INTO picture_cosplay set href='${value.href}',title='${value.title}',cover='${value.cover}';`
       return allServices.query(_sql, value)
-    } else {
-      console.log('添加之前');
-      getPictureCosplayAlredy(value.href).then(res => {
-        console.log(res, res.length, '查找到了吗');
-        if(res.length) return
-        console.log('开始添加了');
-        _sql = `INSERT INTO picture_cosplay set href='${value.href}',title='${value.title}',cover='${value.cover}';`
-        return allServices.query(_sql, value)
-      }) // 查找是否已经添加过
-    }
+    }) // 查找是否已经添加过
   }
+}
 // 获取cosplay模块内容数据
 let getPictureCosplay = function (value) {
-    let _sql = `select * from picture_cosplay LIMIT ${value.start},${value.end};`
-    return allServices.query(_sql)
-  }
+  let _sql = `select * from picture_cosplay LIMIT ${value.start},${value.end};`
+  console.log(_sql, '可以吗');
+  return allServices.query(_sql)
+}
 // 查找是否已经添加过
 let getPictureCosplayAlredy = function (href) {
   let _sql = `select * from picture_cosplay where href="${href}";`
@@ -69,5 +70,6 @@ let getPictureCosplayAlredy = function (href) {
 // 导出方法
 module.exports = {
   insertPictureCosplay,
-    getPictureCosplay
+  getPictureCosplay,
+  getPictureCosplayAlredy
 }

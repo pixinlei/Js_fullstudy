@@ -1,21 +1,10 @@
 <!--index.wxml-->
 <view class="home">
   <view class="" id="contenter" hover-class="none" hover-stop-propagation="false">
-    <view class="box" hover-class="none" hover-stop-propagation="false">
+    <view class="box" hover-class="none" hover-stop-propagation="false" wx:for-item="item" wx:for="{{coverList}}" wx:key="index" > 
       <view class="box-img" hover-class="none" hover-stop-propagation="false">
-        <image lazy-load class="img" src="https://img0.baidu.com/it/u=3108985497,127936925&fm=26&fmt=auto" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-          
+        <image data-href="{{item.href}}" bind:tap="gotoDetail" lazy-load class="img" src="{{item.cover}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
         </image>
-      </view>
-    </view>
-        <view class="box" hover-class="none" hover-stop-propagation="false">
-      <view class="box-img" hover-class="none" hover-stop-propagation="false">
-        <image class="img" src="https://img0.baidu.com/it/u=3108985497,127936925&fm=26&fmt=auto" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-      </view>
-    </view>
-        <view class="box" hover-class="none" hover-stop-propagation="false">
-      <view class="box-img" hover-class="none" hover-stop-propagation="false">
-        <image class="img" src="https://img0.baidu.com/it/u=3108985497,127936925&fm=26&fmt=auto" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
       </view>
     </view>
   </view>

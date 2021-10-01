@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,20 +10,20 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "./assets/img.png",
-      "selectedIconPath": "./assets/img_active.png"
-    }, {
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "./assets/live.png",
-      "selectedIconPath": "./assets/live_active.png"
-    }]
-  },
-  "usingComponents": {
-    "van-button": "path/to/@vant/weapp/dist/button/index"
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./assets/img.png",
+        "selectedIconPath": "./assets/img_active.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./assets/live.png",
+        "selectedIconPath": "./assets/live_active.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }
