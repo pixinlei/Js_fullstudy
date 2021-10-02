@@ -1,18 +1,43 @@
 // miniprogram/pages/detail/index.js
+var app = new getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    href: '',
+    title: '',
+    pictureList: []
   },
-
+  getList() {
+    let that = this
+    wx.request({
+      url: `${app.globalData.preUrl}/picture/picture`,
+      data: {
+        href: that.data.href
+      },
+      success: (result)=>{
+        let title = result.data.data[0].title
+        let img = result.data.data[0].img.split(',')
+        that.setData({
+         title,
+         pictureList: img 
+        })
+        console.log(that.data.pictureList);
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    await this.setData({
+      href: options.href
+    })
+    await this.getList()
   },
 
   /**

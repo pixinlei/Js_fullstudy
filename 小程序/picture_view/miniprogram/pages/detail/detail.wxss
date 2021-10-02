@@ -1,1 +1,9 @@
 /* miniprogram/pages/detail/index.wxss */
+.home {
+    width: 100vw;
+    height: 100vh;
+}
+.image {
+    width: 90vw;
+    margin-left: 5vw;
+}

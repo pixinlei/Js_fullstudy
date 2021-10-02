@@ -1,0 +1,10 @@
+<view class="home" hover-class="none" hover-stop-propagation="false">
+    <view class="back" hover-class="none" hover-stop-propagation="false">
+        <image bind:tap="back" class="" src="../../assets/left_arrow.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+            
+        </image>
+    </view>
+    <view class="item" hover-class="none" hover-stop-propagation="false">
+        {{title}}
+    </view>
+</view>

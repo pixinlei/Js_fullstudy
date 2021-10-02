@@ -1,2 +1,6 @@
-<!--miniprogram/pages/detail/index.wxml-->
-<text>miniprogram/pages/detail/index.wxml</text>
+<view class="home" hover-class="none" hover-stop-propagation="false">
+    <navBar title="{{title}}"></navBar>
+    <image wx:for="{{pictureList}}" wx:for-index="index" wx:for-item="item" class="image" src="{{item}}" mode="widthFix" lazy-load="true" binderror="" bindload="">
+        
+    </image>
+</view>
