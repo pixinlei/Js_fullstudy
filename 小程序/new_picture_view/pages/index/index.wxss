@@ -1,0 +1,22 @@
+/**index.wxss**/
+.home {
+  width: 100vw;
+  height: 100vh;
+}
+#container{
+  position: relative;
+}
+.box{
+  padding: 5px;
+  float: left;
+}
+.box-img{
+  width: 44vw;
+  padding: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px #ccc;
+  border-radius: 5px;
+}
+.box-img .img{
+  width: 100%;
+}
