@@ -48,7 +48,7 @@ export default {
       this.paddingBottom = this.allHeight - this.scrollList.length * 30
     }
   },
-  mounted() {
+  async mounted() {
     const container = this.$refs.container
     container.addEventListener('scroll', () => {
       const top = container.scrollTop

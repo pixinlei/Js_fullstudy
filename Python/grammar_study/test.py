@@ -1,3 +1,8 @@
-# a = 1
-# b = 2
-# print('a的值为：' + {a} + 'b的值为：' + {b})
+a = 1
+class change:
+    print(a)
+    def change(newVal):
+        a = newVal
+        print(a)
+
+change.change("new")
