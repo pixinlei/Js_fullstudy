@@ -1,3 +1,9 @@
+// 理解设计模式
+// 工厂模式就是把简单的，同一种类的东西都放到一起， 创建对象，不同的类进行实例化
+
+
+
+
 class User {
     constructor(name, menuAuth) {
         if (new.target === User) throw new Error('User 不能被实例化');
