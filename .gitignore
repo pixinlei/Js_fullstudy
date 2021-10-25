@@ -28,3 +28,10 @@ node_modules/
 dist/
 
 
+Blog/vuepressTemplate
+Blog/clone_project/vuepress
+Blog/vuepress-blog
+.gitignore
+Blog/clone_project/vuepress
+VUE/custom-ui
+VUE/npm_packages
