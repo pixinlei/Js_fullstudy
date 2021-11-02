@@ -1,5 +1,20 @@
+<div id="id"></div>
+<div class="class"></div>
+
 <script>
-    window.onload = function () {
-        console.log('在这里是有这个方法的');
-    }
+    let id = document.getElementById('id')
+    console.log(id);
+
+    let className = document.getElementsByClassName('class')
+    console.log(className[0]);
+
+    let tagName = document.getElementsByTagName('div')
+    console.log(tagName[0]);
+    console.log(tagName[1]);
+
+    let querySelect = document.querySelector('#id')
+    console.log(querySelect);
+
+    let querySelectAll = document.querySelectorAll('div')
+    console.log(querySelectAll);
 </script>

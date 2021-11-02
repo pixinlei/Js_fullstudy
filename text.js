@@ -1,12 +1,7 @@
-let obj = {normal: 1, 
-    get: function getNormal() {
-        console.log('获取normal');
-    },
-    set: function setNormal() {
-        console.log('设置normal');
-    }
+let obj = { s: 1 }
+function a(m, n) {
+    console.log(m, n, '这里是其他参数');
+    console.log(this.s);
 }
 
-// console.log(obj);
-
-console.log(obj.get());
+a.apply(obj, [1, 2])
