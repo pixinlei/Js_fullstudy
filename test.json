@@ -1,0 +1,12 @@
+{
+    "leader": {"id": 123, "name": "张三"},
+    "manager":{"id": 456, "name": "李四"},
+    "comment": "评语内容",
+    "action": "评价完成",
+    "monthlyScore": 10,
+    "teamRanking": 1,
+    "performanceResult": "S",
+    "name": {"id": 1,"name":"自己的名字"},
+    "month": 1,
+    "department": "数字化部"
+}
