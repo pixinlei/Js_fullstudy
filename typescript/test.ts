@@ -1,14 +1,12 @@
-type User = {
-    id: number,
-    kind: string
-}
-
-function makeCustomer<T extends User>(user: T): User {
-
-    return {
-        id: user.id,
-        kind: user.kind
+function Fn(a: string | number, b: string | number) {
+    if(typeof a === 'string') {
+        return a + ':' + b
+    } else {
+        return a + b
     }
 }
 
-console.log(makeCustomer({id:1, kind: 'customer'}));
+Fn(2, 3); // Ok
+Fn(1, 'a'); // Error
+Fn('a', 2); // Error
+Fn('a', 'b') // Ok
