@@ -1,18 +1,15 @@
 <template>
-<div>
-  
-</div>
+  <div>
+    1
+  </div>
 </template>
-<script lang="ts">
-import { defineComponent, mixins } from 'vue'
 
-export default defineComponent({
-  setup() {
-    let a = 1
-  },
-})
+<script>
+export default {
+
+}
 </script>
 
-<style lang="scss">
+<style>
 
 </style>

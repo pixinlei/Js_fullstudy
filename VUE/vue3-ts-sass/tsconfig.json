@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/mixins/useTime.js"  ],
   "exclude": [
     "node_modules"
   ]
