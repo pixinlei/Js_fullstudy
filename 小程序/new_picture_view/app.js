@@ -3,7 +3,7 @@ App({
         env: 'devlopment',
         hosts: {
             devlopment: 'http://localhost:3000',
-            production: '',
+            production: 'http:pixinlei.ltd:3000',
         },
         preUrl: '' // url前缀
     },
